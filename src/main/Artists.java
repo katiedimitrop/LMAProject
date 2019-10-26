@@ -2,9 +2,7 @@ package main;
 
 import org.apache.jena.query.*;
 
-//This is a test run of querying the etree sparql endpoint to obtain 
-//all the artists in the collection and display them on a localhost page
-
+//Functions for making artist related queries
 public class Artists extends Object
 
 {
@@ -24,6 +22,6 @@ public class Artists extends Object
 	    ResultSetFormatter.out(System.out, results, query) ;	
 	}
 
-  
+    
 }
 
