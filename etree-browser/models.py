@@ -31,7 +31,7 @@ class ArtistModel:
 
     def get_all_count(self):
         self.sparql.setQuery(ArtistModel.prefixes + """
-                SELECT(COUNT(*) as ?Triples)
+                SELECT(COUNT(?label) as ?noOfArtists)
                 WHERE
                 { ?subject rdf:type mo:MusicArtist . ?subject  skos:prefLabel ?label .}
 
@@ -41,7 +41,7 @@ class ArtistModel:
         results = self.sparql.query().convert()
 
         for result in results["results"]["bindings"]:
-            return result["Triples"]["value"]
+            return result["noOfArtists"]["value"]
 
 
 class VenueModel:
@@ -72,7 +72,7 @@ class VenueModel:
 
     def get_all_count(self):
         self.sparql.setQuery(VenueModel.prefixes + """
-                SELECT(COUNT(*) as ?Triples)
+                SELECT(COUNT(?label) as ?noOfVenues)
                 WHERE
                 { ?subject rdf:type etree:Venue . ?subject  skos:prefLabel ?label .}
 
@@ -82,7 +82,7 @@ class VenueModel:
         results = self.sparql.query().convert()
 
         for result in results["results"]["bindings"]:
-            return result["Triples"]["value"]
+            return result["noOfVenues"]["value"]
 
 class PerformanceModel:
     prefixes = """
@@ -112,7 +112,7 @@ class PerformanceModel:
 
     def get_all_count(self):
         self.sparql.setQuery(PerformanceModel.prefixes + """
-                SELECT(COUNT(*) as ?Triples)
+                SELECT(COUNT(?label) as ?noOfPerformances)
                 WHERE
                 { ?subject rdf:type etree:Concert . ?subject  skos:prefLabel ?label .}
 
@@ -122,7 +122,7 @@ class PerformanceModel:
         results = self.sparql.query().convert()
 
         for result in results["results"]["bindings"]:
-            return result["Triples"]["value"]
+            return result["noOfPerformances"]["value"]
 
 class TrackModel:
     prefixes = """
@@ -143,7 +143,7 @@ class TrackModel:
                 {
                 ?subject rdf:type etree:Track.
                 ?subject skos:prefLabel ?name
-                } order by asc(UCASE(str(?name)))
+                } order by asc(UCASE(str(?name))) OFFSET 1
             """)
         self.sparql.setReturnFormat(JSON)
         results = self.sparql.query().convert()
@@ -152,7 +152,7 @@ class TrackModel:
 
     def get_all_count(self):
         self.sparql.setQuery(TrackModel.prefixes + """
-                SELECT(COUNT(*) as ?Triples)
+                SELECT(COUNT(?label) as ?noOfTracks)
                 WHERE
                 { ?subject rdf:type etree:Track . ?subject  skos:prefLabel ?label .}
 
@@ -162,5 +162,5 @@ class TrackModel:
         results = self.sparql.query().convert()
 
         for result in results["results"]["bindings"]:
-            return result["Triples"]["value"]
+            return result["noOfTracks"]["value"]
 
