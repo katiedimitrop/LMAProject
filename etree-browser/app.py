@@ -18,6 +18,12 @@ def get_all_artists():
     return render_template('artists.html', results=results, count=count)
 
 
+@app.route('/artists/<artist_name>')
+def get_all_artists_performances(artist_name):
+    performance_titles = ArtistService().get_performances(artist_name)
+    return render_template('artist.html', performance_titles=performance_titles, artist_name=artist_name)
+
+
 @app.route('/venues')
 def get_all_venues():
     results = VenueService().get_all()
@@ -30,6 +36,12 @@ def get_all_performances():
     results = PerformanceService().get_all()
     count = PerformanceService().get_count()
     return render_template('performances.html', results=results, count=count)
+
+
+@app.route('/performances/<perf_name>')
+def get_all_perf_tracks(perf_name):
+    track_titles = PerformanceService().get_tracks(perf_name)
+    return render_template('performance.html', track_titles=track_titles, perf_name=perf_name)
 
 
 @app.route('/tracks')

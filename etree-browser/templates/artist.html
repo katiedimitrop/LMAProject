@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>All artists</title>
+    <script type="text/javascript"  src="{{ url_for('static', filename='browse.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/browse.css') }}">
+</head>
+<body>
+
+
+<h1>
+{% print("Artist page for: "+ artist_name) %}
+</h1>
+<input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for performances.." title="Type in a performance name">
+<ul id="myUL">
+<!--Iterate over list provided in view-->
+   {% for performance_title in performance_titles["results"]["bindings"] %}
+       <li><a href="/performances/{{ performance_title["perftitle"]["value"] }}">{{ performance_title["perftitle"]["value"] }}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

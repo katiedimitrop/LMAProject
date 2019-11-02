@@ -13,6 +13,9 @@ class ArtistService:
     def get_count(self):
         return self.model.get_all_count()
 
+    def get_performances(self, artist_name):
+        return self.model.get_all_performances(artist_name)
+
 
 class VenueService:
     def __init__(self):
@@ -35,6 +38,8 @@ class PerformanceService:
     def get_count(self):
         return self.model.get_all_count()
 
+    def get_tracks(self, perf_name):
+        return self.model.get_all_tracks(perf_name)
 
 class TrackService:
     def __init__(self):

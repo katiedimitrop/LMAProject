@@ -4,9 +4,11 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 
 # class generalQueryModel: #for the general queryer that will be implemented later
 
-# each one of the rest of the classes corresponds to onn resource
+# each one of the rest of the classes corresponds to one resource
 class ArtistModel:
-    prefixes = """PREFIX mo:<http://purl.org/ontology/mo/>
+    prefixes = """
+                PREFIX etree:<http://etree.linkedmusic.org/vocab/>
+                PREFIX mo:<http://purl.org/ontology/mo/>
                 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"""
@@ -26,7 +28,6 @@ class ArtistModel:
             """)
         self.sparql.setReturnFormat(JSON)
         results = self.sparql.query().convert()
-        print(results)
         return results
 
     def get_all_count(self):
@@ -42,6 +43,20 @@ class ArtistModel:
 
         for result in results["results"]["bindings"]:
             return result["noOfArtists"]["value"]
+
+    def get_all_performances(self, artist_name):
+        self.sparql.setQuery(ArtistModel.prefixes + """
+                SELECT DISTINCT ?perftitle 
+                WHERE
+               { ?artist rdf:type mo:MusicArtist. ?artist skos:prefLabel '""" + artist_name + """'. ?artist mo:performed ?perflinks. ?perflinks skos:prefLabel ?perftitle. ?perflinks etree:date ?perfdate. } order by asc(UCASE(str(?perfdate)))
+        """)
+        self.sparql.setReturnFormat(JSON)
+        perf_titles = self.sparql.query().convert()
+        print(perf_titles)
+        return perf_titles
+    # for printing the names here
+    # for perf_title in perf_titles["results"]["bindings"]:
+    #    return perf_title["perftitle"]["value"]
 
 
 class VenueModel:
@@ -84,13 +99,15 @@ class VenueModel:
         for result in results["results"]["bindings"]:
             return result["noOfVenues"]["value"]
 
+
 class PerformanceModel:
     prefixes = """
                 PREFIX etree:<http://etree.linkedmusic.org/vocab/>
                 PREFIX mo:<http://purl.org/ontology/mo/>
                 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"""
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX event:<http://purl.org/NET/c4dm/event.owl#>"""
 
     def __init__(self):
         self.sparql = SPARQLWrapper("http://etree.linkedmusic.org/sparql")
@@ -123,6 +140,22 @@ class PerformanceModel:
 
         for result in results["results"]["bindings"]:
             return result["noOfPerformances"]["value"]
+
+    def get_all_tracks(self, perf_name):
+        self.sparql.setQuery(PerformanceModel.prefixes + """
+                SELECT DISTINCT ?tracktitle
+                WHERE
+               { ?perf rdf:type etree:Concert. ?perf skos:prefLabel '""" + perf_name
+                             + """'. ?perf event:hasSubEvent ?tracklinks .  ?tracklinks skos:prefLabel ?tracktitle  } 
+        """)
+        self.sparql.setReturnFormat(JSON)
+        track_titles = self.sparql.query().convert()
+        # print(track_titles)
+        return track_titles
+        # for printing the names here
+        #for track_title in track_titles["results"]["bindings"]:
+            # print(track_title["tracktitle"]["value"])
+
 
 class TrackModel:
     prefixes = """
@@ -163,4 +196,3 @@ class TrackModel:
 
         for result in results["results"]["bindings"]:
             return result["noOfTracks"]["value"]
-

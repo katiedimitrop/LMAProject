@@ -9,12 +9,15 @@
 </head>
 <body>
 
-<input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for names.." title="Type in a name">
-{% print("Total no. of artists found in etree: "+ count) %}
+
+<h1>
+{% print("Performance page for: "+ perf_name) %}
+</h1>
+<input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search setlist.." title="Type in a song name">
 <ul id="myUL">
 <!--Iterate over list provided in view-->
-   {% for result in results["results"]["bindings"] %}
-       <li><a href="/artists/{{ result["name"]["value"] }}">{{ result["name"]["value"] }}</a></li>
+   {% for track_title in track_titles["results"]["bindings"] %}
+       <li><a href="#">{{ track_title["tracktitle"]["value"] }}</a></li>
   {% endfor %}
 </ul>
 
