@@ -12,7 +12,7 @@
 <ul id="myUL">
 <!--Iterate over list provided in view-->
    {% for result in results["results"]["bindings"] %}
-       <li><a href="#">{{ result["name"]["value"] }}</a></li>
+       <li><a href="/venues/{{ result["name"]["value"] }}"> {{ result["name"]["value"] }}</a></li>
   {% endfor %}
 </ul>
 </body>

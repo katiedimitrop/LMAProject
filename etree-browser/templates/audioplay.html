@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play some audio</title>
+    <script  src="{{ url_for('static', filename='audio.js') }}"></script>
+    <script>
+   audiojs.events.ready(function() {
+     var as = audiojs.createAll();
+   });
+ </script>
+
+</head>
+<body>
+      <audio src="https://ia802304.us.archive.org/29/items/mogwai2014-02-06.ecm.flac16/mogwai2014-02-06t12.mp3" type="audio/mp3" preload="auto"/> >
+
+</body>
+</html>

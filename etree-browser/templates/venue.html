@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>{{  venue_name }}</title>
+    <script type="text/javascript"  src="{{ url_for('static', filename='browse.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/browse.css') }}">
+</head>
+<body>
+
+
+<h1>
+{% print("Venue page for: "+ venue_name) %} <br>
+<h2>
+    Location: <br>
+    {% for loc in location["results"]["bindings"] %}
+        {% print( loc["locname"]["value"]) %} <br>
+    {% endfor %}
+</h2>
+</h1>
+
+
+</body>
+</html>

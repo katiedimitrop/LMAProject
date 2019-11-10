@@ -11,13 +11,22 @@
 
 
 <h1>
-{% print("Performance page for: "+ perf_name) %}
+{% print("Performance page for: "+ perf_name) %}<br>
+
 </h1>
+<h3>
+    <a href="/artists/{{ artist_name }}"> {% print("Artist: "+ artist_name) %}</a> <br>
+    <a href="/venues/{{ venue_name }}">{% print("Venue: "+ venue_name) %}</a>
+    {% print("date: "+ perf_date) %} <br>
+    {% print("description: "+ perf_description) %}
+
+
+</h3>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search setlist.." title="Type in a song name">
 <ul id="myUL">
 <!--Iterate over list provided in view-->
    {% for track_title in track_titles["results"]["bindings"] %}
-       <li><a href="#">{{ track_title["tracktitle"]["value"] }}</a></li>
+       <li><a href="/tracks/{{ track_title["tracktitle"]["value"] }}">{{ track_title["tracktitle"]["value"] }}</a></li>
   {% endfor %}
 </ul>
 

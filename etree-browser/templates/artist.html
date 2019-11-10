@@ -13,6 +13,15 @@
 <h1>
 {% print("Artist page for: "+ artist_name) %}
 </h1>
+<h3>
+
+    {% print("MusicBrainz tags: ")%}
+
+    {% for mb_tag in mb_tags["results"]["bindings"] %}
+        {% print( mb_tag["mbtags"]["value"])+" " %}
+    {% endfor %}
+
+</h3>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for performances.." title="Type in a performance name">
 <ul id="myUL">
 <!--Iterate over list provided in view-->

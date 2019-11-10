@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript"  src="{{ url_for('static', filename='browse.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/browse.css') }}">
+</head>
+<body>
+<h1>
+{% print("Track page for: "+ track_name) %}
+</h1>
+<input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for tracks with this name.." title="Type in a artist/ performance name">
+
+<ul id="myUL">
+{% for perf in results["results"]["bindings"] %}
+       <li><a href="/performances/{{ perf["perfname"]["value"] }}">{{ perf["perfname"]["value"] }} </a>
+            <a href="/performances/{{ perf["artname"]["value"] }}">{{ perf["artname"]["value"] }} </a>
+            <a href="{{ perf["audiolink"]["value"] }}">{{ perf["audiolink"]["value"] }} </a>
+       </li>
+        <hr>
+  {% endfor %}
+</ul>
+</body>
+</html>
