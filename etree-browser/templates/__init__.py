@@ -4,4 +4,6 @@ app = Flask(__name__,
             static_folder = './public',
             template_folder="./static")
 
-import templates.etree.views
+from templates.etree.views import etree_blueprint
+
+app.register_blueprint(etree_blueprint)

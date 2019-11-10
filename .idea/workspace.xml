@@ -2,172 +2,187 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/etree-browser/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/configurations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/etree/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/License.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/Useful_Resources.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/datatables-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/datatables-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/datatables.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/datatables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/directives.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/directives.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/flag.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/flag.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/rating.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/rating.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/zmd.hierarchical-display.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/addons/zmd.hierarchical-display.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/mdb.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/mdb.lite.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/mdb.lite.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/mdb.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/modules/animations-extended.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/modules/animations-extended.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Light.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Medium.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Medium.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Thin.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Thin.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/font/roboto/Roboto-Thin.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/ghost.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/lightbox/default-skin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/lightbox/default-skin.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/lightbox/preloader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/07.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/08.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/overlays/09.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/sample.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/svg/arrow_left.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/svg/arrow_right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/img/svg/flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/datatables-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/datatables-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/datatables.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/imagesloaded.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/jquery.zmd.hierarchical-display.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/jquery.zmd.hierarchical-display.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/masonry.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/progressBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/progressBar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/rating.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/addons/rating.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/mdb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/mdb.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/bs-custom-file-input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/enhanced-modals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/forms-free.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/jquery.easing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/scrolling-navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/treeview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/velocity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/velocity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/waves.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/modules/wow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/_custom-styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/_custom-variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_datatables-select.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_datatables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_directives.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_flags.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_hierarchical-display.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/addons/_rating.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_colors.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_global.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_helpers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_masks.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_typography.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/_waves.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/bootstrap/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/bootstrap/_rfs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/core/bootstrap/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_animations-basic.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_badges.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_cards.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_carousels.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_depreciated.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_dropdowns.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_footers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_input-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_loader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_modals.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_msc.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_navbars.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_steppers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_switch.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/_treeview.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/modules/animations-extended/_module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/free/modules/animations-extended/animations-extended.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/mdb.lite.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/scss/mdb.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/hello.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/api/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/api/node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/get-possible-plugin-names.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/get-possible-preset-names.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/merge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/normalize-ast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-from-possible-names.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-preset.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/tools/build-external-helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/logger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/merge-map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/metadata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/option-manager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/parsers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/removed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/internal-plugins/block-hoist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/internal-plugins/shadow-functions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/pipeline.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/plugin-pass.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/lib/Error.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/lib/cache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/lib/injectCaller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/lib/transform.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-react/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-react/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/CssSyntaxError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/Warning.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/cjs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/plugins/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/plugins/postcss-icss-parser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/plugins/postcss-import-parser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/plugins/postcss-url-parser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/runtime/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/runtime/getUrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/dist/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/DOMUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/ExecutionEnvironment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/LocationUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/PathUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/cjs/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/cjs/history.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/createBrowserHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/createHashHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/createMemoryHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/createTransitionManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/DOMUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/ExecutionEnvironment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/LocationUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/PathUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/createBrowserHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/createHashHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/createMemoryHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/createTransitionManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/es/warnAboutDeprecatedESMImport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/esm/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/umd/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/umd/history.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/warnAboutDeprecatedCJSRequire.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-server.browser.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-server.browser.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-server.node.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-server.node.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-test-utils.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-test-utils.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-fizz.browser.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-fizz.browser.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-fizz.node.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-fizz.node.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-native-dependencies.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom-unstable-native-dependencies.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/cjs/react-dom.profiling.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/profiling.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/server.browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/server.node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/test-utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-server.browser.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-server.browser.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-test-utils.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-test-utils.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-unstable-fizz.browser.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-unstable-fizz.browser.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-unstable-native-dependencies.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom-unstable-native-dependencies.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/umd/react-dom.profiling.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/unstable-fizz.browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/unstable-fizz.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/unstable-fizz.node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/unstable-native-dependencies.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/BrowserRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/HashRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Link.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/MemoryRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/NavLink.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Prompt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Redirect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/StaticRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/Switch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/cjs/react-router-dom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/cjs/react-router-dom.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/BrowserRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/HashRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Link.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/MemoryRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/NavLink.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Prompt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Redirect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/StaticRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/Switch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/generatePath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/matchPath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/warnAboutDeprecatedESMImport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/es/withRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/esm/react-router-dom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/generatePath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/matchPath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/BrowserRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/HashRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/Link.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/NavLink.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/modules/utils/locationUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/umd/react-router-dom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/umd/react-router-dom.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/warnAboutDeprecatedCJSRequire.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/withRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/cjs/react.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/cjs/react.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/umd/react.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/umd/react.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/umd/react.profiling.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/dist/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/dist/runtime/injectStylesIntoLinkTag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/MDB-Free_4.8.11.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/static/audio.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/static/audiojs.swf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/static/browse.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/browse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/static/css/browse.css" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/browse.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/static/player-graphics.gif" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/player-graphics.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/audioplay.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/performances.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/track.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/venue.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -178,10 +193,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -215,12 +230,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/public/js" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/etree" />
       <recent name="$PROJECT_DIR$/etree-browser/templates" />
@@ -361,7 +377,8 @@
       <workItem from="1572965033298" duration="854000" />
       <workItem from="1573395158372" duration="12033000" />
       <workItem from="1573416308019" duration="1030000" />
-      <workItem from="1573417358443" duration="647000" />
+      <workItem from="1573417358443" duration="4425000" />
+      <workItem from="1573423094190" duration="290000" />
     </task>
     <servers />
   </component>
@@ -385,7 +402,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lma_project$run.coverage" NAME="run Coverage Results" MODIFIED="1573417612681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
+    <SUITE FILE_PATH="coverage/lma_project$run.coverage" NAME="run Coverage Results" MODIFIED="1573423381779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$models.coverage" NAME="models Coverage Results" MODIFIED="1572554446446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$logic.coverage" NAME="logic Coverage Results" MODIFIED="1572554471567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$app.coverage" NAME="app Coverage Results" MODIFIED="1573412572905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
