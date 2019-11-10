@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>All artists</title>
+    <script type="text/javascript"  src="{{ url_for('static', filename='browse.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/browse.css') }}">
+</head>
+<body>
+
+<input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for names.." title="Type in a name">
+{% print("Total no. of artists found in etree: "+ count) %}
+<ul id="myUL">
+<!--Iterate over list provided in view-->
+   {% for result in results["results"]["bindings"] %}
+       <li><a href="/artists/{{ result["name"]["value"] }}">{{ result["name"]["value"] }}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

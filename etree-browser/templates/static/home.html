@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Etree Browser</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../public/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../public/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Start your project here-->
+  <header>
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark black">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#" >Etree browser</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+        <!-- Links -->
+        <span class="navbar-text white-text">
+              Navbar text with an inline element
+        </span>
+
+    </div>
+  </nav>
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark yellow">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand black-text" href="#" >Explore the tracks of over 100,000 live performances</a>
+     <br>
+
+          <div class="container"  >
+    <div class="row justify-content-center">
+    <div class="col-sm">
+      <form action="/artists">
+         <button class="btn btn-elegant"  >Artists</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <button class="btn btn-elegant" >Venues</button>
+    </div>
+    <div class="col-sm">
+      <button class="btn btn-elegant" >Performances</button>
+    </div>
+        <div class="col-sm">
+      <button class="btn btn-elegant" >Tracks</button>
+    </div>
+
+  </div><!--row containerend-->
+
+    </div>
+  </nav> <!--Second navbar>
+<!--/.Navbar-->
+  </header>
+
+
+<!--Main layout-->
+  <main>
+
+
+<div class="container">
+  <h2>{% print("Total no. of artists found in etree: "+ count) %}</h2>
+  <p>Type something in the input field to search the list for specific items:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Search.."  >
+<!--Iterate over list provided in view-->
+<br><ul class="list-group" id="myList">
+   {% for result in results["results"]["bindings"] %}
+       <li class="list-group-item"><a href="/artists/{{ result["name"]["value"] }}">{{ result["name"]["value"] }}</a></li>
+  {% endfor %}
+</ul>
+
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+  </main>
+</body>
+</html>

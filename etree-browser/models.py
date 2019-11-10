@@ -1,4 +1,4 @@
-# where the querying happens
+# where the querying happens, could be split into several modules
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 
