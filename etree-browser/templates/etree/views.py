@@ -8,18 +8,18 @@ etree_blueprint = Blueprint('etree',__name__)
 
 # pick endpoint
 @etree_blueprint.route('/')
-def hello_artists():
+@etree_blueprint.route('/hello')
+def index():
+    return render_template('index.html')
+
+@etree_blueprint.route('/home')
+def actual_home():
     try:
         results = ArtistService().get_all()
         count = ArtistService().get_count()
         return render_template('home.html', results=results, count=count)
     except Exception as e:
         return str(e)
-
-@etree_blueprint.route('/hello')
-def index():
-    return render_template('hello.html')
-
 
 @etree_blueprint.route('/artists')
 def get_all_artists():
