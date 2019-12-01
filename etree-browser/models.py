@@ -92,7 +92,11 @@ class VenueModel:
             """)
         self.sparql.setReturnFormat(JSON)
         results = self.sparql.query().convert()
-        print(results)
+
+
+
+
+
         return results
 
     def get_all_count(self):

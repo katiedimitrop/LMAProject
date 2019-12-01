@@ -18,7 +18,7 @@ def art_home():
     # need encoded versions of titles wherever there are links
     encoded_r = []
     for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
     return render_template("home.html", results=results, count=count, encoded_r=encoded_r)
 
 
@@ -46,7 +46,7 @@ def perf_home():
     # need encoded versions of titles wherever there are links
     encoded_r = []
     for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
     return render_template("performances.html", results=results, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/performances/<perf_name>')
@@ -82,7 +82,7 @@ def track_home():
     # need encoded versions of titles wherever there are links
     encoded_r = []
     for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["trackname"]["value"]))
+        encoded_r.append(urllib.parse.quote(result["trackname"]["value"].strip('\n')))
     return render_template("tracks.html", results=results, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/tracks/<track_name>')
@@ -101,8 +101,8 @@ def get_track(track_name):
     encoded_ars = []
 
     for perf in results["results"]["bindings"]:
-        encoded_perfs.append(urllib.parse.quote(perf["perfname"]["value"]))
-        encoded_ars.append(urllib.parse.quote(perf["artname"]["value"]))
+        encoded_perfs.append(urllib.parse.quote(perf["perfname"]["value"].strip('\n')))
+        encoded_ars.append(urllib.parse.quote(perf["artname"]["value"].strip('\n')))
 
     return render_template('track.html', track_name=track_name, results=results, encoded_perfs = encoded_perfs,
                            encoded_ars = encoded_ars)
@@ -115,7 +115,7 @@ def venue_home():
     # need encoded versions of titles wherever there are links
     encoded_r = []
     for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
     return render_template("venues.html", results=results, count=count, encoded_r=encoded_r)
 
 
@@ -124,5 +124,16 @@ def venue_home():
 def get_venue(venue_name):
     #requests to Venue service and template rendering require unencoded version
     venue_name = urllib.parse.unquote(venue_name)
+    print(venue_name)
     location = VenueService().get_location(venue_name)
+
     return render_template('venue.html', venue_name=venue_name, location=location)
+
+@etree_blueprint.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
+
+@etree_blueprint.errorhandler(505)
+def internal_error(e):
+    return render_template('500.html'), 500

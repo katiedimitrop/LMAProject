@@ -12,6 +12,11 @@ class ProductionConfig(BaseConfig):
     '''
     DEBUG = False
 
+class TestConfigur(BaseConfig):
+    '''
+    Test specific config
+    '''
+    TESTING = True
 
 class DevelopmentConfig(BaseConfig):
     '''

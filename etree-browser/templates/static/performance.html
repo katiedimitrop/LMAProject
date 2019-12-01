@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<div>
 <!-- Start your project here-->
   <header>
       <!--Navbar-->
@@ -88,7 +88,7 @@
 <!--/.Navbar-->
   </header>
 <br>
-
+<div class="container">
 <h1>
 {% print("Performance page for: "+ perf_name) %}<br>
 
@@ -109,6 +109,16 @@
         {% set counter.value = counter.value + 1 %}
     {% endfor %} {% set counter.value = counter.value + 1 %}
 </ul>
-
+</div>
 </body>
+    <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </html>

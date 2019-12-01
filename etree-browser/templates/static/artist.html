@@ -89,7 +89,7 @@
   </header>
 <br>
 
-
+<div class="container">
 <h1>
 {% print("Artist page for: "+ artist_name) %}
 </h1>
@@ -111,7 +111,8 @@
         {% set count.value = count.value + 1 %}
   {% endfor %}
 </ul>
-
+</div>
+<script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();

@@ -2,17 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/500.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/test_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/not-zip-safe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/requires.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/Flask_Testing-0.7.1-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_testing/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_testing/twill.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_testing/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/configurations.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/configurations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/perfhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/track.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/trackhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venuehome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,13 +33,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="lma-project" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -64,18 +80,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
-      <recent name="$PROJECT_DIR$/etree-browser" />
-      <recent name="$PROJECT_DIR$/etree-browser/templates" />
-      <recent name="$PROJECT_DIR$/etree-browser/static" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/static/js" />
       <recent name="$PROJECT_DIR$/etree-browser" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/public/js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
+      <recent name="$PROJECT_DIR$/etree-browser" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates" />
+      <recent name="$PROJECT_DIR$/etree-browser/static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -179,9 +195,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in test_base.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="lma-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/etree-browser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/etree-browser/test_base.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
+        <item itemvalue="Python tests.Unittests in test_base.py" />
         <item itemvalue="Python.app" />
         <item itemvalue="Python.logic" />
         <item itemvalue="Python.models" />
