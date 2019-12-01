@@ -11,25 +11,7 @@ etree_blueprint = Blueprint('etree', __name__)
 # pick endpoint
 
 @etree_blueprint.route('/')
-@etree_blueprint.route('/hello')
-def react_home():
-    results = ArtistService().get_all()
-    count = ArtistService().get_count()
-    return render_template('home.html', results=results, count=count)
-
-
-@etree_blueprint.route('/home')
-def actual_home():
-    try:
-        results = ArtistService().get_all()
-        count = ArtistService().get_count()
-        return render_template('home.html', results=results, count=count)
-    except Exception as e:
-        return str(e)
-
-
-@etree_blueprint.route('/artists')
-def get_all_artists():
+def art_home():
     results = ArtistService().get_all()
     count = ArtistService().get_count()
 
@@ -37,7 +19,43 @@ def get_all_artists():
     encoded_r = []
     for result in results["results"]["bindings"]:
         encoded_r.append(urllib.parse.quote(result["name"]["value"]))
-    return render_template("artists.html", results=results, count=count, encoded_r = encoded_r)
+    return render_template("home.html", results=results, count=count, encoded_r=encoded_r)
+
+@etree_blueprint.route('/perfhome')
+def perf_home():
+    results = PerformanceService().get_all()
+    count = PerformanceService().get_count()
+
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+    return render_template("perfhome.html", results=results, count=count, encoded_r=encoded_r)
+
+@etree_blueprint.route('/trackhome')
+def track_home():
+    results = TrackService().get_all()
+    count = TrackService().get_count()
+
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["trackname"]["value"]))
+    return render_template("trackhome.html", results=results, count=count, encoded_r=encoded_r)
+
+@etree_blueprint.route('/venuehome')
+def venue_home():
+    results = VenueService().get_all()
+    count = VenueService().get_count()
+
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+    return render_template("venuehome.html", results=results, count=count, encoded_r=encoded_r)
+
+
+
 
 
 @etree_blueprint.route('/artists/<artist_name>')
@@ -57,17 +75,7 @@ def get_all_artists_performances(artist_name):
                            artist_name=artist_name, mb_tags=mb_tags)
 
 
-@etree_blueprint.route('/performances')
-def get_all_performances():
-    results = PerformanceService().get_all()
-    count = PerformanceService().get_count()
 
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
-
-    return render_template('performances.html', results=results, count=count, encoded_r = encoded_r)
 
 
 @etree_blueprint.route('/performances/<perf_name>')
@@ -96,18 +104,6 @@ def get_performance(perf_name):
                         perf_date=perf_date, perf_description=perf_description )
 
 
-@etree_blueprint.route('/tracks')
-def get_all_tracks():
-    #urllib.parse.quote_plus(
-    results = TrackService().get_all()
-    count = TrackService().get_count()
-    encoded_r = []
-
-    # need encoded versions of titles wherever there are links
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["trackname"]["value"]))
-
-    return render_template('tracks.html', results=results, encoded_r = encoded_r, count=count)
 
 
 @etree_blueprint.route('/tracks/<track_name>')
@@ -132,17 +128,6 @@ def get_track(track_name):
     return render_template('track.html', track_name=track_name, results=results, encoded_perfs = encoded_perfs,
                            encoded_ars = encoded_ars)
 
-
-@etree_blueprint.route('/venues')
-def get_all_venues():
-    results = VenueService().get_all()
-    count = VenueService().get_count()
-
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
-    return render_template('venues.html', results=results, encoded_r = encoded_r ,count=count)
 
 
 @etree_blueprint.route('/venues/<venue_name>')

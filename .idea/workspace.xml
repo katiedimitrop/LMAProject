@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/perfhome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/trackhome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/venuehome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/model_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/track.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,18 +61,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
+      <recent name="$PROJECT_DIR$/etree-browser" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates" />
+      <recent name="$PROJECT_DIR$/etree-browser/static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/static/js" />
       <recent name="$PROJECT_DIR$/etree-browser" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
       <recent name="$PROJECT_DIR$/etree-browser/templates/public/js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
-      <recent name="$PROJECT_DIR$/etree-browser" />
-      <recent name="$PROJECT_DIR$/etree-browser/templates" />
-      <recent name="$PROJECT_DIR$/etree-browser/static" />
     </key>
   </component>
   <component name="RunDashboard">
