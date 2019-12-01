@@ -15,19 +15,21 @@
 
 </h1>
 <h3>
-    <a href="/artists/{{ artist_name }}"> {% print("Artist: "+ artist_name) %}</a> <br>
-    <a href="/venues/{{ venue_name }}">{% print("Venue: "+ venue_name) %}</a>
+    <a href="/artists/{{ encoded_a }}"> {% print("Artist: "+ artist_name) %}</a> <br>
+    <a href="/venues/{{ encoded_v }}">{% print("Venue: "+ venue_name) %}</a>
     {% print("date: "+ perf_date) %} <br>
     {% print("description: "+ perf_description) %}
 
 
 </h3>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search setlist.." title="Type in a song name">
+{% set counter = namespace(value=0) %}
 <ul id="myUL">
 <!--Iterate over list provided in view-->
    {% for track_title in track_titles["results"]["bindings"] %}
-       <li><a href="/tracks/{{ track_title["tracktitle"]["value"] }}">{{ track_title["tracktitle"]["value"] }}</a></li>
-  {% endfor %}
+       <li><a href="/tracks/{{ encoded_ts[counter.value] }}">{{ track_title["tracktitle"]["value"] }}</a></li>
+        {% set counter.value = counter.value + 1 %}
+    {% endfor %} {% set counter.value = counter.value + 1 %}
 </ul>
 
 </body>

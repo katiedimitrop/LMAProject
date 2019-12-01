@@ -2,154 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/model_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/mdb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/hello.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/.bin/jsesc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/api/browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/api/node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/get-possible-plugin-names.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/get-possible-preset-names.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/merge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/normalize-ast.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-from-possible-names.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-plugin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve-preset.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/helpers/resolve.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/store.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/tools/build-external-helpers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/logger.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/merge-map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/metadata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/option-manager.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/parsers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/file/options/removed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/internal-plugins/block-hoist.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/internal-plugins/shadow-functions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/pipeline.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/plugin-pass.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/transformation/plugin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/lib/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/.bin/json5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/lib/cli.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/lib/json5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/lib/require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/node_modules/json5/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-core/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/buffer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/base.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/classes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/expressions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/flow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/jsx.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/methods.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/modules.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/statements.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/template-literals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/generators/types.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/node/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/node/parentheses.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/node/whitespace.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/printer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/source-map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/lib/whitespace.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-generator/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-helpers/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-helpers/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-helpers/lib/helpers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-helpers/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-helpers/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-loader/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-es2015/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-preset-react/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/lib/browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/lib/cache.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/lib/node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/browser-source-map-support.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/node_modules/source-map-support/source-map-support.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/babel-register/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/css-loader/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/detect-indent/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/detect-indent/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/detect-indent/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/detect-indent/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/history/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/home-or-tmp/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/home-or-tmp/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/home-or-tmp/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/home-or-tmp/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/is-finite/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/is-finite/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/is-finite/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/is-finite/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/jsesc/LICENSE-MIT.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/jsesc/bin/jsesc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/jsesc/jsesc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/jsesc/man/jsesc.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/jsesc/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/number-is-nan/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/number-is-nan/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/number-is-nan/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/number-is-nan/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-homedir/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-homedir/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-homedir/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-homedir/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-tmpdir/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-tmpdir/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-tmpdir/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/os-tmpdir/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/History.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/path-to-regexp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-dom/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react-router-dom/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/react/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/repeating/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/repeating/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/repeating/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/repeating/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/slash/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/slash/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/slash/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/style-loader/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/trim-right/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/trim-right/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/trim-right/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/trim-right/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/webpack-cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/webpack-cli/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/webpack/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/node_modules/webpack/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/track.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,18 +69,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates/static/js" />
+      <recent name="$PROJECT_DIR$/etree-browser" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
+      <recent name="$PROJECT_DIR$/etree-browser/templates/public/js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
       <recent name="$PROJECT_DIR$/etree-browser" />
       <recent name="$PROJECT_DIR$/etree-browser/templates" />
       <recent name="$PROJECT_DIR$/etree-browser/static" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/etree-browser/templates/static/js" />
-      <recent name="$PROJECT_DIR$/etree-browser" />
-      <recent name="$PROJECT_DIR$/etree-browser/templates/static" />
-      <recent name="$PROJECT_DIR$/etree-browser/templates/public" />
-      <recent name="$PROJECT_DIR$/etree-browser/templates/public/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -346,7 +214,11 @@
       <workItem from="1573416308019" duration="1030000" />
       <workItem from="1573417358443" duration="4425000" />
       <workItem from="1573423094190" duration="6165000" />
-      <workItem from="1573571590903" duration="1104000" />
+      <workItem from="1573571590903" duration="2285000" />
+      <workItem from="1573574830097" duration="1175000" />
+      <workItem from="1573937945956" duration="1484000" />
+      <workItem from="1574057069106" duration="6385000" />
+      <workItem from="1575197716529" duration="55000" />
     </task>
     <servers />
   </component>
@@ -370,7 +242,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lma_project$run.coverage" NAME="run Coverage Results" MODIFIED="1573572879033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
+    <SUITE FILE_PATH="coverage/lma_project$run.coverage" NAME="run Coverage Results" MODIFIED="1574101131978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$models.coverage" NAME="models Coverage Results" MODIFIED="1572554446446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$logic.coverage" NAME="logic Coverage Results" MODIFIED="1572554471567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />
     <SUITE FILE_PATH="coverage/lma_project$app.coverage" NAME="app Coverage Results" MODIFIED="1573412572905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/etree-browser" />

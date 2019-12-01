@@ -1,6 +1,8 @@
 # part of logic tier: this will transform user queries into SPARQL queries and
 # aggregate the results
 from models import ArtistModel, VenueModel, PerformanceModel, TrackModel
+import urllib.parse
+
 import json
 import re
 

@@ -23,10 +23,12 @@
 
 </h3>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for performances.." title="Type in a performance name">
+{% set count = namespace(value=0) %}
 <ul id="myUL">
 <!--Iterate over list provided in view-->
    {% for performance_title in performance_titles["results"]["bindings"] %}
-       <li><a href="/performances/{{ performance_title["perftitle"]["value"] }}">{{ performance_title["perftitle"]["value"] }}</a></li>
+       <li><a href="/performances/{{ encoded_perfs[count.value]}}">{{ performance_title["perftitle"]["value"] }}</a></li>
+        {% set count.value = count.value + 1 %}
   {% endfor %}
 </ul>
 

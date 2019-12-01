@@ -9,10 +9,12 @@
 <body>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for names.." title="Type in a name">
 {% print("Total no. of performances found in etree: "+ count) %}
+{% set counter = namespace(value=0) %}
 <ul id="myUL">
 <!--Iterate over list provided in view-->
    {% for result in results["results"]["bindings"] %}
-       <li><a href="/performances/{{ result["name"]["value"] }}">{{ result["name"]["value"] }}</a></li>
+       <li><a href="/performances/{{ encoded_r[counter.value] }}">{{ result["name"]["value"] }}</a></li>
+        {% set counter.value = counter.value + 1 %}
   {% endfor %}
 </ul>
 </body>

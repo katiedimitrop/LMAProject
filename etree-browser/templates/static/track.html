@@ -12,14 +12,15 @@
 {% print("Track page for: "+ track_name) %}
 </h1>
 <input type="text" id="myInput" onkeyup="filterResults()" placeholder="Search for tracks with this name.." title="Type in a artist/ performance name">
-
+{% set counter = namespace(value=0) %}
 <ul id="myUL">
 {% for perf in results["results"]["bindings"] %}
-       <li><a href="/performances/{{ perf["perfname"]["value"] }}">{{ perf["perfname"]["value"] }} </a>
-            <a href="/performances/{{ perf["artname"]["value"] }}">{{ perf["artname"]["value"] }} </a>
+       <li><a href="/performances/{{ encoded_perfs[counter.value] }}">{{ perf["perfname"]["value"] }} </a>
+            <a href="/artists/{{ encoded_ars[counter.value] }}">{{ perf["artname"]["value"] }} </a>
             <a href="{{ perf["audiolink"]["value"] }}">{{ perf["audiolink"]["value"] }} </a>
        </li>
         <hr>
+    {% set counter.value = counter.value + 1 %}
   {% endfor %}
 </ul>
 </body>
