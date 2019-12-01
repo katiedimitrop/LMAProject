@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/perfhome.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/trackhome.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/venuehome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/hello.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/js/components/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/perfhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/track.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/trackhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venuehome.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

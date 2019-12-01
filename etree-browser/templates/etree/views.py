@@ -21,42 +21,6 @@ def art_home():
         encoded_r.append(urllib.parse.quote(result["name"]["value"]))
     return render_template("home.html", results=results, count=count, encoded_r=encoded_r)
 
-@etree_blueprint.route('/perfhome')
-def perf_home():
-    results = PerformanceService().get_all()
-    count = PerformanceService().get_count()
-
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
-    return render_template("perfhome.html", results=results, count=count, encoded_r=encoded_r)
-
-@etree_blueprint.route('/trackhome')
-def track_home():
-    results = TrackService().get_all()
-    count = TrackService().get_count()
-
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["trackname"]["value"]))
-    return render_template("trackhome.html", results=results, count=count, encoded_r=encoded_r)
-
-@etree_blueprint.route('/venuehome')
-def venue_home():
-    results = VenueService().get_all()
-    count = VenueService().get_count()
-
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
-    return render_template("venuehome.html", results=results, count=count, encoded_r=encoded_r)
-
-
-
-
 
 @etree_blueprint.route('/artists/<artist_name>')
 def get_all_artists_performances(artist_name):
@@ -74,9 +38,16 @@ def get_all_artists_performances(artist_name):
     return render_template('artist.html', performance_titles=performance_titles,encoded_perfs = encoded_perfs,
                            artist_name=artist_name, mb_tags=mb_tags)
 
+@etree_blueprint.route('/performances')
+def perf_home():
+    results = PerformanceService().get_all()
+    count = PerformanceService().get_count()
 
-
-
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+    return render_template("performances.html", results=results, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/performances/<perf_name>')
 def get_performance(perf_name):
@@ -103,8 +74,16 @@ def get_performance(perf_name):
                         venue_name=venue_name, encoded_v = encoded_v, artist_name=artist_name, encoded_a = encoded_a,
                         perf_date=perf_date, perf_description=perf_description )
 
+@etree_blueprint.route('/tracks')
+def track_home():
+    results = TrackService().get_all()
+    count = TrackService().get_count()
 
-
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["trackname"]["value"]))
+    return render_template("tracks.html", results=results, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/tracks/<track_name>')
 def get_track(track_name):
@@ -127,6 +106,17 @@ def get_track(track_name):
 
     return render_template('track.html', track_name=track_name, results=results, encoded_perfs = encoded_perfs,
                            encoded_ars = encoded_ars)
+
+@etree_blueprint.route('/venues')
+def venue_home():
+    results = VenueService().get_all()
+    count = VenueService().get_count()
+
+    # need encoded versions of titles wherever there are links
+    encoded_r = []
+    for result in results["results"]["bindings"]:
+        encoded_r.append(urllib.parse.quote(result["name"]["value"]))
+    return render_template("venues.html", results=results, count=count, encoded_r=encoded_r)
 
 
 

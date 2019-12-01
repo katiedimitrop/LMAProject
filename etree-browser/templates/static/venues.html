@@ -66,17 +66,17 @@
       </form>
     </div>
     <div class="col-sm">
-      <form action="/perfhome">
+      <form action="/performances">
          <button class="btn btn-elegant"  >Performances</button>
       </form>
     </div>
     <div class="col-sm">
-      <form action="/trackhome">
+      <form action="/tracks">
          <button class="btn btn-elegant"  >Tracks</button>
       </form>
     </div>
         <div class="col-sm">
-     <form action="/venuehome">
+     <form action="/venues">
          <button class="btn btn-elegant"  >Venues</button>
       </form>
     </div>
@@ -93,8 +93,8 @@
   <main>
 <!-- This is were react renders its Home component--><div id="content" > </div>
 <div class="container">
-
- <h2>{% print("Total no. of performances found in etree: "+ count) %}</h2>
+  <br>
+ <h2>{% print("Total no. of venues found in etree: "+ count) %}</h2>
   <p>Type something in the input field to search the list for specific items:</p>
   <input class="form-control" id="myInput" type="text" placeholder="Search.."  >
 
@@ -104,7 +104,7 @@
 <br><ul class="list-group" id="myList">
    <!--Iterate over list provided in view-->
    {% for result in results["results"]["bindings"] %}
-       <li class="list-group-item"><a href="/performances/{{ encoded_r[counter.value] }}">{{ result["name"]["value"] }}</a></li>
+       <li class = "list-group-item"><a href="/venues/{{ encoded_r[counter.value] }}">{{ result["name"]["value"] }}</a></li>
         {% set counter.value = counter.value + 1 %}
   {% endfor %}
 
