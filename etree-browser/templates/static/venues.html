@@ -105,8 +105,8 @@
     <!--Iterate over list provided in view-->
 <ul class="list-group" id="myList">
    <!--Iterate over list provided in view-->
-   {% for result in results["results"]["bindings"] %}
-        <li class = "list-group-item"><a href="/venues/{{ encoded_r[counter.value] }}">{{ result["name"]["value"] }}</a></li>
+   {% for venue_name in venue_names %}
+        <li class = "list-group-item"><a href="/venues/{{ encoded_r[counter.value] }}">{{ venue_name }}</a></li>
         {% set counter.value = counter.value + 1 %}
   {% endfor %}
 

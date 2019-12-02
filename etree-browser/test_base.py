@@ -1,7 +1,8 @@
 from templates import app
-from flask.ext.testing import TestCase
-#confi
-class BaseTestCase(TestCase):
+import unittest
+
+
+class BaseTestCase(unittest.TestCase):
     """A base test case for flask-tracking."""
 
     def create_app(self):

@@ -84,14 +84,14 @@ class TrackService:
     def get_count(self):
         return self.model.get_all_count()
 
-    def get_artist(self, track_name):
+    def get_artists(self, track_name):
         # escape single-quote
         track_name = track_name.replace("'", r"\'")
         track_name = track_name.replace("#", r"\#")
         return self.model.get_artist(track_name)
 
-    def get_performance(self, track_name):
+    def get_performances(self, track_name):
         # escape single-quote
         track_name = track_name.replace("'", r"\'")
         track_name = track_name.replace("#", r"\#")
-        return self.model.get_performance(track_name)
+        return self.model.get_performances(track_name)

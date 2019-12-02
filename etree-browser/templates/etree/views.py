@@ -12,14 +12,14 @@ etree_blueprint = Blueprint('etree', __name__)
 
 @etree_blueprint.route('/')
 def art_home():
-    results = ArtistService().get_all()
+    artist_names = ArtistService().get_all()
     count = ArtistService().get_count()
 
     # need encoded versions of titles wherever there are links
     encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
-    return render_template("home.html", results=results, count=count, encoded_r=encoded_r)
+    for artist_name in artist_names:
+        encoded_r.append(urllib.parse.quote(artist_name.strip('\n')))
+    return render_template("home.html", artist_names = artist_names, count=count, encoded_r=encoded_r)
 
 
 @etree_blueprint.route('/artists/<artist_name>')
@@ -40,14 +40,15 @@ def get_all_artists_performances(artist_name):
 
 @etree_blueprint.route('/performances')
 def perf_home():
-    results = PerformanceService().get_all()
+    performance_names = PerformanceService().get_all()[0][0:30]
     count = PerformanceService().get_count()
 
     # need encoded versions of titles wherever there are links
     encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
-    return render_template("performances.html", results=results, count=count, encoded_r=encoded_r)
+    for performance_name in performance_names:
+        print(performance_name)
+        encoded_r.append(urllib.parse.quote(performance_name.strip('\n')))
+    return render_template("performances.html", performance_names=performance_names, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/performances/<perf_name>')
 def get_performance(perf_name):
@@ -76,23 +77,22 @@ def get_performance(perf_name):
 
 @etree_blueprint.route('/tracks')
 def track_home():
-    results = TrackService().get_all()
+    track_names = TrackService().get_all()[0][0:30]
     count = TrackService().get_count()
 
     # need encoded versions of titles wherever there are links
     encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["trackname"]["value"].strip('\n')))
-    return render_template("tracks.html", results=results, count=count, encoded_r=encoded_r)
+    for track_name in track_names:
+        encoded_r.append(urllib.parse.quote(track_name.strip('\n')))
+    return render_template("tracks.html", track_names = track_names, count=count, encoded_r=encoded_r)
 
 @etree_blueprint.route('/tracks/<track_name>')
 def get_track(track_name):
-    # artist_name = TrackService().get_artist(track_name)
     # returns performance names, Artists, audio link
 
     # requests to Track service and template rendering require unencoded version
     track_name = urllib.parse.unquote(track_name)
-    results = TrackService().get_performance(track_name)
+    performances = TrackService().get_performances(track_name)
 
 
     # need encoded versions of titles wherever there are links
@@ -100,23 +100,23 @@ def get_track(track_name):
     encoded_perfs = []
     encoded_ars = []
 
-    for perf in results["results"]["bindings"]:
+    for perf in performances["results"]["bindings"]:
         encoded_perfs.append(urllib.parse.quote(perf["perfname"]["value"].strip('\n')))
         encoded_ars.append(urllib.parse.quote(perf["artname"]["value"].strip('\n')))
 
-    return render_template('track.html', track_name=track_name, results=results, encoded_perfs = encoded_perfs,
+    return render_template('track.html', track_name=track_name, performances = performances, encoded_perfs = encoded_perfs,
                            encoded_ars = encoded_ars)
 
 @etree_blueprint.route('/venues')
 def venue_home():
-    results = VenueService().get_all()
+    venue_names = VenueService().get_all()[0][0:30]
     count = VenueService().get_count()
 
     # need encoded versions of titles wherever there are links
     encoded_r = []
-    for result in results["results"]["bindings"]:
-        encoded_r.append(urllib.parse.quote(result["name"]["value"].strip('\n')))
-    return render_template("venues.html", results=results, count=count, encoded_r=encoded_r)
+    for venue_name in venue_names:
+        encoded_r.append(urllib.parse.quote(venue_name.strip('\n')))
+    return render_template("venues.html", venue_names = venue_names, count=count, encoded_r=encoded_r)
 
 
 
