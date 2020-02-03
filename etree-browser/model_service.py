@@ -95,3 +95,6 @@ class TrackService:
         track_name = track_name.replace("'", r"\'")
         track_name = track_name.replace("#", r"\#")
         return self.model.get_performances(track_name)
+
+    def get_analyses(self,artist,track_name):
+        return self.model.get_analyses(artist,track_name)

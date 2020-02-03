@@ -10,7 +10,7 @@ etree_blueprint = Blueprint('etree', __name__)
 
 # pick endpoint
 
-@etree_blueprint.route('/')
+@etree_blueprint.route('/artists')
 def art_home():
     artist_names = ArtistService().get_all()
     count = ArtistService().get_count()
@@ -19,8 +19,12 @@ def art_home():
     encoded_r = []
     for artist_name in artist_names:
         encoded_r.append(urllib.parse.quote(artist_name.strip('\n')))
-    return render_template("home.html", artist_names = artist_names, count=count, encoded_r=encoded_r)
+    return render_template("artists.html", artist_names = artist_names, count=count, encoded_r=encoded_r)
 
+@etree_blueprint.route('/analysis')
+def analysis_home():
+    tracks = TrackService().get_analyses("Guster", "The Captain")
+    return render_template("analysis.html", tracks = tracks)
 
 @etree_blueprint.route('/artists/<artist_name>')
 def get_all_artists_performances(artist_name):
