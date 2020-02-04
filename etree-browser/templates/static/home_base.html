@@ -91,7 +91,8 @@
 
 <!--Main layout-->
 <main>
-<!-- This is were react renders its Home component--> <div id="content" > </div>
+<!-- This is were react renders its Home component-->
+    <div id="like_button_container"></div>
 <div class="container">
 
   {%block body%}
@@ -101,6 +102,15 @@
 
 
 </main>
-<script src="public/bundle.js" type="text/javascript"></script>
+<!--Scripts required by react to work-->
+<!--<script src="public/bundle.js" type="text/javascript"></script>-->
+
+<!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<!-- Load react component -->
+<script src="../public/js/like_button.js"></script>
+
 </body>
 </html>

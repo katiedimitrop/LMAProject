@@ -400,22 +400,7 @@ class TrackModel:
         audio_dict = self.sparql.query().convert()["results"]["bindings"]
 
 
-        # isolate urls from list of dictionaries
-        audio_urls= [audio_url["audio"]["value"] for audio_url in audio_dict]
-        file_name = "Guster.mp3"
-        # url = "http://archive.org/download/Guster2009-06-20.dpa4023.portico.ad2k.flac16/guster2009-06-20t01_vbr.mp3"
-        i = 0
-        for audio_url in audio_urls:
-            if i<=2:
 
-                i += 1
-                if re.findall("mp3$", audio_url):
-                    # Download the file from `url` and save it locally under `file_name`:
-                    with urllib.request.urlopen(audio_url) as response, open(file_name, 'wb') as out_file:
-                        shutil.copyfileobj(response, out_file)
-                    audio = MP3(file_name)
-                    duration = time.strftime('%H:%M:%S', time.gmtime(audio.info.length))
-                    print(str(i) + duration)
 
 
         with open('TheCaptain-Guster.csv') as csv_file:
