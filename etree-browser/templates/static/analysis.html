@@ -1,11 +1,17 @@
 {% extends "home_base.html" %}
 
 {% block body %}
-<br><ul>
 
+<p>{{ count }}</p>
+<br><ul>
    {% for track, track_info in tracks.items() %}
        <li>Performance: {{ track }} <br>| Keys: {{ track_info[0] }} <br>| Key Durations: {{ track_info[1]  }} <br> |
            Chords: {{ track_info[2]  }} <br>| Chords_Durations: {{ track_info[3]  }} <br>| Tempo: {{ track_info[4]  }}<br></li>
   {% endfor %}
 </ul>
+
+<p>PREDICTED KEY:</p>
+<p>PREDICTED CHORDS:</p>
+<p>AVERAGE TEMPO:{{avg_tempo}}</p>
+<p>ACTUAL TEMPO:</p>
 {% endblock %}

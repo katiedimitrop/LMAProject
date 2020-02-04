@@ -410,7 +410,7 @@ class TrackModel:
             for row in csv_reader:
                 if line_count == 0:
                     line_count += 1
-                elif line_count <= 2:
+                else:
 
                     line_count += 1
                     tempos.append(row[6])
