@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/model_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home_base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

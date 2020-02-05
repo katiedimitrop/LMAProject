@@ -27,29 +27,13 @@ def art_home():
 
 @etree_blueprint.route('/analysis')
 def analysis_home():
-    tracks = TrackService().get_analyses("Guster", "The Captain")
+    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths = TrackService().get_analyses("Guster", "The Captain")
     actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
     # print(tracks)
-    track_tempos = []
 
-    #keep track of the predicted keys
-    predicted_keys = []
-    #for each performances track
-    for track, track_info in tracks.items():
-        track_tempos.append(int(track_info[2]))
-
-        #add the key with the majority percentage in this performances
-        predicted_keys.append(max(track_info[0].items(), key=operator.itemgetter(1))[0])
-
-    avg_tempo = statistics.mean(track_tempos)
-    max_tempo = max(track_tempos)
-    count = len(track_tempos)
-
-
-    key_counter = Counter(predicted_keys)
-    key_percentages = [(key, key_counter[key] / len(predicted_keys) * 100.0) for key in key_counter]
-    return render_template("analysis.html", tracks=tracks, count=count, track_tempos=track_tempos, avg_tempo=avg_tempo,
-                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys, key_percentages = key_percentages,key_lengths = track_info[3])
+    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo=avg_tempo,
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
+                           key_percentages = key_percentages, key_lengths = key_lengths)
 
 
 @etree_blueprint.route('/artists/<artist_name>')

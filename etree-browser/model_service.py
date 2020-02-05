@@ -1,7 +1,10 @@
 # part of logic tier: this will transform user queries into SPARQL queries and
 # aggregate the results
+import statistics
+import operator
 from models import ArtistModel, VenueModel, PerformanceModel, TrackModel
 import urllib.parse
+from collections import Counter
 
 import json
 import re
@@ -97,7 +100,28 @@ class TrackService:
         return self.model.get_performances(track_name)
 
     def get_analyses(self,artist,track_name):
-        return self.model.get_analyses(artist,track_name)
+        tracks = self.model.get_analyses(artist,track_name)
+        track_tempos = []
+
+        # keep track of the predicted keys
+        predicted_keys = []
+        # for each performances track
+        for track, track_info in tracks.items():
+
+            #unpack tempos from tracks
+            track_tempos.append(int(track_info[2]))
+
+            # add the key with the majority percentage in this performances
+            predicted_keys.append(max(track_info[0].items(), key=operator.itemgetter(1))[0])
+
+
+        avg_tempo = statistics.mean(track_tempos)
+        max_tempo = max(track_tempos)
+
+
+        key_counter = Counter(predicted_keys)
+        key_percentages = [(key, key_counter[key] / len(predicted_keys) * 100.0) for key in key_counter]
+        return tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages, track_info[3]
 
     #right now only returns the guster details
     def get_actual_tempo_and_key(self):
