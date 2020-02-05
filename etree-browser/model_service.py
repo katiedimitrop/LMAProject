@@ -98,3 +98,7 @@ class TrackService:
 
     def get_analyses(self,artist,track_name):
         return self.model.get_analyses(artist,track_name)
+
+    #right now only returns the guster details
+    def get_actual_tempo_and_key(self):
+        return self.model.get_actual_tempo_and_key()

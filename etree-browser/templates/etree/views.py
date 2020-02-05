@@ -41,8 +41,10 @@ def analysis_home():
     count = len(track_tempos)
     avg_tempo = statistics.mean(track_tempos)
     max_tempo = max(track_tempos)
+
+    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
     return render_template("analysis.html", tracks=tracks, count=count, track_tempos=track_tempos, avg_tempo=avg_tempo,
-                           max_tempo=max_tempo)
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key)
 
 
 @etree_blueprint.route('/artists/<artist_name>')

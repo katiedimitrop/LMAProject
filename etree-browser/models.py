@@ -3,6 +3,7 @@ import subprocess
 import time
 
 from SPARQLWrapper import SPARQLWrapper, JSON
+
 import urllib.request
 import shutil
 import numpy as np
@@ -437,29 +438,31 @@ class TrackModel:
             #plt.show()
         return tracks
 
-    def get_actual_tempo(self):
+    def get_actual_tempo_and_key(self):
 
 
         # api-endpoint
-        URL = "https://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=4xYno0"
+        #URL = "http://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=4xYno0"
 
 
         # sending get request and saving the response as response object
-        r = requests.get(url=URL)
+        #r = requests.get(url=URL, verify=False)
 
         # extracting data in json format
-        data = r.json()
+        #data = r.json()
 
         # extracting latitude, longitude and formatted address
         # of the first matching location
-        tempo = data['song']['tempo']
-        key = data['song']['key_of']
+        tempo =114 #data['song']['tempo']
+        key ="C" # data['song']['key_of']
 
 
         # printing the output
         print("Tempo:%s\nKey:%s"
               % (tempo, key))
-        return False
+
+        studio_data = {"tempo":tempo,"key":key}
+        return studio_data
 
 
 class VenueModel:
