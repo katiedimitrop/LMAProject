@@ -15,6 +15,22 @@ etree_blueprint = Blueprint('etree', __name__)
 
 @etree_blueprint.route('/artists')
 def art_home():
+    # shows artist info for a URN or URL
+
+    from spotipy.oauth2 import SpotifyClientCredentials
+    import spotipy
+    import sys
+    from pprint import pprint
+
+    if len(sys.argv) > 1:
+        urn = sys.argv[1]
+    else:
+        urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
+
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
+
+    artist = sp.artist(urn)
+    pprint(artist)
     artist_names = ArtistService().get_all()
     count = ArtistService().get_count()
 

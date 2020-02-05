@@ -10,14 +10,10 @@ import numpy as np
 import rdflib
 import csv
 import requests
-from mutagen.mp3 import MP3
+
 import re
 
-from sklearn.neighbors import KernelDensity
 import numpy as np
-# Import the libraries
-import matplotlib.pyplot as plt
-# class generalQueryModel: #for the general queryer that will be implemented later
 
 # each one of the rest of the classes corresponds to one resource
 class ArtistModel:
@@ -450,19 +446,19 @@ class TrackModel:
 
 
         # api-endpoint
-        #URL = "http://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=4xYno0"
+        URL = "http://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=4xYno0"
 
 
         # sending get request and saving the response as response object
-        #r = requests.get(url=URL, verify=False)
+        r = requests.get(url=URL, verify=False)
 
         # extracting data in json format
-        #data = r.json()
+        data = r.json()
 
         # extracting latitude, longitude and formatted address
         # of the first matching location
-        tempo =114 #data['song']['tempo']
-        key ="C" # data['song']['key_of']
+        tempo = data['song']['tempo']
+        key = data['song']['key_of']
 
 
         # printing the output
