@@ -400,14 +400,10 @@ class TrackModel:
         self.sparql.setReturnFormat(JSON)
         audio_dict = self.sparql.query().convert()["results"]["bindings"]
 
-
-
-
-
         with open('TheCaptain-Guster.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
-
+            key_lengths = []
             for row in csv_reader:
                 if line_count == 0:
                     line_count += 1
@@ -415,27 +411,39 @@ class TrackModel:
 
                     line_count += 1
                     tempos.append(row[6])
+
+                    #convert durations from one string to an array of floats
+                    #keys
+                    keys = row[2].split(',')
+                    k_durs = np.fromstring(row[3], dtype=np.float, sep=',')
+                    # chords
+                    chords = row[4].split(',')
+                    c_durs = np.fromstring(row[5], dtype=np.float, sep=',')
+
+                    # key_durations
+                    k_length = np.sum(k_durs)
+                    key_lengths.append(k_length)
+                    # chord_durations
+                    c_length = np.sum(c_durs)
+
+                    # TOTAL, key length is longer, could be used to approximate song length
+
+                    # percentages
+                    k_durs = np.true_divide(k_durs,k_length) * 100
+                    c_durs = np.true_divide(c_durs,c_length) * 100
+
+                    #combind keys/chords with their durations, each getting a dictionary
+                    keys = dict(zip(keys, k_durs))
+                    chords = dict(zip(chords, c_durs))
                     #trackname: keys,key-durations, chords, chord-durations, tempo,
-                    tracks.update({ row[1]: [row[2], row[3], row[4], row[5], int(float(row[6])) ] })
+                    tracks.update({ row[1]: [keys, chords, int(float(row[6])),key_lengths] })
 
                     #print("%d: Trackname :%s\n Tempo :%s\n Keys :%s\n K-durs :%s\n "+
                            #"Chords :%s\n C-durs :%s\n"
                          # % (row+1, tracks[row[0]], tracks[row[0]][0], tracks[row[0]][1], tracks[row[0]][2], tracks[row[0]][3], tracks[row[0]][4]))
             #print(f'Processed {line_count} lines.')
 
-           # X = np.array(tempos)
-            #X = X.reshape(-1,1)
-            #X = X.astype(int)
-            #kde = KernelDensity(kernel='gaussian', bandwidth=0.2).fit(X)
-            #print(len(kde.score_samples(X)))
-           # plt.hist(tempos, color='blue', edgecolor='black', bins = 100)
 
-
-            # Add labels
-            #plt.title('Histogram of Tempos')
-            #plt.xlabel('tempo (bpm)')
-            #plt.ylabel('perfs')-
-            #plt.show()
         return tracks
 
     def get_actual_tempo_and_key(self):

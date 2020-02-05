@@ -3,9 +3,10 @@ from templates import app
 from flask import Flask, render_template, Blueprint
 from model_service import ArtistService, VenueService, PerformanceService, TrackService
 import urllib.parse
-
+import numpy as np
 import statistics
-
+import operator
+from collections import Counter
 # each view should have its own blueprint
 etree_blueprint = Blueprint('etree', __name__)
 
@@ -27,24 +28,28 @@ def art_home():
 @etree_blueprint.route('/analysis')
 def analysis_home():
     tracks = TrackService().get_analyses("Guster", "The Captain")
+    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
     # print(tracks)
     track_tempos = []
-    pt_dict = {}
+
+    #keep track of the predicted keys
+    predicted_keys = []
+    #for each performances track
     for track, track_info in tracks.items():
-        track_tempos.append(int(track_info[4]))
+        track_tempos.append(int(track_info[2]))
 
-    for track, track_info in tracks.items():
-        pt_dict["y"] = track_info[4]
+        #add the key with the majority percentage in this performances
+        predicted_keys.append(max(track_info[0].items(), key=operator.itemgetter(1))[0])
 
-
-    print(pt_dict)
-    count = len(track_tempos)
     avg_tempo = statistics.mean(track_tempos)
     max_tempo = max(track_tempos)
+    count = len(track_tempos)
 
-    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
+
+    key_counter = Counter(predicted_keys)
+    key_percentages = [(key, key_counter[key] / len(predicted_keys) * 100.0) for key in key_counter]
     return render_template("analysis.html", tracks=tracks, count=count, track_tempos=track_tempos, avg_tempo=avg_tempo,
-                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key)
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys, key_percentages = key_percentages,key_lengths = track_info[3])
 
 
 @etree_blueprint.route('/artists/<artist_name>')

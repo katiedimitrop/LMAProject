@@ -4,15 +4,46 @@
 
 <p>{{ count }}</p>
 <br><ul>
+
    {% for track, track_info in tracks.items() %}
-       <li>Performance: {{ track }} <br>| Keys: {{ track_info[0] }} <br>| Key Durations: {{ track_info[1]  }} <br> |
-           Chords: {{ track_info[2]  }} <br>| Chords_Durations: {{ track_info[3]  }} <br>| Tempo: {{ track_info[4]  }}<br></li>
+
+       <li > {{loop.index}}. Performance: {{ track }} <br>
+
+               Predictions:<br>
+               <b>Tempo: {{ track_info[2]  }} bpm <br>Key: {{predicted_keys[loop.index-1]}}</b> </br>
+            <br>
+            <ul>
+               Keys:
+           {% for key in track_info[0].items() %}
+
+                <li class="list-group-item"> {{key}} </li>
+           {% endfor %}
+            </ul>
+           <br>
+           <ul>
+           Chords:
+           {% for chord in track_info[1].items() %}
+
+                 <li class="list-group-item">{{chord}}%</li>
+           {% endfor %}
+           </ul>
+           </li>
   {% endfor %}
 </ul>
 
-<p>PREDICTED KEY:</p>
-<p>ACTUAL KEY: {{actual_tempo_and_key['key']}} </p>
+
 <p>PREDICTED CHORDS:</p>
+
+
+<p>PREDICTED TEMPOS</p>
+{{track_tempos}}<br>
 <p>AVERAGE TEMPO:{{avg_tempo}}</p>
 <p>ACTUAL TEMPO: {{actual_tempo_and_key['tempo']}}</p>
+
+<p>PREDICTED KEY:</p>
+{{predicted_keys}} <br>
+{{key_percentages}}
+
+<p>ACTUAL KEY: {{actual_tempo_and_key['key']}} </p>
+<p>Track durations: {{key_lengths}} </p>
 {% endblock %}
