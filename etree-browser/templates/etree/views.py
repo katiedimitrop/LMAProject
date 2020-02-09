@@ -44,6 +44,18 @@ def analysis_home():
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
                            speed_diff = round(speed_diff) )
 
+@etree_blueprint.route('/analysis/1')
+def analysis_one():
+    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths,labels = TrackService().get_analyses("Guster", "The Captain")
+    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
+    # print(tracks)
+    avg_tempo = round(avg_tempo, 2)
+    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
+    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
+    return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
+                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
+                           speed_diff = round(speed_diff),labels = labels )
 
 @etree_blueprint.route('/artists/<artist_name>')
 def get_all_artists_performances(artist_name):

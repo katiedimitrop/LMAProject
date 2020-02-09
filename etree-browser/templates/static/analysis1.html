@@ -1,0 +1,63 @@
+{% extends "home_base.html" %}
+
+{% block body %}
+
+<p>{{ count }}</p>
+<br>
+<p>Click the button to sort the table by cluster:</p>
+<p><button onclick="sortTable()">Sort</button></p>
+
+<table id="dtOrderExample" class="table table-sm table-hover table-dark" >
+  <thead >
+    <tr>
+      <th class="th-sm">Number</th>
+      <th class="th-sm">Performance</th>
+      <th class="th-sm">Tempo (bpm)</th>
+      <th class="th-sm">Key</th>
+      <th class="th-sm">Duration(s)</th>
+      <th class="th-sm">Label</th>
+    </tr>
+  </thead>
+  <tbody>
+  <!--for each performance create a row-->
+       {% for track, track_info in tracks.items() %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{ track }}</td>
+      <td>{{ track_info[2]  }} </td>
+      <td>{{predicted_keys[loop.index-1]}}</td>
+        <td>{{key_lengths[loop.index-1]}}</td>
+      <td>{{labels[loop.index-1]}}</td>
+    </tr>
+  <!--chord and keys percentages-->
+       {% endfor %}
+  <!--averages-->
+    <tr>
+      <th scope="row"></th>
+      <td>AVERAGE</td>
+      <td>{{ avg_tempo  }} </td>
+      <td>{{ predicted_keys[0] }}</td>
+        <td>{{average_length}}</td>
+      <td> 2</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>PREDICTED CHORDS:</p>
+
+
+<p>PREDICTED TEMPOS</p>
+<!--{{track_tempos}}--><br>
+<p>AVERAGE TEMPO:{{avg_tempo}}</p>
+
+<p>ACTUAL TEMPO (provided by GetSongBpm.com): {{actual_tempo_and_key['tempo']}}</p>
+<p>The live version is on average {{speed_diff}}% faster than the studio version </p>
+
+<p>PREDICTED KEY:</p>
+<!--{{predicted_keys}}--> <br>
+{{key_percentages}}
+
+<p>ACTUAL KEY(provided by GetSongBpm.com): {{actual_tempo_and_key['key']}} </p>
+
+{% endblock %}

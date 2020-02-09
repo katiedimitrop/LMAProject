@@ -17,12 +17,20 @@
   <link href="../public/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="../public/css/mdb.min.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+  <link href="../public/css/addons/datatables.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="../public/css/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src="../public/js/addons/datatables.min.js"></script>
+
+
     <!-- Load in the d3 library -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
+
+
 
     <style>
 /* 13. Basic Styling with CSS */
@@ -48,6 +56,18 @@
   .focus circle {
   fill: none;
   stroke: steelblue;
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
 }
 </style>
 </head>
@@ -246,5 +266,13 @@ svg.selectAll(".dot")
 <!-- Load react component -->
 <script src="../public/js/like_button.js"></script>
 
-
+<script>
+  function sortTable() {
+$('#dtOrderExample').DataTable({
+"order": [[ 5, "asc" ]]
+});
+$('.dataTables_length').addClass('bs-select');
+}
+</script>
 </html>
+
