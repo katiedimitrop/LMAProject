@@ -92,6 +92,13 @@
 <div class="container">
 <h1>
 {% print("Artist page for: "+ artist_name) %}
+{% if artist_image is not none %}
+    <img src = "{{artist_image}}" style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;" >
+
+ {% endif %}
 </h1>
 <h3>
 

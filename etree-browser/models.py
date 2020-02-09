@@ -432,7 +432,7 @@ class TrackModel:
                     keys = dict(zip(keys, k_durs))
                     chords = dict(zip(chords, c_durs))
                     #trackname: keys,key-durations, chords, chord-durations, tempo,
-                    tracks.update({ row[1]: [keys, chords, int(float(row[6])),key_lengths] })
+                    tracks.update({ row[1]: [keys, chords, int(float(row[6])),np.asarray(key_lengths)] })
 
                     #print("%d: Trackname :%s\n Tempo :%s\n Keys :%s\n K-durs :%s\n "+
                            #"Chords :%s\n C-durs :%s\n"
@@ -450,7 +450,7 @@ class TrackModel:
 
 
         # sending get request and saving the response as response object
-        r = requests.get(url=URL, verify=False)
+        r = requests.get(url=URL)
 
         # extracting data in json format
         data = r.json()

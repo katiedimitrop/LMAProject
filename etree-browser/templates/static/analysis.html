@@ -3,47 +3,55 @@
 {% block body %}
 
 <p>{{ count }}</p>
-<br><ul>
-
-   {% for track, track_info in tracks.items() %}
-
-       <li > {{loop.index}}. Performance: {{ track }} <br>
-
-               Predictions:<br>
-               <b>Tempo: {{ track_info[2]  }} bpm <br>Key: {{predicted_keys[loop.index-1]}}</b> </br>
-            <br>
-            <ul>
-               Keys:
-           {% for key in track_info[0].items() %}
-
-                <li class="list-group-item"> {{key}} </li>
-           {% endfor %}
-            </ul>
-           <br>
-           <ul>
-           Chords:
-           {% for chord in track_info[1].items() %}
-
-                 <li class="list-group-item">{{chord}}%</li>
-           {% endfor %}
-           </ul>
-           </li>
-  {% endfor %}
-</ul>
+<br>
+   <table class="table table-sm table-hover table-dark" >
+  <thead >
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Performance</th>
+      <th scope="col">Tempo (bpm)</th>
+      <th scope="col">Key</th>
+      <th scope="col">Duration(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+  <!--for each performance create a row-->
+       {% for track, track_info in tracks.items() %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{ track }}</td>
+      <td>{{ track_info[2]  }} </td>
+      <td>{{predicted_keys[loop.index-1]}}</td>
+        <td>{{key_lengths[loop.index-1]}}</td>
+    </tr>
+  <!--chord and keys percentages-->
+       {% endfor %}
+  <!--averages-->
+    <tr>
+      <th scope="row"></th>
+      <td>AVERAGE</td>
+      <td>{{ avg_tempo  }} </td>
+      <td>{{ predicted_keys[0] }}</td>
+        <td>{{average_length}}</td>
+    </tr>
+  </tbody>
+</table>
 
 
 <p>PREDICTED CHORDS:</p>
 
 
 <p>PREDICTED TEMPOS</p>
-{{track_tempos}}<br>
+<!--{{track_tempos}}--><br>
 <p>AVERAGE TEMPO:{{avg_tempo}}</p>
-<p>ACTUAL TEMPO: {{actual_tempo_and_key['tempo']}}</p>
+
+<p>ACTUAL TEMPO (provided by GetSongBpm.com): {{actual_tempo_and_key['tempo']}}</p>
+<p>The live version is on average {{speed_diff}}% faster than the studio version </p>
 
 <p>PREDICTED KEY:</p>
-{{predicted_keys}} <br>
+<!--{{predicted_keys}}--> <br>
 {{key_percentages}}
 
-<p>ACTUAL KEY: {{actual_tempo_and_key['key']}} </p>
-<p>Track durations: {{key_lengths}} </p>
+<p>ACTUAL KEY(provided by GetSongBpm.com): {{actual_tempo_and_key['key']}} </p>
+
 {% endblock %}

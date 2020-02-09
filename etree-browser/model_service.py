@@ -121,6 +121,7 @@ class TrackService:
 
         key_counter = Counter(predicted_keys)
         key_percentages = [(key, key_counter[key] / len(predicted_keys) * 100.0) for key in key_counter]
+
         return tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages, track_info[3]
 
     #right now only returns the guster details

@@ -93,11 +93,15 @@
   <input class="form-control" id="myInput" type="text" placeholder="Search.."  >{% set counter = namespace(value=0) %}
 <br><ul class="list-group" id="myList">
 {% for perf in performances["results"]["bindings"] %}
+
+
        <li class="list-group-item"><a href="/performances/{{ encoded_perfs[counter.value] }}">{{ perf["perfname"]["value"] }} </a>
             <a href="/artists/{{ encoded_ars[counter.value] }}">{{ perf["artname"]["value"] }} </a>
-            <a href="{{ perf["audiolink"]["value"] }}">{{ perf["audiolink"]["value"] }} </a>
+           <audio controls name="media"> <source src="{{ perf["audiolink"]["value"] }}" type="audio/mpeg"> </audio>
        </li>
+
         <hr>
+
     {% set counter.value = counter.value + 1 %}
   {% endfor %}
 </ul>

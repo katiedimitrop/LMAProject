@@ -5,7 +5,12 @@ from model_service import ArtistService, VenueService, PerformanceService, Track
 import urllib.parse
 import numpy as np
 import statistics
+from statistics import mean
 import operator
+from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy
+import sys
+from pprint import pprint
 from collections import Counter
 # each view should have its own blueprint
 etree_blueprint = Blueprint('etree', __name__)
@@ -15,22 +20,7 @@ etree_blueprint = Blueprint('etree', __name__)
 
 @etree_blueprint.route('/artists')
 def art_home():
-    # shows artist info for a URN or URL
 
-    from spotipy.oauth2 import SpotifyClientCredentials
-    import spotipy
-    import sys
-    from pprint import pprint
-
-    if len(sys.argv) > 1:
-        urn = sys.argv[1]
-    else:
-        urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
-
-    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
-
-    artist = sp.artist(urn)
-    pprint(artist)
     artist_names = ArtistService().get_all()
     count = ArtistService().get_count()
 
@@ -46,10 +36,13 @@ def analysis_home():
     tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths = TrackService().get_analyses("Guster", "The Captain")
     actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
     # print(tracks)
-
-    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo=avg_tempo,
+    avg_tempo = round(avg_tempo, 2)
+    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
+    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
+    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
                            max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
-                           key_percentages = key_percentages, key_lengths = key_lengths)
+                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
+                           speed_diff = round(speed_diff) )
 
 
 @etree_blueprint.route('/artists/<artist_name>')
@@ -57,6 +50,16 @@ def get_all_artists_performances(artist_name):
     # requests to Artists service and template rendering require unencoded version
     artist_name = urllib.parse.unquote(artist_name)
 
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
+
+    results = sp.search(q='artist:' + artist_name, type='artist')
+    items = results['artists']['items']
+    if len(items) > 0:
+        artist = items[0]
+        #print(artist['name'], artist['images'][0]['url'])
+        artist_image = artist['images'][0]['url']
+    else:
+        artist_image = None
     performance_titles = ArtistService().get_performances(artist_name)
     mb_tags = ArtistService().get_mb_tags(artist_name)
 
@@ -65,7 +68,7 @@ def get_all_artists_performances(artist_name):
     for performance_title in performance_titles["results"]["bindings"]:
         encoded_perfs.append(urllib.parse.quote(performance_title["perftitle"]["value"]))
     return render_template('artist.html', performance_titles=performance_titles, encoded_perfs=encoded_perfs,
-                           artist_name=artist_name, mb_tags=mb_tags)
+                           artist_name=artist_name, mb_tags=mb_tags, artist_image = artist_image)
 
 
 @etree_blueprint.route('/performances')
