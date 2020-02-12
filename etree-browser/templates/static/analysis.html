@@ -20,7 +20,7 @@
     <tr>
       <th scope="row">{{loop.index}}</th>
       <td>{{ track }}</td>
-      <td>{{ track_info[2]  }} </td>
+      <td>{{ tempos_rounded[loop.index-1] }} </td>
       <td>{{predicted_keys[loop.index-1]}}</td>
         <td>{{key_lengths[loop.index-1]}}</td>
     </tr>
@@ -37,21 +37,15 @@
   </tbody>
 </table>
 
-
-<p>PREDICTED CHORDS:</p>
-
-
-<p>PREDICTED TEMPOS</p>
+<iframe src="https://open.spotify.com/embed/track/0zfrJyhU6ge55xTNXaS1QY" width="300" height="380" frameborder="0"
+        allowtransparency="true" allow="encrypted-media"></iframe>
 <!--{{track_tempos}}--><br>
-<p>AVERAGE TEMPO:{{avg_tempo}}</p>
-
-<p>ACTUAL TEMPO (provided by GetSongBpm.com): {{actual_tempo_and_key['tempo']}}</p>
+<p>AVERAGE TEMPO:{{avg_tempo}} | STUDIO TEMPO (provided by GetSongBpm.com): {{actual_tempo_and_key['tempo']}}</p>
 <p>The live version is on average {{speed_diff}}% faster than the studio version </p>
 
-<p>PREDICTED KEY:</p>
 <!--{{predicted_keys}}--> <br>
 {{key_percentages}}
 
-<p>ACTUAL KEY(provided by GetSongBpm.com): {{actual_tempo_and_key['key']}} </p>
-
+<p>PREDICTED KEY: {{predicted_keys[0]}} | STUDIO KEY(provided by GetSongBpm.com): {{actual_tempo_and_key['key']}} </p>
+<p>AVERAGE DURATION: {{average_length}}  | STUDIO DURATION 205</p>
 {% endblock %}

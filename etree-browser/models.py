@@ -95,7 +95,7 @@ class PerformanceModel:
     def __init__(self):
         self.sparql = SPARQLWrapper("http://etree.linkedmusic.org/sparql")
 
-    def get_all(self):
+    def get_all(self,max_offset_no):
         all_perf_names = []
         more_names = True
         offset_multiplier  = 0
@@ -118,11 +118,30 @@ class PerformanceModel:
 
             all_perf_names.append(perf_names)
 
-
-            if (len(perf_names) < 80000):
+            #the last batch will be less than 80.000
+            if (len(perf_names) < 80000 or offset_multiplier == max_offset_no):
                 more_names = False
-
+        print(len(all_perf_names))
         return all_perf_names
+
+    def get_performance(self,perf_name):
+        self.sparql.setQuery(PerformanceModel.prefixes +
+        """
+        SELECT DISTINCT ?label WHERE
+        {
+
+            ?perf rdf:type etree:Concert.
+            ?perf skos:prefLabel ?label.
+            filter contains(?label, '""" + perf_name + """')
+        } ORDER BY asc(UCASE(str(?perf)))
+        """)
+
+        self.sparql.setReturnFormat(JSON)
+        perf_names = self.sparql.query().convert()["results"]["bindings"]
+        # isolate values from list of dictionaries
+        perf_names = [perf_dict["label"]["value"] for perf_dict in perf_names]
+        print(perf_names)
+        return perf_names
 
     def get_all_count(self):
         self.sparql.setQuery(PerformanceModel.prefixes + """
@@ -140,15 +159,36 @@ class PerformanceModel:
 
     def get_all_tracks(self, perf_name):
         self.sparql.setQuery(PerformanceModel.prefixes + """
-                SELECT DISTINCT ?tracktitle 
-                WHERE
-               { ?perf rdf:type etree:Concert. ?perf skos:prefLabel '""" + perf_name
-                             + """'. ?perf event:hasSubEvent ?tracklinks .  ?tracklinks skos:prefLabel ?tracktitle  } 
+                SELECT DISTINCT ?id ?tracktitle (GROUP_CONCAT(?audiolink, ' , ') as ?audiolinks) 
+               
+           WHERE{ 
+                 ?perf rdf:type etree:Concert. 
+                 ?perf skos:prefLabel '"""+perf_name+"""'. 
+                 ?perf event:hasSubEvent ?tracklinks .  
+                 ?tracklinks skos:prefLabel ?tracktitle .
+                 ?tracklinks etree:audio ?audiolink.
+                 ?tracklinks etree:number ?id 
+               }group by ?id ?tracktitle  order by asc(?id)
         """)
-        self.sparql.setReturnFormat(JSON)
-        track_titles = self.sparql.query().convert()
 
-        return track_titles
+        self.sparql.setReturnFormat(JSON)
+
+        tracks = self.sparql.query().convert()["results"]["bindings"]
+        # isolate values from list of dictionaries
+        track_titles = [track_dict["tracktitle"]["value"] for track_dict in tracks]
+        audio_links = [track_dict["audiolinks"]["value"] for track_dict in tracks]
+
+
+        audio = np.zeros(50, dtype=np.ndarray)
+        track_index = 0
+        for track in audio_links:
+
+            string = track
+            audio[track_index] = string.split(",")
+            print("TRACK" + str(audio[track_index][1]))
+            track_index+=1
+
+        return track_titles, audio
 
     def get_artist(self, perf_name):
         self.sparql.setQuery(PerformanceModel.prefixes + """
@@ -370,8 +410,6 @@ class TrackModel:
         self.sparql.setReturnFormat(JSON)
         results = self.sparql.query().convert()
         return results
-        # for result in results["results"]["bindings"]:
-        # return result["perfname"]["value"]
 
     def get_analyses(self, track_name, artist):
         #subprocess.call("tempo.R")
@@ -510,6 +548,25 @@ class VenueModel:
                 more_names = False
 
         return all_venue_names
+
+    def get_venue(self,venue_name):
+        self.sparql.setQuery(PerformanceModel.prefixes +
+        """
+        SELECT DISTINCT ?label WHERE
+        {
+            ?venue rdf:type etree:Venue.
+            ?venue skos:prefLabel ?label.
+            filter contains(?label, '""" + venue_name + """')
+        } ORDER BY asc(UCASE(str(?venue)))
+        """)
+
+        self.sparql.setReturnFormat(JSON)
+        venue_names = self.sparql.query().convert()["results"]["bindings"]
+        # isolate values from list of dictionaries
+        venue_names = [venue_dict["label"]["value"] for venue_dict in venue_names]
+        print(venue_names)
+        return venue_names
+
 
     def get_all_count(self):
         self.sparql.setQuery(VenueModel.prefixes + """

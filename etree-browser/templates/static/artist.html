@@ -114,7 +114,7 @@
 <br><ul class="list-group" id="myList">
 <!--Iterate over list provided in view-->
    {% for performance_title in performance_titles["results"]["bindings"] %}
-       <li class="list-group-item"><a href="/performances/{{ encoded_perfs[count.value]}}">{{ performance_title["perftitle"]["value"] }}</a></li>
+       <li class="list-group-item"><a href="/performance/{{ encoded_perfs[count.value]}}">{{ performance_title["perftitle"]["value"] }}</a></li>
         {% set count.value = count.value + 1 %}
   {% endfor %}
 </ul>

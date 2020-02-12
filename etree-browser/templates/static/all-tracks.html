@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+{% print("Track page for: "+ track_name) %}
+<table id="dtBasicExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Performance</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Track Audio</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {% for perf in performances["results"]["bindings"] %}
+        <tr>
+        <th scope="row">{{loop.index}}</th>
+            <td><a href="/performance/{{ encoded_perfs[loop.index-1] }}">{{ perf["perfname"]["value"] }} </a></td>
+            <td><a href="/artists/{{ encoded_ars[loop.index-1] }}">{{ perf["artname"]["value"] }} </a></td>
+    <td><audio controls name="media">
+        <source src="{{ perf["audiolink"]["value"] }}" type="audio/mpeg">
+    </audio><td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

@@ -8,7 +8,9 @@ from collections import Counter
 import numpy as np
 import json
 import re
-
+import k_med
+import copy
+from sklearn_extra.cluster import KMedoids
 class ArtistService:
     def __init__(self):
         self.model = ArtistModel()
@@ -37,6 +39,10 @@ class VenueService:
     def get_all(self):
         return self.model.get_all()
 
+    def get_venue(self,venue_name):
+        venue_name = venue_name.replace("'", r"\'")
+        return self.model.get_venue(venue_name)
+
     def get_count(self):
         return self.model.get_all_count()
 
@@ -52,7 +58,12 @@ class PerformanceService:
         self.model = PerformanceModel()
 
     def get_all(self):
-        return self.model.get_all()
+        #WARNING: this value should be removed
+        return self.model.get_all(1)
+
+    def get_performance(self,perf_name):
+        perf_name = perf_name.replace("'", r"\'")
+        return self.model.get_performance(perf_name)
 
     def get_count(self):
         return self.model.get_all_count()
@@ -127,11 +138,31 @@ class TrackService:
         #The arrays we'll be using for medoids
         track_tempos_arr = np.asarray(track_tempos)
         track_lengths = track_info[3]
+        predicted_keys = [x.strip(' ') for x in predicted_keys]
+        enumerated_keys = copy.deepcopy(predicted_keys)
+        key_set = enumerate(set(enumerated_keys))
+       # enumerated_keys = enumerate(enumerated_keys)
 
-        k_tracks = np.array([track_tempos_arr , track_lengths]).transpose()
+        #this will be replaced by
+        #for item in enumerated_keys:
+            #print(item)
+
+        for key in range(0,len(enumerated_keys)):
+            for enum, name in enumerate(set(predicted_keys),start=1):
+                #print("enum:" + str(name))
+                if enumerated_keys[key] == name:
+                    #print(str(enumerated_keys[key])+" " + str(name))
+                    enumerated_keys[key] = enum
+
+        #print(enumerated_keys)
+        k_tracks = np.array([track_tempos_arr , track_lengths, enumerated_keys]).transpose()
         k_tracks = np.around(k_tracks,4)
-        print(k_tracks)
-        print(k_tracks.shape)
+
+        #Scikits k medoids algorithm
+        k_medoids = KMedoids(n_clusters=5, random_state=0).fit_predict(k_tracks)
+        print(k_medoids)
+        #print(k_tracks)
+        #print(k_tracks.shape)
         #MEDIODS TEST: parms are number of feature types and k clustrs
         #medoids_initial = self.init_medoids(k_tracks, 3)
         #print("inital medoids:" + str(medoids_initial))
@@ -142,98 +173,15 @@ class TrackService:
 
         #labels = self.assign_labels(S)
         #print(labels)
-        k=3
+        k=4
         p=2
-        medoids_and_labels = self.kmedoids(k_tracks,k,p,starting_medoids = None,max_steps = np.inf)
+        medoids_and_labels = k_med.kmedoids(k_tracks,k,p,starting_medoids = None,max_steps = np.inf)
+        #my own k_medoids algorithm labels
         labels = medoids_and_labels[1]
         print(medoids_and_labels)
-        return tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages, track_info[3], labels
+        return tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages, track_info[3], k_medoids
 
     #right now only returns the guster details
     def get_actual_tempo_and_key(self):
         return self.model.get_actual_tempo_and_key()
-    #1.initialization phase
-    def init_medoids(self,X, k):
-        from numpy.random import choice, seed
-        seed(1)
-        #Generate a uniform random sample from the range of indexes
-        #with length k without replacement (can't pick same index twice)
-        samples = choice(len(X), size=k, replace=False)
-        #a matrix of the sampled medoids
-        return X[samples, :]
 
-    #2.Computing the distance matrix
-    # no of columns is the number of medoids or clusters()
-    # no of rows is the number of data points
-    def compute_d_p(self,X,medoids,p):
-        m = len(X)
-        medoids_shape = medoids.shape
-        #if 1-d array provided, reshape to single 2d array
-        if len(medoids_shape) == 1:
-            medoids = medoids.reshape((1,len(medoids)))
-        k = len(medoids)
-
-        S = np.empty((m,k))
-
-        for i in range(m):
-            d_i = np.linalg.norm(X[i,:]-medoids, ord = p, axis = 1)
-            S[i,:] = np.around(d_i**p,4)
-        return S
-
-    #3.Cluster assignment: check for each data point which medoid is closer to it
-    #and assign it that label
-    def assign_labels(self, S):
-        return np.argmin(S,axis = 1)
-    #4.Swap test,
-    def update_medoids(self,X,medoids,p):
-        #recompute distance matrix
-        S = self.compute_d_p(X, medoids, p)
-        labels = self.assign_labels(S)
-
-        out_medoids = medoids
-        #for each cluster
-        for i in set(labels):
-
-            avg_dissimilarity = np.sum(self.compute_d_p(X, medoids[i], p))
-
-            cluster_points = X[labels == i]
-            #search if any of the points in the cluster decreases the average
-            #dissimilarity coefficient
-            for datap in cluster_points:
-                new_medoid = datap
-                new_dissimilarity = np.sum(self.compute_d_p(X, new_medoid, p))
-
-                if new_dissimilarity < avg_dissimilarity:
-                    avg_dissimilarity = new_dissimilarity
-                    #the point in the cluster which decreases the dissimilarity the most
-                    #will be chosen
-                    out_medoids[i] = new_medoid
-
-        return out_medoids
-
-    # check whether medoids have changed
-    def has_converged(self, old_medoids, medoids):
-        return set([tuple(x) for x in old_medoids]) == set([tuple(x) for x in medoids])
-
-        # Full algorithm
-    def kmedoids(self, X, k, p, starting_medoids=None, max_steps=np.inf):
-        if starting_medoids is None:
-            medoids = self.init_medoids(X, k)
-        else:
-            medoids = starting_medoids
-
-        converged = False
-        labels = np.zeros(len(X))
-        i = 1
-        while (not converged) and (i <= max_steps):
-            old_medoids = medoids.copy()
-
-            S = self.compute_d_p(X, medoids, p)
-
-            labels = self.assign_labels(S)
-
-            medoids = self.update_medoids(X, medoids, p)
-
-            converged = self.has_converged(old_medoids, medoids)
-            i += 1
-        return (medoids, labels)

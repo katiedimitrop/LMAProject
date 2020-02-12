@@ -2,12 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/public/js/sortTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/all-performances.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/all-venues.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k_med.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/model_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analysis1.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/home_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/home_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/all-tracks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +36,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Python Unit Test" />
+        <option value="Python Script" />
         <option value="HTML File" />
       </list>
     </option>

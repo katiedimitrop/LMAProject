@@ -16,6 +16,37 @@ from collections import Counter
 etree_blueprint = Blueprint('etree', __name__)
 
 
+
+
+
+@etree_blueprint.route('/analysis')
+def analysis_home():
+    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths,labels = TrackService().get_analyses("Guster", "The Captain")
+    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
+    # print(tracks)
+    avg_tempo = round(avg_tempo, 2)
+    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
+    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
+    tempos_rounded = np.around(track_tempos)
+    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
+                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
+                           speed_diff = round(speed_diff),tempos_rounded = tempos_rounded )
+
+@etree_blueprint.route('/analysis/1')
+def analysis_one():
+    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths,labels = TrackService().get_analyses("Guster", "The Captain")
+    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
+    # print(tracks)
+    avg_tempo = round(avg_tempo, 2)
+    track_tempos = [round(tempo) for tempo in track_tempos]
+    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
+    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
+    return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
+                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
+                           speed_diff = round(speed_diff),labels = labels )
+
 # pick endpoint
 
 @etree_blueprint.route('/artists')
@@ -29,33 +60,6 @@ def art_home():
     for artist_name in artist_names:
         encoded_r.append(urllib.parse.quote(artist_name.strip('\n')))
     return render_template("artists.html", artist_names=artist_names, count=count, encoded_r=encoded_r)
-
-
-@etree_blueprint.route('/analysis')
-def analysis_home():
-    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths = TrackService().get_analyses("Guster", "The Captain")
-    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
-    # print(tracks)
-    avg_tempo = round(avg_tempo, 2)
-    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
-    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
-    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
-                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
-                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
-                           speed_diff = round(speed_diff) )
-
-@etree_blueprint.route('/analysis/1')
-def analysis_one():
-    tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths,labels = TrackService().get_analyses("Guster", "The Captain")
-    actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
-    # print(tracks)
-    avg_tempo = round(avg_tempo, 2)
-    #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
-    speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
-    return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
-                           max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
-                           key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
-                           speed_diff = round(speed_diff),labels = labels )
 
 @etree_blueprint.route('/artists/<artist_name>')
 def get_all_artists_performances(artist_name):
@@ -85,23 +89,34 @@ def get_all_artists_performances(artist_name):
 
 @etree_blueprint.route('/performances')
 def perf_home():
-    performance_names = PerformanceService().get_all()[0][0:30]
+   # performance_names = PerformanceService().get_all()[0][0:30000]
     count = PerformanceService().get_count()
+    return render_template("performances.html", count=count)
 
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for performance_name in performance_names:
-        print(performance_name)
-        encoded_r.append(urllib.parse.quote(performance_name.strip('\n')))
-    return render_template("performances.html", performance_names=performance_names, count=count, encoded_r=encoded_r)
-
-
+# this returns performances that contain perf_name
 @etree_blueprint.route('/performances/<perf_name>')
+def get_performances(perf_name):
+
+    perf_name = urllib.parse.unquote(perf_name)
+    performances = PerformanceService().get_performance(perf_name)
+
+    # need encoded versions of titles wherever there a
+
+    encoded_perfs = []
+    encoded_ars = []
+    for perf in performances:
+        encoded_perfs.append(urllib.parse.quote(perf.strip('\n')))
+
+    return render_template('all-performances.html', perf_name = perf_name ,performances=performances,
+                           encoded_perfs=encoded_perfs)
+
+#this returns only one particular performance page
+@etree_blueprint.route('/performance/<perf_name>')
 def get_performance(perf_name):
     # requests to Perf service and template rendering require unencoded version
     perf_name = urllib.parse.unquote(perf_name)
 
-    track_titles = PerformanceService().get_tracks(perf_name)
+    track_titles,audio = PerformanceService().get_tracks(perf_name)
     venue_name = PerformanceService().get_venue(perf_name)
     artist_name = PerformanceService().get_artist(perf_name)
     perf_date = PerformanceService().get_date(perf_name)
@@ -111,26 +126,28 @@ def get_performance(perf_name):
     encoded_a = urllib.parse.unquote(artist_name)
 
     encoded_ts = []
-    for track_title in track_titles["results"]["bindings"]:
-        encoded_ts.append(urllib.parse.quote(track_title["tracktitle"]["value"]))
+    for track_title in track_titles:
+        encoded_ts.append(urllib.parse.quote(track_title))
 
     encoded_v = urllib.parse.unquote(venue_name)
 
-    return render_template('performance.html', track_titles=track_titles, encoded_ts=encoded_ts, perf_name=perf_name,
+
+    return render_template('performance.html', track_titles=track_titles, encoded_ts=encoded_ts, audio = audio, perf_name=perf_name,
                            venue_name=venue_name, encoded_v=encoded_v, artist_name=artist_name, encoded_a=encoded_a,
                            perf_date=perf_date, perf_description=perf_description)
 
 
+
 @etree_blueprint.route('/tracks')
 def track_home():
-    track_names = TrackService().get_all()[0][0:30]
+    #track_names = TrackService().get_all()[0][0:30]
     count = TrackService().get_count()
 
     # need encoded versions of titles wherever there are links
     encoded_r = []
-    for track_name in track_names:
-        encoded_r.append(urllib.parse.quote(track_name.strip('\n')))
-    return render_template("tracks.html", track_names=track_names, count=count, encoded_r=encoded_r)
+    #for track_name in track_names:
+        #encoded_r.append(urllib.parse.quote(track_name.strip('\n')))
+    return render_template("tracks.html", count=count) #track_names=track_names, encoded_r=encoded_r)
 
 
 @etree_blueprint.route('/tracks/<track_name>')
@@ -150,23 +167,34 @@ def get_track(track_name):
         encoded_perfs.append(urllib.parse.quote(perf["perfname"]["value"].strip('\n')))
         encoded_ars.append(urllib.parse.quote(perf["artname"]["value"].strip('\n')))
 
-    return render_template('track.html', track_name=track_name, performances=performances, encoded_perfs=encoded_perfs,
+    return render_template('all-tracks.html', track_name=track_name, performances=performances, encoded_perfs=encoded_perfs,
                            encoded_ars=encoded_ars)
 
 
 @etree_blueprint.route('/venues')
 def venue_home():
-    venue_names = VenueService().get_all()[0][0:30]
+    #venue_names = VenueService().get_all()[0][0:30]
     count = VenueService().get_count()
+    return render_template("venues.html", count=count)
 
-    # need encoded versions of titles wherever there are links
-    encoded_r = []
-    for venue_name in venue_names:
-        encoded_r.append(urllib.parse.quote(venue_name.strip('\n')))
-    return render_template("venues.html", venue_names=venue_names, count=count, encoded_r=encoded_r)
-
-
+# this returns performances that contain perf_name
 @etree_blueprint.route('/venues/<venue_name>')
+def get_venues(venue_name):
+
+    venue_name = urllib.parse.unquote(venue_name)
+    venues = VenueService().get_venue(venue_name)
+
+    # need encoded versions of titles wherever there a
+
+    encoded_vens = []
+
+    for venue in venues:
+        encoded_vens.append(urllib.parse.quote(venue.strip('\n')))
+
+    return render_template('all-venues.html', venue_name = venue_name ,venues=venues,
+                           encoded_vens=encoded_vens)
+
+@etree_blueprint.route('/venue/<venue_name>')
 def get_venue(venue_name):
     # requests to Venue service and template rendering require unencoded version
     venue_name = urllib.parse.unquote(venue_name)

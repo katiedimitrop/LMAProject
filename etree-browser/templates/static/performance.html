@@ -1,124 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv='cache-control' content='no-cache'>
-<meta http-equiv='expires' content='0'>
-<meta http-equiv='pragma' content='no-cache'>
-
-    <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Etree Browser</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="../public/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="../public/css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="../public/css/style.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<div>
-<!-- Start your project here-->
-  <header>
-      <!--Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark black">
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand" href="#" >Etree browser</a>
-
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="basicExampleNav">
-
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul>
-        <!-- Links -->
-        <span class="navbar-text white-text">
-              Navbar text with an inline element
-        </span>
-
-    </div>
-  </nav>
-
-      <!--Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark yellow">
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand black-text" href="#" >Explore the tracks of over 100,000 live performances</a>
-     <br>
-
-          <div class="container"  >
-    <div class="row justify-content-center">
-    <div class="col-sm">
-        <form action="/artists">
-            <button class="btn btn-elegant"  >Artists</button>
-        </form>
-    </div>
-    <div class="col-sm">
-        <form action="/performances">
-         <button class="btn btn-elegant"  >Performances</button>
-      </form>
-    </div>
-    <div class="col-sm">
-      <form action="/tracks">
-         <button class="btn btn-elegant"  >Tracks</button>
-      </form>
-    </div>
-        <div class="col-sm">
-     <form action="/venues">
-         <button class="btn btn-elegant"  >Venues</button>
-      </form>
-    </div>
-
-  </div><!--row containerend-->
-
-    </div>
-  </nav> <!--Second navbar-->
-<!--/.Navbar-->
-  </header>
-<br>
-<div class="container">
-<h1>
+{% extends "base.html" %}
+{% block body %}
 {% print("Performance page for: "+ perf_name) %}<br>
 
-</h1>
 <h3>
     <a href="/artists/{{ encoded_a }}"> {% print("Artist: "+ artist_name) %}</a> <br>
-    <a href="/venues/{{ encoded_v }}">{% print("Venue: "+ venue_name) %}</a>
+    <a href="/venue/{{ encoded_v }}">{% print("Venue: "+ venue_name) %}</a>
     {% print("date: "+ perf_date) %} <br>
     {% print("description: "+ perf_description) %}
-
-
 </h3>
-  <p>Type something in the input field to search the list for specific items:</p>
-  <input class="form-control" id="myInput" type="text" placeholder="Search.."  >{% set counter = namespace(value=0) %}
-<br><ul class="list-group" id="myList"><!--Iterate over list provided in view-->
-   {% for track_title in track_titles["results"]["bindings"] %}
-       <li class = "list-group-item"><a href="/tracks/{{ encoded_ts[counter.value] }}">{{ track_title["tracktitle"]["value"] }}</a></li>
-        {% set counter.value = counter.value + 1 %}
-    {% endfor %} {% set counter.value = counter.value + 1 %}
-</ul>
-</div>
-</body>
-    <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myList li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-</html>
+
+<table id="dtBasicExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Setlist</th>
+        <th scope="col">Track audio</th>
+        <th scope="col">Download link</th>
+    </tr>
+    </thead>
+    <tbody>
+
+   {% for track_title in track_titles %}
+        <tr>
+        <th scope="row">{{loop.index}}</th>
+            <td><a href="/tracks/{{ encoded_ts[loop.index-1] }}">{{ track_title }}</a></td>
+
+            <td><audio controls name="media">
+               <source src="{{ audio[loop.index-1][1] }}" type="audio/mpeg">
+            </audio>
+            </td>
+            <td><a href="{{audio[loop.index-1][0]}}">{{audio[loop.index-1][0]}}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

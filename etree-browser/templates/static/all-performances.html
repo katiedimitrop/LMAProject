@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
+{% print("Track page for: "+ perf_name) %}
 <table id="dtBasicExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">All Results</th>
+        <th scope="col">Performance</th>
     </tr>
     </thead>
     <tbody>
-<!--for each artist create a row-->
-    {% for artist_name in artist_names %}
-    <tr>
+
+
+    {% for perf in performances%}
+        <tr>
         <th scope="row">{{loop.index}}</th>
-        <td><a href="/artists/{{ encoded_r[loop.index-1] }}">{{ artist_name }}</a></td>
+            <td><a href="/performance/{{ encoded_perfs[loop.index-1] }}">{{ perf }} </a></td>
     </tr>
     {% endfor %}
-     </tbody>
+    </tbody>
 </table>
 {% endblock %}
