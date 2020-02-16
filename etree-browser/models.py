@@ -131,8 +131,8 @@ class PerformanceModel:
         {
 
             ?perf rdf:type etree:Concert.
-            ?perf skos:prefLabel ?label.
-            filter contains(?label, '""" + perf_name + """')
+            ?perf skos:prefLabel ?label.        
+            filter (regex(?label, '"""+perf_name+"""', "i"))
         } ORDER BY asc(UCASE(str(?perf)))
         """)
 
@@ -140,7 +140,7 @@ class PerformanceModel:
         perf_names = self.sparql.query().convert()["results"]["bindings"]
         # isolate values from list of dictionaries
         perf_names = [perf_dict["label"]["value"] for perf_dict in perf_names]
-        print(perf_names)
+        #print(perf_names)
         return perf_names
 
     def get_all_count(self):
@@ -398,13 +398,13 @@ class TrackModel:
                                        WHERE
                                       {  
                                            ?track rdf:type etree:Track .
-                                           ?track skos:prefLabel'""" + track_name + """' .
+                                           ?track skos:prefLabel ?trackname .
                                            ?track etree:isSubEventOf ?perflink.
                                            ?track etree:audio ?audiolink .
                                            ?track mo:performer ?artlink .
                                            ?artlink skos:prefLabel ?artname .
-                                           ?perflink skos:prefLabel ?perfname   
-                               
+                                           ?perflink skos:prefLabel ?perfname.   
+                                            FILTER (regex(?trackname, '"""+track_name+"""', "i"))
                                       } GROUP BY ?perfname ORDER BY asc(UCASE(str(?artname)))
                                """)
         self.sparql.setReturnFormat(JSON)
@@ -556,7 +556,7 @@ class VenueModel:
         {
             ?venue rdf:type etree:Venue.
             ?venue skos:prefLabel ?label.
-            filter contains(?label, '""" + venue_name + """')
+            FILTER (regex(?label, '"""+venue_name+"""', "i"))
         } ORDER BY asc(UCASE(str(?venue)))
         """)
 

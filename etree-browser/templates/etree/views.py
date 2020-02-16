@@ -42,6 +42,8 @@ def analysis_one():
     track_tempos = [round(tempo) for tempo in track_tempos]
     #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
     speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
+    #sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
+    #TO DO: could get spotify audio analysis data here
     return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
                            max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
