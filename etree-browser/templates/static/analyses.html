@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<table id="dtBasicExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">All Results</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--for each track with calma data create a row-->
+    {% for analysis in analyses%}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td><a href="/analyses/?artist={{ encoded_analyses[loop.index-1][0] }}&track={{ encoded_analyses[loop.index-1][1] }}">{{ analysis[0] }} - {{ analysis[1] }}</a></td>
+    </tr>
+    {% endfor %}
+     </tbody>
+</table>
+{% endblock %}

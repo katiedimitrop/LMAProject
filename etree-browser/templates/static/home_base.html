@@ -14,13 +14,13 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="../public/css/mdb.min.css" rel="stylesheet">
+  <link href="../../public/css/mdb.min.css" rel="stylesheet">
     <!-- MDBootstrap Datatables  -->
-  <link href="../public/css/addons/datatables.min.css" rel="stylesheet">
+  <link href="../../public/css/addons/datatables.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../public/css/style.css" rel="stylesheet">
+  <link href="../../public/css/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- MDBootstrap Datatables  -->
@@ -265,6 +265,10 @@ svg.selectAll(".dot")
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 <!-- Load react component -->
 <script src="../public/js/like_button.js"></script>
-<script src="../public/js/sortTable.js"></script>
+<script>$(document).ready(function() {
+$('#dtBasicExample').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
 </html>
 

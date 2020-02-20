@@ -185,3 +185,8 @@ class TrackService:
     def get_actual_tempo_and_key(self):
         return self.model.get_actual_tempo_and_key()
 
+    def get_calma_track(self, artist_name, track_name):
+        # escape single-quote
+        #track_name = track_name.replace("'", r"\'")
+        #track_name = track_name.replace("#", r"\#")
+        return self.model.get_calma_track(artist_name,track_name)

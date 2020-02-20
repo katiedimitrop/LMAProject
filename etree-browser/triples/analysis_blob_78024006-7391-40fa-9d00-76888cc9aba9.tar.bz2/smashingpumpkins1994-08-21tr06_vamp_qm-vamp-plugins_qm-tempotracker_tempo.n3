@@ -1,0 +1,1559 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix af: <http://purl.org/ontology/af/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> . 
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix vamp: <http://purl.org/ontology/vamp/> .
+@prefix : <#> .
+
+<http://archive.org/download/tsp1994-08-21.dsm6s.flac16_48/smashingpumpkins1994-08-21tr06.flac> a mo:AudioFile ;
+    mo:encodes :signal_0.
+
+:signal_0 a mo:Signal ;
+    mo:time [
+        a tl:Interval ;
+        tl:onTimeLine :signal_timeline_0
+    ] .
+
+:signal_timeline_0 a tl:Timeline .
+
+
+:transform_1461_tempo a vamp:Transform ;
+    vamp:plugin <http://vamp-plugins.org/rdf/plugins/qm-vamp-plugins#qm-tempotracker> ;
+    vamp:step_size "512"^^xsd:int ; 
+    vamp:block_size "1024"^^xsd:int ; 
+    vamp:sample_rate "44100"^^xsd:float ; 
+    vamp:plugin_version """6""" ; 
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "alpha" ] ;
+        vamp:value "0.9"^^xsd:float ;
+    ] ;
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "constraintempo" ] ;
+        vamp:value "0"^^xsd:float ;
+    ] ;
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "dftype" ] ;
+        vamp:value "3"^^xsd:float ;
+    ] ;
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "inputtempo" ] ;
+        vamp:value "120"^^xsd:float ;
+    ] ;
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "method" ] ;
+        vamp:value "1"^^xsd:float ;
+    ] ;
+    vamp:parameter_binding [
+        vamp:parameter [ vamp:identifier "whiten" ] ;
+        vamp:value "0"^^xsd:float ;
+    ] ;
+    vamp:output <http://vamp-plugins.org/rdf/plugins/qm-vamp-plugins#qm-tempotracker_output_tempo> .
+
+:event_1462 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT0.000000000S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1463 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT7.430385487S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """184.57 bpm""" ;
+    af:feature "184.57" .
+:event_1464 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT8.916462585S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """191.41 bpm""" ;
+    af:feature "191.406" .
+:event_1465 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT13.374693877S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1466 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT14.860770975S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1467 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT16.346848072S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1468 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT17.832925170S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """117.45 bpm""" ;
+    af:feature "117.454" .
+:event_1469 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT19.319002267S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """114.84 bpm""" ;
+    af:feature "114.844" .
+:event_1470 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT22.291156462S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """123.05 bpm""" ;
+    af:feature "123.047" .
+:event_1471 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT25.263310657S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """112.35 bpm""" ;
+    af:feature "112.347" .
+:event_1472 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT28.235464852S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """114.84 bpm""" ;
+    af:feature "114.844" .
+:event_1473 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT29.721541950S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """97.51 bpm""" ;
+    af:feature "97.5088" .
+:event_1474 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT34.179773242S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """93.96 bpm""" ;
+    af:feature "93.9631" .
+:event_1475 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT37.151927437S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """84.72 bpm""" ;
+    af:feature "84.7208" .
+:event_1476 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT38.638004535S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """71.78 bpm""" ;
+    af:feature "71.7773" .
+:event_1477 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT44.582312925S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """70.79 bpm""" ;
+    af:feature "70.7941" .
+:event_1478 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT47.554467120S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """71.78 bpm""" ;
+    af:feature "71.7773" .
+:event_1479 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT52.012698412S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """72.79 bpm""" ;
+    af:feature "72.7883" .
+:event_1480 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT53.498775510S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """71.78 bpm""" ;
+    af:feature "71.7773" .
+:event_1481 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT59.443083900S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """70.79 bpm""" ;
+    af:feature "70.7941" .
+:event_1482 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT60.929160997S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """73.83 bpm""" ;
+    af:feature "73.8281" .
+:event_1483 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT63.901315192S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """72.79 bpm""" ;
+    af:feature "72.7883" .
+:event_1484 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT66.873469387S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """73.83 bpm""" ;
+    af:feature "73.8281" .
+:event_1485 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT69.845623582S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """82.03 bpm""" ;
+    af:feature "82.0313" .
+:event_1486 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT71.331700680S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """87.59 bpm""" ;
+    af:feature "87.5927" .
+:event_1487 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT72.817777777S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """95.70 bpm""" ;
+    af:feature "95.7031" .
+:event_1488 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT74.303854875S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """97.51 bpm""" ;
+    af:feature "97.5088" .
+:event_1489 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT77.276009070S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """114.84 bpm""" ;
+    af:feature "114.844" .
+:event_1490 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT80.248163265S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """117.45 bpm""" ;
+    af:feature "117.454" .
+:event_1491 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT83.220317460S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """114.84 bpm""" ;
+    af:feature "114.844" .
+:event_1492 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT86.192471655S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1493 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT92.136780045S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1494 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT93.622857142S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """123.05 bpm""" ;
+    af:feature "123.047" .
+:event_1495 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT95.108934240S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """120.19 bpm""" ;
+    af:feature "120.185" .
+:event_1496 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT99.567165532S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """117.45 bpm""" ;
+    af:feature "117.454" .
+:event_1497 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT105.511473922S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1498 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT108.483628117S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1499 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT111.455782312S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1500 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT112.941859410S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """120.19 bpm""" ;
+    af:feature "120.185" .
+:event_1501 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT115.914013605S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1502 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT117.400090702S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1503 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT118.886167800S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1504 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT124.830476190S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """191.41 bpm""" ;
+    af:feature "191.406" .
+:event_1505 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT126.316553287S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """198.77 bpm""" ;
+    af:feature "198.768" .
+:event_1506 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT127.802630385S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """191.41 bpm""" ;
+    af:feature "191.406" .
+:event_1507 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT141.177324263S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """184.57 bpm""" ;
+    af:feature "184.57" .
+:event_1508 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT142.663401360S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1509 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT150.093786848S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1510 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT157.524172335S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1511 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT161.982403628S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1512 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT163.468480725S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1513 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT164.954557823S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1514 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT167.926712018S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1515 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT172.384943310S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1516 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT178.329251700S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """178.21 bpm""" ;
+    af:feature "178.206" .
+:event_1517 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT181.301405895S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1518 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT182.787482993S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """178.21 bpm""" ;
+    af:feature "178.206" .
+:event_1519 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT184.273560090S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1520 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT185.759637188S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1521 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT191.703945578S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1522 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT194.676099773S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1523 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT196.162176870S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1524 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT208.050793650S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1525 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT209.536870748S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1526 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT213.995102040S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1527 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT216.967256235S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1528 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT218.453333333S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1529 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT221.425487528S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1530 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT225.883718820S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1531 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT227.369795918S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """123.05 bpm""" ;
+    af:feature "123.047" .
+:event_1532 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT228.855873015S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1533 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT231.828027210S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1534 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT234.800181405S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1535 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT239.258412698S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1536 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT240.744489795S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1537 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT245.202721088S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1538 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT246.688798185S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1539 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT248.174875283S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1540 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT249.660952380S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1541 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT251.147029478S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1542 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT254.119183673S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1543 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT260.063492063S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1544 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT264.521723356S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """198.77 bpm""" ;
+    af:feature "198.768" .
+:event_1545 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT268.979954648S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """184.57 bpm""" ;
+    af:feature "184.57" .
+:event_1546 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT271.952108843S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """191.41 bpm""" ;
+    af:feature "191.406" .
+:event_1547 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT276.410340136S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1548 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT280.868571428S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """184.57 bpm""" ;
+    af:feature "184.57" .
+:event_1549 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT282.354648526S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1550 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT288.298956916S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1551 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT291.271111111S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1552 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT294.243265306S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1553 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT295.729342403S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1554 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT301.673650793S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1555 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT303.159727891S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1556 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT304.645804988S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1557 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT306.131882086S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1558 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT310.590113378S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1559 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT313.562267573S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """103.36 bpm""" ;
+    af:feature "103.359" .
+:event_1560 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT315.048344671S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """93.96 bpm""" ;
+    af:feature "93.9631" .
+:event_1561 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT318.020498866S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """103.36 bpm""" ;
+    af:feature "103.359" .
+:event_1562 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT322.478730158S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """93.96 bpm""" ;
+    af:feature "93.9631" .
+:event_1563 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT325.450884353S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """117.45 bpm""" ;
+    af:feature "117.454" .
+:event_1564 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT328.423038548S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """126.05 bpm""" ;
+    af:feature "126.048" .
+:event_1565 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT331.395192743S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1566 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT332.881269841S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1567 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT334.367346938S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1568 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT335.853424036S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1569 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT338.825578231S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1570 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT340.311655328S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1571 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT341.797732426S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1572 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT346.255963718S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """123.05 bpm""" ;
+    af:feature "123.047" .
+:event_1573 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT350.714195011S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1574 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT358.144580498S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """166.71 bpm""" ;
+    af:feature "166.709" .
+:event_1575 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT364.088888888S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1576 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT374.491428571S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1577 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT377.463582766S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1578 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT378.949659863S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1579 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT381.921814058S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """224.69 bpm""" ;
+    af:feature "224.694" .
+:event_1580 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT389.352199546S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """215.33 bpm""" ;
+    af:feature "215.332" .
+:event_1581 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT390.838276643S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """206.72 bpm""" ;
+    af:feature "206.719" .
+:event_1582 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT395.296507936S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """198.77 bpm""" ;
+    af:feature "198.768" .
+:event_1583 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT398.268662131S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """191.41 bpm""" ;
+    af:feature "191.406" .
+:event_1584 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT402.726893424S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1585 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT404.212970521S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1586 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT405.699047619S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1587 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT407.185124716S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1588 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT410.157278911S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1589 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT411.643356009S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """166.71 bpm""" ;
+    af:feature "166.709" .
+:event_1590 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT413.129433106S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1591 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT414.615510204S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """178.21 bpm""" ;
+    af:feature "178.206" .
+:event_1592 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT416.101587301S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1593 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT417.587664399S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """178.21 bpm""" ;
+    af:feature "178.206" .
+:event_1594 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT422.045895691S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1595 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT430.962358276S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1596 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT432.448435374S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """117.45 bpm""" ;
+    af:feature "117.454" .
+:event_1597 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT433.934512471S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """120.19 bpm""" ;
+    af:feature "120.185" .
+:event_1598 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT439.878820861S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """139.67 bpm""" ;
+    af:feature "139.675" .
+:event_1599 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT441.364897959S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1600 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT442.850975056S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1601 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT444.337052154S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1602 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT448.795283446S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """224.69 bpm""" ;
+    af:feature "224.694" .
+:event_1603 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT453.253514739S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1604 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT457.711746031S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1605 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT460.683900226S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1606 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT462.169977324S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """143.55 bpm""" ;
+    af:feature "143.555" .
+:event_1607 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT463.656054421S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """132.51 bpm""" ;
+    af:feature "132.512" .
+:event_1608 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT468.114285714S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """120.19 bpm""" ;
+    af:feature "120.185" .
+:event_1609 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT469.600362811S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """109.96 bpm""" ;
+    af:feature "109.957" .
+:event_1610 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT471.086439909S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """103.36 bpm""" ;
+    af:feature "103.359" .
+:event_1611 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT472.572517006S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """105.47 bpm""" ;
+    af:feature "105.469" .
+:event_1612 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT474.058594104S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """123.05 bpm""" ;
+    af:feature "123.047" .
+:event_1613 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT475.544671201S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """129.20 bpm""" ;
+    af:feature "129.199" .
+:event_1614 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT477.030748299S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """132.51 bpm""" ;
+    af:feature "132.512" .
+:event_1615 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT481.488979591S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1616 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT500.807981859S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .
+:event_1617 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT503.780136054S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """156.61 bpm""" ;
+    af:feature "156.605" .
+:event_1618 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT505.266213151S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """166.71 bpm""" ;
+    af:feature "166.709" .
+:event_1619 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT506.752290249S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """161.50 bpm""" ;
+    af:feature "161.499" .
+:event_1620 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT508.238367346S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """147.66 bpm""" ;
+    af:feature "147.656" .
+:event_1621 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT509.724444444S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1622 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT511.210521541S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """132.51 bpm""" ;
+    af:feature "132.512" .
+:event_1623 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT512.696598639S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """136.00 bpm""" ;
+    af:feature "135.999" .
+:event_1624 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT514.182675736S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """166.71 bpm""" ;
+    af:feature "166.709" .
+:event_1625 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT517.154829931S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """172.27 bpm""" ;
+    af:feature "172.266" .
+:event_1626 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT518.640907029S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """206.72 bpm""" ;
+    af:feature "206.719" .
+:event_1627 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT521.613061224S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """215.33 bpm""" ;
+    af:feature "215.332" .
+:event_1628 a <http://purl.org/ontology/af/Tempo> ;
+    event:time [ 
+        a tl:Instant ;
+        tl:onTimeLine :signal_timeline_0 ;
+        tl:at "PT523.099138321S"^^xsd:duration ;
+    ] ;
+    vamp:computed_by :transform_1461_tempo ;
+    rdfs:label """152.00 bpm""" ;
+    af:feature "151.999" .

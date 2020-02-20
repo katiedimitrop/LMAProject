@@ -1,14 +1,17 @@
 # This is where the routes are defined, could be split into several modules
 from templates import app
-from flask import Flask, render_template, Blueprint
+from flask import Flask, render_template, Blueprint, request
 from model_service import ArtistService, VenueService, PerformanceService, TrackService
+from cluster_service import ClusterService
 import urllib.parse
 import numpy as np
+import re
 import statistics
 from statistics import mean
 import operator
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
+import os
 import sys
 from pprint import pprint
 from collections import Counter
@@ -16,11 +19,8 @@ from collections import Counter
 etree_blueprint = Blueprint('etree', __name__)
 
 
-
-
-
 @etree_blueprint.route('/analysis')
-def analysis_home():
+def guster_analysis():
     tracks,track_tempos,avg_tempo,max_tempo,predicted_keys,key_percentages,key_lengths,labels = TrackService().get_analyses("Guster", "The Captain")
     actual_tempo_and_key = TrackService().get_actual_tempo_and_key()
     # print(tracks)
@@ -28,10 +28,29 @@ def analysis_home():
     #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
     speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
     tempos_rounded = np.around(track_tempos)
-    return render_template("analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+    return render_template("guster_analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
                            max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
                            speed_diff = round(speed_diff),tempos_rounded = tempos_rounded )
+
+@etree_blueprint.route('/analyses')
+def analyses():
+    analyses = []
+    encoded_analyses = []
+    from os.path import dirname, abspath
+    d = dirname(abspath("views.py"))
+    artists = os.listdir(d+"/calma_data")
+
+    for artist in artists:
+        tracks = os.listdir(d + "/calma_data/"+artist)
+        for track_id in range(0,len(tracks)):
+            tracks[track_id] = re.sub('.csv', '', tracks[track_id])
+            analyses.append([artist,tracks[track_id]])
+
+            encoded_analyses.append( [ urllib.parse.quote(str(artist)),urllib.parse.quote(str(tracks[track_id])) ] )
+    #analyses = [["Smashing Pumpkins","Zero"],[]]
+    #first column will be artists names and second will be track names
+    return render_template("analyses.html", encoded_analyses=encoded_analyses,analyses=analyses)
 
 @etree_blueprint.route('/analysis/1')
 def analysis_one():
@@ -49,7 +68,14 @@ def analysis_one():
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
                            speed_diff = round(speed_diff),labels = labels )
 
-# pick endpoint
+@etree_blueprint.route('/analyses/', methods=['GET'])
+def analysis():
+    artist = request.args.get('artist')
+    track = request.args.get('track')
+    artist_name = urllib.parse.unquote(artist)
+    track_name = urllib.parse.unquote(track)
+    track_analysis = ClusterService().get_analysis_for_track(artist_name,track_name)
+    return render_template("analysis.html",tracks = [1,2,3,4])
 
 @etree_blueprint.route('/artists')
 def art_home():
