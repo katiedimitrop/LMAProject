@@ -3,11 +3,8 @@
 import statistics
 import operator
 from models import ArtistModel, VenueModel, PerformanceModel, TrackModel
-import urllib.parse
 from collections import Counter
 import numpy as np
-import json
-import re
 import k_med
 import copy
 from sklearn_extra.cluster import KMedoids
@@ -175,7 +172,7 @@ class TrackService:
         #print(labels)
         k=4
         p=2
-        medoids_and_labels = k_med.kmedoids(k_tracks,k,p,starting_medoids = None,max_steps = np.inf)
+        medoids_and_labels = k_med.kmedoids(k_tracks, k, p, starting_medoids = None, max_steps = np.inf)
         #my own k_medoids algorithm labels
         labels = medoids_and_labels[1]
         print(medoids_and_labels)

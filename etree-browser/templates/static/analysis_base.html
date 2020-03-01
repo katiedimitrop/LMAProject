@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!--Line graph D3 code taken from here: http://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/-->
+<html lang="en">
+<head>
+    <meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Etree Browser</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../../public/css/mdb.min.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+  <link href="../../public/css/addons/datatables.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../../public/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src="../public/js/addons/datatables.min.js"></script>
+        <!-- Load in the d3 library -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+</head>
+<body>
+<!-- Start your project here-->
+  <header>
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark black">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#" >Etree browser</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+        <!-- Links -->
+        <span class="navbar-text white-text">
+              Navbar text with an inline element
+        </span>
+
+    </div>
+  </nav>
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark yellow">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand black-text" href="#" >Explore the tracks of over 100,000 live performances</a>
+     <br>
+
+          <div class="container"  >
+    <div class="row justify-content-center">
+    <div class="col-sm">
+        <form action="/artists">
+         <button class="btn btn-elegant"  >Artists</button>
+       </form>
+    </div>
+    <div class="col-sm">
+      <form action="/performances">
+         <button class="btn btn-elegant"  >Performances</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <form action="/tracks">
+         <button class="btn btn-elegant"  >Tracks</button>
+      </form>
+    </div>
+        <div class="col-sm">
+     <form action="/venues">
+         <button class="btn btn-elegant"  >Venues</button>
+      </form>
+    </div>
+
+  </div><!--row containerend-->
+
+    </div>
+  </nav> <!--Second navbar-->
+<!--/.Navbar-->
+  </header>
+
+
+<!--Main layout-->
+<main>
+<body>
+<div class="container">
+
+  {%block body%}
+
+    {%endblock%}
+
+</div>
+
+
+</main>
+
+</body>
+
+
+<script>
+var tempos = {{tempos}}
+var max_keys = {{max_keys}}
+var durs = {{durs}}
+var labels = {{labels}}
+// 2. Use the margin convention practice
+var margin = {top: 50, right: 50, bottom: 50, left: 50}
+  , width = window.innerWidth - margin.left - margin.right // Use the window's width
+  , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
+
+// The number of datapoints
+var n = {{count}};
+
+// 5. X scale will use the index of our data
+var xScale = d3.scaleLinear()
+    .domain([0, n-1]) // input
+    .range([0, width]); // output
+
+// 6. Y scale will represent tempo
+var yScale = d3.scaleLinear()
+    .domain([d3.min(tempos)-10, {{max_tempo}}]) // input
+    .range([height, 0]); // output
+
+// 7. d3's line generator
+var line = d3.line()
+    .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+var dataset = tempos.map(function(d) { return {"y": d } })
+
+// 1. Add the SVG to the page and employ #2
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3. Call the x axis in a group tag
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+svg.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
+
+
+// 9. Append the path, bind the data, and call the line generator
+svg.append("path")
+    .datum(dataset) // 10. Binds data to the line
+    .attr("class", "line") // Assign a class for styling
+    .attr("d", line); // 11. Calls the line generator
+
+
+// 12. Appends a circle for each datapoint
+svg.selectAll(".dot")
+    .data(dataset)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return xScale(i) })
+    .attr("cy", function(d) { return yScale(d.y) })
+    .attr("r", 5)
+      .on("mouseover", function(a, b, c) {
+  			console.log(a)
+        this.attr('class', 'focus')
+		})
+      .on("mouseout", function() {  })
+//       .on("mousemove", mousemove);
+
+//   var focus = svg.append("g")
+//       .attr("class", "focus")
+//       .style("display", "none");
+
+//   focus.append("circle")
+//       .attr("r", 4.5);
+
+//   focus.append("text")
+//       .attr("x", 9)
+//       .attr("dy", ".35em");
+
+//   svg.append("rect")
+//       .attr("class", "overlay")
+//       .attr("width", width)
+//       .attr("height", height)
+//       .on("mouseover", function() { focus.style("display", null); })
+//       .on("mouseout", function() { focus.style("display", "none"); })
+//       .on("mousemove", mousemove);
+
+//   function mousemove() {
+//     var x0 = x.invert(d3.mouse(this)[0]),
+//         i = bisectDate(data, x0, 1),
+//         d0 = data[i - 1],
+//         d1 = data[i],
+//         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+//     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
+//     focus.select("text").text(d);
+//   }
+
+//SECOND CHART FOR KEY OVER TIME
+//Data Preparation
+// 6. Y scale will represent key
+var yScale = d3.scaleLinear()
+    .domain([d3.min(max_keys)-10, {{max_key}}]) // input
+    .range([height, 0]); // output
+
+// 7. d3's line generator
+var line = d3.line()
+    .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+var dataset = max_keys.map(function(d) { return {"y": d } })
+//Chart Creation
+// 1. Add the SVG to the page and employ #2
+var svg2 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3. Call the x axis in a group tag
+svg2.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+svg2.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
+
+
+// 9. Append the path, bind the data, and call the line generator
+svg2.append("path")
+    .datum(dataset) // 10. Binds data to the line
+    .attr("class", "line") // Assign a class for styling
+    .attr("d", line); // 11. Calls the line generator
+
+
+// 12. Appends a circle for each datapoint
+svg2.selectAll(".dot")
+    .data(dataset)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return xScale(i) })
+    .attr("cy", function(d) { return yScale(d.y) })
+    .attr("r", 5)
+      .on("mouseover", function(a, b, c) {
+  			console.log(a)
+        this.attr('class', 'focus')
+		})
+      .on("mouseout", function() {  })
+
+
+//THIRD CHART FOR DURATION OVER TIME
+//Data Preparation
+// 6. Y scale will represent duration
+var yScale = d3.scaleLinear()
+    .domain([d3.min(durs)-10, {{max_duration}}]) // input
+    .range([height, 0]); // output
+
+// 7. d3's line generator
+var line = d3.line()
+    .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+var dataset = durs.map(function(d) { return {"y": d } })
+//Chart Creation
+// 1. Add the SVG to the page and employ #2
+var svg3 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3. Call the x axis in a group tag
+svg3.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+svg3.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
+
+
+// 9. Append the path, bind the data, and call the line generator
+svg3.append("path")
+    .datum(dataset) // 10. Binds data to the line
+    .attr("class", "line") // Assign a class for styling
+    .attr("d", line); // 11. Calls the line generator
+
+
+// 12. Appends a circle for each datapoint
+svg3.selectAll(".dot")
+    .data(dataset)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return xScale(i) })
+    .attr("cy", function(d) { return yScale(d.y) })
+    .attr("r", 5)
+      .on("mouseover", function(a, b, c) {
+  			console.log(a)
+        this.attr('class', 'focus')
+		})
+      .on("mouseout", function() {  })
+//MAKE HORIZONTALLY SCROLLABLE
+
+
+//FOURTH CHART FOR label OVER TIME
+//Data Preparation
+// 6. Y scale will represent duration
+var yScale = d3.scaleLinear()
+    .domain([d3.min(labels)-10, {{max_label}}]) // input
+    .range([height, 0]); // output
+
+// 7. d3's line generator
+var line = d3.line()
+    .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+var dataset = labels.map(function(d) { return {"y": d } })
+//Chart Creation
+// 1. Add the SVG to the page and employ #2
+var svg4 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3. Call the x axis in a group tag
+svg4.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+svg4.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+
+// 9. Append the path, bind the data, and call the line generator
+svg4.append("path")
+    .datum(dataset) // 10. Binds data to the line
+    .attr("class", "line") // Assign a class for styling
+    .attr("d", line); // 11. Calls the line generator
+
+
+// 12. Appends a circle for each datapoint
+svg4.selectAll(".dot")
+    .data(dataset)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return xScale(i) })
+    .attr("cy", function(d) { return yScale(d.y) })
+    .attr("r", 5)
+      .on("mouseover", function(a, b, c) {
+  			console.log(a)
+        this.attr('class', 'focus')
+		})
+      .on("mouseout", function() {  })
+
+
+    var margin = { top: 30, right: 120, bottom: 30, left: 50 },
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom,
+        tooltip = { width: 100, height: 100, x: 10, y: -30 };
+
+    var parseDate = d3.time.format("%m/%e/%Y").parse,
+        bisectDate = d3.bisector(function(d) { return d.date; }).left,
+        formatValue = d3.format(","),
+        dateFormatter = d3.time.format("%m/%d/%y");
+
+    var x = d3.time.scale()
+            .range([0, width]);
+
+    var y = d3.scale.linear()
+            .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(dateFormatter);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(d3.format("s"))
+
+    var line = d3.svg.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.likes); });
+
+    var svg5 = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.tsv("data.tsv", function(error, data) {
+        if (error) throw error;
+
+        data.forEach(function(d) {
+            d.date = parseDate(d.date);
+            d.likes = +d.likes;
+        });
+
+        data.sort(function(a, b) {
+            return a.date - b.date;
+        });
+
+        x.domain([data[0].date, data[data.length - 1].date]);
+        y.domain(d3.extent(data, function(d) { return d.likes; }));
+
+        svg5.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg5.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Number of Likes");
+
+        svg5.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("d", line);
+
+        var focus = svg.append("g")
+            .attr("class", "focus")
+            .style("display", "none");
+
+        focus.append("circle")
+            .attr("r", 5);
+
+        focus.append("rect")
+            .attr("class", "tooltip")
+            .attr("width", 100)
+            .attr("height", 50)
+            .attr("x", 10)
+            .attr("y", -22)
+            .attr("rx", 4)
+            .attr("ry", 4);
+
+        focus.append("text")
+            .attr("class", "tooltip-date")
+            .attr("x", 18)
+            .attr("y", -2);
+
+        focus.append("text")
+            .attr("x", 18)
+            .attr("y", 18)
+            .text("Likes:");
+
+        focus.append("text")
+            .attr("class", "tooltip-likes")
+            .attr("x", 60)
+            .attr("y", 18);
+
+        svg5.append("rect")
+            .attr("class", "overlay")
+            .attr("width", width)
+            .attr("height", height)
+            .on("mouseover", function() { focus.style("display", null); })
+            .on("mouseout", function() { focus.style("display", "none"); })
+            .on("mousemove", mousemove);
+
+        function mousemove() {
+            var x0 = x.invert(d3.mouse(this)[0]),
+                i = bisectDate(data, x0, 1),
+                d0 = data[i - 1],
+                d1 = data[i],
+                d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+            focus.attr("transform", "translate(" + x(d.date) + "," + y(d.likes) + ")");
+            focus.select(".tooltip-date").text(dateFormatter(d.date));
+            focus.select(".tooltip-likes").text(formatValue(d.likes));
+        }
+    });
+
+</script>
+
+<script>$(document).ready(function() {
+$('#dtBasicExample').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
+</html>
+

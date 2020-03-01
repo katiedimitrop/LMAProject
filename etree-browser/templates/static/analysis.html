@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "analysis_base.html" %}
 
 {% block body %}
 
@@ -10,22 +10,29 @@
     <tr>
       <th class="th-sm">Number</th>
       <th class="th-sm">Performance</th>
-      <th class="th-sm">Tempo (bpm)</th>
-      <th class="th-sm">Key</th>
-      <th class="th-sm">Duration(s)</th>
+      <th class="th-sm">Date</th>
+      <th class="th-sm">Audio</th>
+      <th class="th-sm">Duration (s)</th>
+      <th class="th-sm">Predicted Tempo (bpm)</th>
+      <th class="th-sm">Predicted Key</th>
       <th class="th-sm">Label</th>
     </tr>
   </thead>
   <tbody>
   <!--for each performance create a row-->
-       {% for track in tracks %}
+       {% for index, row in track_analysis.iterrows() %}
     <tr>
       <th scope="row">{{loop.index}}</th>
-      <td>{{ track }}</td>
-      <td></td>
-      <td></td>
-        <td></td>
-      <td></td>
+      <td>{{ row['Track Name'] }}</td>
+      <td>{{ row['Performance Date'] }}</td>
+      <td> <audio controls name="media">
+               <source src="{{row['Audio Links']}}" type="audio/mpeg">
+            </audio></td>
+      <td>{{ row['Track duration']}}</td>
+      <td>{{ row['Tempo'] }} </td>
+      <td> {{ row['Max Key']}}: {{key_names[row['Max Key']-1 ]}}</td>
+
+      <td>{{row['Labels']}}</td>
     </tr>
   <!--chord and keys percentages-->
        {% endfor %}
@@ -37,10 +44,13 @@
       <td></td>
       <td></td>
       <td></td>
-        <td></td>
+      <td>{{track_analysis['Track duration'].mean() }}</td>
+      <td>{{track_analysis['Tempo'].mean() }}</td>
+      <td>{{ track_analysis['Max Key'].mode()[0]}}: {{key_names[track_analysis['Max Key'].mode()[0]-1] }}</td>
       <td> </td>
     </tr>
   </tfoot>
 </table>
+
 
 {% endblock %}

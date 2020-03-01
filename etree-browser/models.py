@@ -481,9 +481,47 @@ class TrackModel:
 
         return tracks
     def get_analysis_for_track(self,artist_name,track_name):
+        self.sparql.setQuery(TrackModel.prefixes + """
+                SELECT DISTINCT ?calma_link ?art_name ?perf_date ?track_name (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
+                                                                    WHERE 
+                                                                    {
+                                                                    ?track rdf:type etree:Track.
+                                                                    ?track skos:prefLabel ?track_name.
+                                                                    ?track calma:data ?calma_link.
+                                                                    ?track mo:performer ?artist.
+                                                                    ?artist skos:prefLabel ?art_name.
+                                                                    ?track etree:audio ?audio_link.
+                                                                    ?track etree:isSubEventOf ?performance.
+                                                                    ?performance etree:date ?perf_date.
+        FILTER (regex(?track_name, "Zero", "i")).
+                                                                    FILTER (regex(?art_name, "Smashing Pumpkins", "i"))} ORDER BY(?perf_date)""")
+        self.sparql.setReturnFormat(JSON)
+        calma_track = self.sparql.query().convert()["results"]["bindings"]
+
+        # isolate values from list of dictionaries
+        audio_links = np.asarray([calma_dict["audio_links"]["value"] for calma_dict in calma_track])
+
+        audio = np.zeros(len(audio_links), dtype=np.ndarray)
+        track_index = 0
+        for track in audio_links:
+            string = track
+            audio[track_index] = string.split(",")
+            # print("TRACK" + str(audio[track_index][1]))
+            track_index += 1
+
+        for audio_id in range(0,len(audio)):
+            audio_list = audio[audio_id]
+            #isolate and pass only mp3 file links that are playable in browser
+            for link in audio_list :
+                if ".mp3" in link:
+                    audio[audio_id] = link
+                else:
+                    audio[audio_id] = audio_list[0]
+
         df = pd.read_csv('./calma_data/' + artist_name + "/" + track_name + '.csv')
-        print(df.head(5))
-        return "hello"
+        df = df.round(0)
+        df['Audio Links'] = pd.Series(audio, index=df.index)
+        return df
     def get_actual_tempo_and_key(self):
 
 

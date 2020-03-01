@@ -5,6 +5,7 @@ from model_service import ArtistService, VenueService, PerformanceService, Track
 from cluster_service import ClusterService
 import urllib.parse
 import numpy as np
+import pandas as pd
 import re
 import statistics
 from statistics import mean
@@ -28,7 +29,7 @@ def guster_analysis():
     #predicted_key = max(predicted_keys.iteritems(), key=operator.itemgetter(1))[0]
     speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
     tempos_rounded = np.around(track_tempos)
-    return render_template("guster_analysis.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+    return render_template("guster_analysis.html", tracks=tracks, count=len(track_tempos), tempos=track_tempos, avg_tempo = avg_tempo,
                            max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
                            speed_diff = round(speed_diff),tempos_rounded = tempos_rounded )
@@ -63,19 +64,38 @@ def analysis_one():
     speed_diff = (1- float(actual_tempo_and_key['tempo'])/ avg_tempo ) * 100
     #sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
     #TO DO: could get spotify audio analysis data here
-    return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), track_tempos=track_tempos, avg_tempo = avg_tempo,
+    return render_template("analysis1.html", tracks=tracks, count=len(track_tempos), tempos=track_tempos, avg_tempo = avg_tempo,
                            max_tempo=max_tempo, actual_tempo_and_key = actual_tempo_and_key, predicted_keys=predicted_keys,
                            key_percentages = key_percentages,  key_lengths = np.around( key_lengths,2), average_length = np.around(mean( key_lengths),2 ),
                            speed_diff = round(speed_diff),labels = labels )
 
 @etree_blueprint.route('/analyses/', methods=['GET'])
 def analysis():
+
+    #these can be used to display actual key instead of key numbers
+    key_names = ["C", "Db / C#", "D", "Eb / D#", "E", "F", "Gb / F#", "G", "Ab / G#", "A", "Bb", "B/Cb",
+                 "Cm", "Dbm / C#m", "Dm", "Ebm / D#m", "Em", "Fm", "Gbm / F#m", "Gm", "Abm / G#m", "Am", "Bbm",
+                 "Bm/Cbm", "unknown"]
     artist = request.args.get('artist')
     track = request.args.get('track')
     artist_name = urllib.parse.unquote(artist)
     track_name = urllib.parse.unquote(track)
+
     track_analysis = ClusterService().get_analysis_for_track(artist_name,track_name)
-    return render_template("analysis.html",tracks = [1,2,3,4])
+
+    #this is needed for tempo ploting range
+    max_tempo = track_analysis['Tempo'].values.max()
+    max_key = track_analysis['Max Key'].values.max()
+    max_duration = track_analysis['Track duration'].values.max()
+    max_label = track_analysis['Labels'].values.max()
+    #the conversion from pandas df to lists is necessary for pandas charts to work
+    return render_template("analysis.html",track_analysis = track_analysis,key_names = key_names,
+                           count = len(track_analysis),tempos = track_analysis['Tempo'].values.astype(int).tolist()
+                           ,max_tempo=int(max_tempo),max_key = max_key
+                           ,max_keys = track_analysis['Max Key'].values.astype(int).tolist(),
+                           max_duration = max_duration, durs = track_analysis['Track duration'].values.astype(int).tolist()
+                           ,labels = track_analysis['Labels'].values.astype(int).tolist(), max_label = max_label
+                           )
 
 @etree_blueprint.route('/artists')
 def art_home():

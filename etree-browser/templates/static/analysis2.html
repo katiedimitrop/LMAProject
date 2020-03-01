@@ -1,4 +1,4 @@
-{% extends "home_base.html" %}
+{% extends "analysis_base.html" %}
 
 {% block body %}
 
@@ -24,7 +24,7 @@
     <tr>
       <th scope="row">{{loop.index}}</th>
       <td>{{ track }}</td>
-      <td>{{ track_tempos[loop.index-1]  }} </td>
+      <td>{{ tempos[loop.index-1]  }} </td>
       <td>{{predicted_keys[loop.index-1]}}</td>
         <td>{{key_lengths[loop.index-1]}}</td>
       <td>{{labels[loop.index-1]}}</td>
