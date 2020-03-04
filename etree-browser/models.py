@@ -126,6 +126,12 @@ class PerformanceModel:
         return all_perf_names
 
     def get_performance(self,perf_name):
+        perf_strs = perf_name.split()
+        filter_str = """ filter (regex(?label, \'"""
+        end_str =  """\', \"i\"))"""
+        sum_str = ""
+        for perf_str in perf_strs:
+            sum_str = sum_str + filter_str + perf_str + end_str
         self.sparql.setQuery(PerformanceModel.prefixes +
         """
         SELECT DISTINCT ?label WHERE
@@ -133,10 +139,10 @@ class PerformanceModel:
 
             ?perf rdf:type etree:Concert.
             ?perf skos:prefLabel ?label.        
-            filter (regex(?label, '"""+perf_name+"""', "i"))
+            """+sum_str+"""
         } ORDER BY asc(UCASE(str(?perf)))
         """)
-
+        print(sum_str)
         self.sparql.setReturnFormat(JSON)
         perf_names = self.sparql.query().convert()["results"]["bindings"]
         # isolate values from list of dictionaries
@@ -592,7 +598,8 @@ class VenueModel:
                 PREFIX mo:<http://purl.org/ontology/mo/>
                 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"""
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX event:<http://purl.org/NET/c4dm/event.owl#>"""
 
     def __init__(self):
         self.sparql = SPARQLWrapper("http://etree.linkedmusic.org/sparql")
@@ -634,7 +641,7 @@ class VenueModel:
         SELECT DISTINCT ?label WHERE
         {
             ?venue rdf:type etree:Venue.
-            ?venue skos:prefLabel ?label.
+            ?venue etree:name ?label.
             FILTER (regex(?label, '"""+venue_name+"""', "i"))
         } ORDER BY asc(UCASE(str(?venue)))
         """)
@@ -673,3 +680,24 @@ class VenueModel:
         self.sparql.setReturnFormat(JSON)
         results = self.sparql.query().convert()
         return results
+
+    def get_performances(self,venue_name):
+        print("HELLO"+venue_name)
+        self.sparql.setQuery(VenueModel.prefixes +
+                             """SELECT ?perf_name
+        WHERE
+        {
+        ?subject rdf:type etree:Concert.
+        ?subject skos:prefLabel ?perf_name.
+        ?subject event:place ?venue.
+        ?venue rdf:type  etree:Venue.
+        ?venue etree:name '"""+venue_name+"""'
+        }""")
+        self.sparql.setReturnFormat(JSON)
+        perf_names = self.sparql.query().convert()["results"]["bindings"]
+
+        # isolate values from list of dictionaries
+        perf_names = [perf_dict["perf_name"]["value"] for perf_dict in perf_names]
+
+        return perf_names
+

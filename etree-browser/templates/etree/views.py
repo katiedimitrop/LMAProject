@@ -183,7 +183,7 @@ def get_performance():
     for track_title in track_titles:
         encoded_ts.append(urllib.parse.quote(track_title))
 
-    encoded_v = urllib.parse.unquote(venue_name)
+    encoded_v = urllib.parse.quote(venue_name)
 
 
     return render_template('performance.html', track_titles=track_titles, encoded_ts=encoded_ts, audio = audio, perf_name=perf_name,
@@ -253,10 +253,15 @@ def get_venue():
     # requests to Venue service and template rendering require unencoded version
     venue_name = request.args.get('name')
     venue_name = urllib.parse.unquote(venue_name)
+    perf_names = VenueService().get_performances(venue_name)
     print(venue_name)
     location = VenueService().get_location(venue_name)
-
-    return render_template('venue.html', venue_name=venue_name, location=location)
+    encoded_perfs = []
+    for perf in perf_names:
+        encoded_perfs.append(urllib.parse.quote(perf.strip('\n')))
+    print(perf_names)
+    return render_template('venue.html', venue_name=venue_name, location=location,perf_names=perf_names,
+                            encoded_perfs = encoded_perfs)
 
 
 @etree_blueprint.errorhandler(404)

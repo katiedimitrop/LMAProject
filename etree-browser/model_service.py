@@ -50,6 +50,10 @@ class VenueService:
         venue_name = venue_name.replace("'", r"\'")
         return self.model.get_location(venue_name)
 
+    def get_performances(self, venue_name):
+       # venue_name = venue_name.replace("'", r"\'")
+        return self.model.get_performances(venue_name)
+
 class PerformanceService:
     def __init__(self):
         self.model = PerformanceModel()
