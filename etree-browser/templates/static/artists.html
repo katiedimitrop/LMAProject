@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
+<h2>All Artists in etree collection </h2>
 <table id="dtBasicExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
     <tr>
@@ -12,7 +13,7 @@
     {% for artist_name in artist_names %}
     <tr>
         <th scope="row">{{loop.index}}</th>
-        <td><a href="/artists/{{ encoded_r[loop.index-1] }}">{{ artist_name }}</a></td>
+        <td><a href="/artist/?name={{ encoded_r[loop.index-1] }}">{{ artist_name }}</a></td>
     </tr>
     {% endfor %}
      </tbody>

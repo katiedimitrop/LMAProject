@@ -41,7 +41,7 @@ class ArtistModel:
         self.sparql.setReturnFormat(JSON)
         artist_names = self.sparql.query().convert()["results"]["bindings"]
         #isolate values from list of dictionaries
-        artist_names = [artist_dict["name"]["value"] for artist_dict in artist_names ]
+        artist_names = [artist_dict["name"]["value"] for artist_dict in artist_names if artist_dict["name"]["value"]]
 
         return artist_names
 
@@ -480,6 +480,8 @@ class TrackModel:
 
 
         return tracks
+
+    #Get the audio links for the calma csvs
     def get_analysis_for_track(self,artist_name,track_name):
         self.sparql.setQuery(TrackModel.prefixes + """
                 SELECT DISTINCT ?calma_link ?art_name ?perf_date ?track_name (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
@@ -493,8 +495,8 @@ class TrackModel:
                                                                     ?track etree:audio ?audio_link.
                                                                     ?track etree:isSubEventOf ?performance.
                                                                     ?performance etree:date ?perf_date.
-        FILTER (regex(?track_name, "Zero", "i")).
-                                                                    FILTER (regex(?art_name, "Smashing Pumpkins", "i"))} ORDER BY(?perf_date)""")
+        FILTER (regex(?track_name, '"""+track_name+"""', "i")).
+                                                                    FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} ORDER BY(?perf_date)""")
         self.sparql.setReturnFormat(JSON)
         calma_track = self.sparql.query().convert()["results"]["bindings"]
 
@@ -520,6 +522,7 @@ class TrackModel:
 
         df = pd.read_csv('./calma_data/' + artist_name + "/" + track_name + '.csv')
         df = df.round(0)
+        #add the audio links to the csv outputted by calma parser
         df['Audio Links'] = pd.Series(audio, index=df.index)
         return df
     def get_actual_tempo_and_key(self):
@@ -548,6 +551,7 @@ class TrackModel:
         studio_data = {"tempo":tempo,"key":key}
         return studio_data
 
+    #parser runs this
     def get_calma_track(self,artist_name,track_name):
         self.sparql.setQuery(TrackModel.prefixes + """
         SELECT DISTINCT ?calma_link ?art_name ?perf_date ?track_name (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 

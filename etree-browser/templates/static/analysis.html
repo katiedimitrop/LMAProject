@@ -44,8 +44,8 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>{{track_analysis['Track duration'].mean() }}</td>
-      <td>{{track_analysis['Tempo'].mean() }}</td>
+      <td>{{track_analysis['Track duration'].median() }}</td>
+      <td>{{track_analysis['Tempo'].median() }}</td>
       <td>{{ track_analysis['Max Key'].mode()[0]}}: {{key_names[track_analysis['Max Key'].mode()[0]-1] }}</td>
       <td> </td>
     </tr>

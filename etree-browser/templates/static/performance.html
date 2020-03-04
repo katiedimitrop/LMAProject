@@ -3,8 +3,8 @@
 {% print("Performance page for: "+ perf_name) %}<br>
 
 <h3>
-    <a href="/artists/{{ encoded_a }}"> {% print("Artist: "+ artist_name) %}</a> <br>
-    <a href="/venue/{{ encoded_v }}">{% print("Venue: "+ venue_name) %}</a>
+    <a href="/artist/?name={{ encoded_a }}"> {% print("Artist: "+ artist_name) %}</a> <br>
+    <a href="/venue/?name={{ encoded_v }}">{% print("Venue: "+ venue_name) %}</a>
     {% print("date: "+ perf_date) %} <br>
     {% print("description: "+ perf_description) %}
 </h3>
@@ -23,7 +23,7 @@
    {% for track_title in track_titles %}
         <tr>
         <th scope="row">{{loop.index}}</th>
-            <td><a href="/tracks/{{ encoded_ts[loop.index-1] }}">{{ track_title }}</a></td>
+            <td><a href="/tracks/?title={{ encoded_ts[loop.index-1] }}">{{ track_title }}</a></td>
 
             <td><audio controls name="media">
                <source src="{{ audio[loop.index-1][1] }}" type="audio/mpeg">

@@ -14,7 +14,7 @@
     {% for perf in performances%}
         <tr>
         <th scope="row">{{loop.index}}</th>
-            <td><a href="/performance/{{ encoded_perfs[loop.index-1] }}">{{ perf }} </a></td>
+            <td><a href="/performance/?title={{ encoded_perfs[loop.index-1]}}">{{ perf }} </a></td>
     </tr>
     {% endfor %}
     </tbody>

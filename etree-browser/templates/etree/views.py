@@ -97,6 +97,7 @@ def analysis():
                            ,labels = track_analysis['Labels'].values.astype(int).tolist(), max_label = max_label
                            )
 
+@etree_blueprint.route('/')
 @etree_blueprint.route('/artists')
 def art_home():
 
@@ -109,21 +110,25 @@ def art_home():
         encoded_r.append(urllib.parse.quote(artist_name.strip('\n')))
     return render_template("artists.html", artist_names=artist_names, count=count, encoded_r=encoded_r)
 
-@etree_blueprint.route('/artists/<artist_name>')
-def get_all_artists_performances(artist_name):
+@etree_blueprint.route('/artist/', methods=['GET'])
+def get_all_artists_performances():
+    artist_name = request.args.get('name')
     # requests to Artists service and template rendering require unencoded version
     artist_name = urllib.parse.unquote(artist_name)
-
     sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials("e5e493afe89e4be1b4f8cd93e4e44e37","03716b8ca8e140dc9e5a13e707bb868b"))
-
+    print(artist_name)
     results = sp.search(q='artist:' + artist_name, type='artist')
     items = results['artists']['items']
-    if len(items) > 0:
+    artist_image = None
+    if len(items) > 0 :
         artist = items[0]
-        #print(artist['name'], artist['images'][0]['url'])
-        artist_image = artist['images'][0]['url']
-    else:
-        artist_image = None
+        if artist_name in artist['name']:
+            print(artist['name'], artist['images'][0]['url'])
+            #print(artist_name)
+            artist_image = artist['images'][0]['url']
+
+
+
     performance_titles = ArtistService().get_performances(artist_name)
     mb_tags = ArtistService().get_mb_tags(artist_name)
 
@@ -142,9 +147,9 @@ def perf_home():
     return render_template("performances.html", count=count)
 
 # this returns performances that contain perf_name
-@etree_blueprint.route('/performances/<perf_name>')
-def get_performances(perf_name):
-
+@etree_blueprint.route('/performances/', methods=['GET'])
+def get_performances():
+    perf_name = request.args.get('title')
     perf_name = urllib.parse.unquote(perf_name)
     performances = PerformanceService().get_performance(perf_name)
 
@@ -159,8 +164,9 @@ def get_performances(perf_name):
                            encoded_perfs=encoded_perfs)
 
 #this returns only one particular performance page
-@etree_blueprint.route('/performance/<perf_name>')
-def get_performance(perf_name):
+@etree_blueprint.route('/performance/', methods=['GET'])
+def get_performance():
+    perf_name= request.args.get('title')
     # requests to Perf service and template rendering require unencoded version
     perf_name = urllib.parse.unquote(perf_name)
 
@@ -198,10 +204,10 @@ def track_home():
     return render_template("tracks.html", count=count) #track_names=track_names, encoded_r=encoded_r)
 
 
-@etree_blueprint.route('/tracks/<track_name>')
-def get_track(track_name):
+@etree_blueprint.route('/tracks/', methods=['GET'])
+def get_track():
     # returns performance names, Artists, audio link
-
+    track_name = request.args.get('title')
     # requests to Track service and template rendering require unencoded version
     track_name = urllib.parse.unquote(track_name)
     performances = TrackService().get_performances(track_name)
@@ -226,9 +232,9 @@ def venue_home():
     return render_template("venues.html", count=count)
 
 # this returns performances that contain perf_name
-@etree_blueprint.route('/venues/<venue_name>')
-def get_venues(venue_name):
-
+@etree_blueprint.route('/venues/', methods=['GET'])
+def get_venues():
+    venue_name = request.args.get('title')
     venue_name = urllib.parse.unquote(venue_name)
     venues = VenueService().get_venue(venue_name)
 
@@ -242,9 +248,10 @@ def get_venues(venue_name):
     return render_template('all-venues.html', venue_name = venue_name ,venues=venues,
                            encoded_vens=encoded_vens)
 
-@etree_blueprint.route('/venue/<venue_name>')
-def get_venue(venue_name):
+@etree_blueprint.route('/venue/', methods=['GET'])
+def get_venue():
     # requests to Venue service and template rendering require unencoded version
+    venue_name = request.args.get('name')
     venue_name = urllib.parse.unquote(venue_name)
     print(venue_name)
     location = VenueService().get_location(venue_name)

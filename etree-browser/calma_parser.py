@@ -6,6 +6,7 @@ import requests
 import tarfile
 import re
 from model_service import TrackService
+from operator import itemgetter
 artist_name = "Smashing Pumpkins"
 track_name = "Zero"
 mean_tempos = []
@@ -43,7 +44,6 @@ ORDER BY ?event """
 keyFeatureQuery = prefixes + """
 
 select distinct ?event ?feature ?key ?onsetTime where { 
-#  ?event a af:Tempo;
   ?event a af:KeyChange ;
          event:time ?time ;
          af:feature ?feature ;
@@ -54,10 +54,13 @@ ORDER BY ?event"""
 
 #Tempos
 tempoFeatureQuery = prefixes + """
-select ?event ?feature where { 
-  ?file a mo:AudioFile .
+select distinct ?event ?feature ?onsetTime where { 
+
   ?event a af:Tempo ;
+         event:time ?time ;
          af:feature ?feature .
+  ?time tl:at ?onsetTime .
+  
 }
 ORDER BY ?event
 """
@@ -82,12 +85,11 @@ all_max_keys = np.zeros(no_of_perfs, dtype=np.int64)
 #for each performance of Zero by Smashing Pumpkins (There's 368 of them) we want ot extract
 #track,key,key_duration,chord,chord_duration,tempo
 for perf_index in range(0,no_of_perfs):
-
     analyses = Graph()
-    analyses.parse(calma_links[perf_index]+"/analyses.ttl")
+    analyses.parse(calma_links[perf_index] + "/analyses.ttl")
 
     timeline = Graph()
-    timeline.parse(calma_links[perf_index]+"/metadata#timeline_0")
+    timeline.parse(calma_links[perf_index] + "/metadata#timeline_0")
     timeres = timeline.query(durationQuery)
 
     for duration in timeres:
@@ -95,10 +97,9 @@ for perf_index in range(0,no_of_perfs):
         if m:
             found = m.group(1)
 
-
     total_dur = float(found)
     all_durs[perf_index] = total_dur
-    #print("Total duration" + str(total_dur))
+    # print("Total duration" + str(total_dur))
     # let's query rdf graph to check what features are available for this track
     qres = analyses.query(whatFeaturesQuery)
     f_index = 0
@@ -114,21 +115,22 @@ for perf_index in range(0,no_of_perfs):
     for f_index in range(0, len(features) - 1):
         if (features[f_index] == "http://vamp-plugins.org/rdf/plugins/qm-vamp-plugins#qm-tempotracker_output_tempo"):
             tempo_link = files[f_index]
+            print(perf_index)
             #print("Tempo link ")
             #print(tempo_link)
 
         if (features[f_index] == "http://vamp-plugins.org/rdf/plugins/qm-vamp-plugins#qm-keydetector_output_key"):
-            #print("Key link ")
+            # print("Key link ")
             key_link = files[f_index]
-            print(key_link)
+            # print(key_link)
 
         if (features[f_index] == "http://vamp-plugins.org/rdf/plugins/nnls-chroma#chordino_output_simplechord"):
             chord_link = files[f_index]
-            #print("Chord link ")
-            #print(chord_link)
+            # print("Chord link ")
+            # print(chord_link)
 
     feature_links = [tempo_link, key_link]
-    for feature_index in range(0,2):
+    for feature_index in range(0, 2):
         # parse analysis page as graph to get blob FOR TEMPO
         analysis = Graph()
         analysis.parse(feature_links[feature_index])
@@ -141,7 +143,7 @@ for perf_index in range(0,no_of_perfs):
         url = blob_link
         # print(url)
         regex = "(?:analysis_blob)(.*)"
-        target_path = 'analysis_blob' + re.findall(regex, url)[0]
+        target_path = 'analysis_blob' + re.findall(2, url)[0]
         # target_path = 'analysis_blob_73e77ba8-c990-41af-b912-802fbbbaf2a9.tar.bz2'
 
         response = requests.get(url, stream=True)
@@ -161,39 +163,68 @@ for perf_index in range(0,no_of_perfs):
         # this is a tempo graph
         if (feature_index == 0):
             tempos_query = t_graph.query(tempoFeatureQuery)
+            tempo_events = []
+
+            for event, tempo, onset in tempos_query:
+                # isolate event number from link
+                event_num = [int(i) for i in event.split("_") if i.isdigit()]
+                tempo_events.append([event_num, float(tempo), onset])
+
+            tempo_events = sorted(tempo_events, key=itemgetter(0))
+            print(tempo_events)
             tempos = []
-            for event, tempo in tempos_query:
-                tempos.append(float(tempo))
-            print(round(np.mean(np.asarray(tempos))))
-            mean_tempos.append(round(np.mean(np.asarray(tempos))))
-        else: #this is a key graph
+            previous = next_ = None
+            l = len(tempo_events)
+            # pairwise iteration through key events
+            sum_weighted_tempo = 0
+            for this_event, next_event in zip(tempo_events[0:l], tempo_events[1:l]):
+                onset = this_event[2].strip('PT').strip('S')
+                #print(" event:" + str(this_event[0]) + " tempo:" + str(this_event[1]) + " onset:" + str(onset))
+                # print(" tempo:"+ str(this_event[1]))
+                next_onset = (next_event[2].strip('PT')).strip('S')
+                # feature 1 will be stored at index 0
+                # Tempo duration in each event is next tempo change onset minus this tempo_change onset
+                #print("Sum so far:" + str(sum_weighted_tempo))
+                #print("Onset: " + str(onset))
+                sum_weighted_tempo += (float(next_onset) - float(onset))  * this_event[1]
+                # for last key_change
+
+            last_onset = (tempo_events[l - 1])[2]
+            last_onset = float(last_onset.strip('PT').strip('S'))
+            sum_weighted_tempo += (float(total_dur) - last_onset)  *(tempo_events[l - 1][1])
+
+            mean_tempos.append(sum_weighted_tempo / total_dur)
+        else:  # this is a key graph
             key_query_res = t_graph.query(keyFeatureQuery)
             key_events = []
-            for event,feature,key,onset in key_query_res:
-                key_events.append([event,feature,key,onset])
+            for event, feature, key, onset in key_query_res:
+                event_num = [int(i) for i in event.split("_") if i.isdigit()]
+                key_events.append([event_num, feature, key, onset])
+
+            key_events = sorted(key_events, key=itemgetter(0))
             keys = []
             previous = next_ = None
             l = len(key_events)
-            #each feature num [1,..,24,25] coresponds to a key [C,..,Bm,unknown]
+            # each feature num [1,..,24,25] coresponds to a key [C,..,Bm,unknown]
 
-            #pairwise iteration through key events
-            for this_event,next_event  in zip(key_events[0:l], key_events[1:l]):
+            # pairwise iteration through key events
+            for this_event, next_event in zip(key_events[0:l], key_events[1:l]):
                 onset = this_event[3].strip('PT').strip('S')
-                print(" event:"+ str(this_event[0])+" feature:"+ str(this_event[1])+" key:"+ str(this_event[2])+" onset:"+ str(onset))
-                #print(" key:"+ str(this_event[2]))
+                # print(" event:"+ str(this_event[0])+" feature:"+ str(this_event[1])+" key:"+ str(this_event[2])+" onset:"+ str(onset))
+                # print(" key:"+ str(this_event[2]))
                 next_onset = (next_event[3].strip('PT')).strip('S')
-                #feature 1 will be stored at index 0
-                #key duration in each event is next keychange onset minus this key_change onset
-                all_key_durs[perf_index][int(this_event[1])-1] += float(next_onset) - float(onset)
+                # feature 1 will be stored at index 0
+                # key duration in each event is next keychange onset minus this key_change onset
+                all_key_durs[perf_index][int(this_event[1]) - 1] += float(next_onset) - float(onset)
 
-            #for last key_change
+            # for last key_change
 
-            feature = int((key_events[l-1])[1])
-            last_onset = (key_events[l-1])[3]
+            feature = int((key_events[l - 1])[1])
+            last_onset = (key_events[l - 1])[3]
             last_onset = float(last_onset.strip('PT').strip('S'))
-            all_key_durs[perf_index][feature-1]+= float(total_dur) - last_onset
+            all_key_durs[perf_index][feature - 1] += float(total_dur) - last_onset
 
-           # sum_dur = 0 #to check if sum duration is equal to total
+            # sum_dur = 0 #to check if sum duration is equal to total
             max_key_dur = 0.0
             max_key_index = 0
             for index, key_dur in enumerate(all_key_durs[perf_index]):
@@ -201,8 +232,8 @@ for perf_index in range(0,no_of_perfs):
                     max_key_index = index
                     max_key_dur = key_dur
             all_max_keys[perf_index] = max_key_index + 1
-                #print(str(index+1)+" " +str(key_dur))
-                #sum_dur+=key_dur
+            # print(str(index+1)+" " +str(key_dur))
+            # sum_dur+=key_dur
 
 
 
@@ -212,27 +243,29 @@ row_list = [
 key_names = ["C", "Db / C#", "D", "Eb / D#", "E", "F", "Gb / F#", "G", "Ab / G#", "A", "Bb", "B/Cb",
              "Cm", "Dbm / C#m", "Dm", "Ebm / D#m", "Em", "Fm", "Gbm / F#m", "Gm", "Abm / G#m", "Am", "Bbm", "Bm/Cbm","unknown"]
 for perf_id in range(0, no_of_perfs):
+
     non_empty_indeces = np.zeros(25, dtype=np.ndarray)
     keys_in_this_perf = []
     durs_in_this_perf = []
     max_key_index = 0
     max_key_dur = 0
 
-    #go through all key durations in this track, isolate a list of the non zero ones
-    #these are the only ones we'll keep in the csv
-    for index,duration in enumerate(all_key_durs[perf_id]):
+    # go through all key durations in this track, isolate a list of the non zero ones
+    # these are the only ones we'll keep in the csv
+    for index, duration in enumerate(all_key_durs[perf_id]):
         if duration != 0:
-            #set to one wherever there exists a duration
+            # set to one wherever there exists a duration
             non_empty_indeces[index] = 1
             durs_in_this_perf.append(duration)
 
-    #using the flag indicators, isolate the key names that correspond to the previous
-    #durations
-    for index,flag in enumerate(non_empty_indeces):
+    # using the flag indicators, isolate the key names that correspond to the previous
+    # durations
+    for index, flag in enumerate(non_empty_indeces):
         if flag:
             keys_in_this_perf.append(key_names[index])
 
-    row_list.append([perf_id, track_names[perf_id],perf_dates[perf_id],all_durs[perf_id],str(mean_tempos[perf_id]),int(all_max_keys[perf_id]),keys_in_this_perf,durs_in_this_perf])
+    row_list.append([perf_id, track_names[perf_id], perf_dates[perf_id], all_durs[perf_id], str(mean_tempos[perf_id]),
+                 int(all_max_keys[perf_id]), keys_in_this_perf, durs_in_this_perf])
 print(all_max_keys)
 counts = np.bincount(all_max_keys)
 print(np.argmax(counts))

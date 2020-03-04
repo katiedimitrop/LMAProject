@@ -13,7 +13,7 @@
     {% for ven in venues%}
         <tr>
         <th scope="row">{{loop.index}}</th>
-            <td><a href="/venue/{{ encoded_vens[loop.index-1] }}">{{ ven }} </a></td>
+            <td><a href="/venue/?name={{ encoded_vens[loop.index-1] }}">{{ ven }} </a></td>
     </tr>
     {% endfor %}
     </tbody>

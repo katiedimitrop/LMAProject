@@ -33,7 +33,7 @@
     {% for performance_title in performance_titles["results"]["bindings"] %}
     <tr>
         <th scope="row">{{loop.index}}</th>
-       <td><a href="/performance/{{ encoded_perfs[loop.index-1]}}">{{ performance_title["perftitle"]["value"] }}</a></td>
+       <td><a href="/performance/?title={{ encoded_perfs[loop.index-1]}}">{{ performance_title["perftitle"]["value"] }}</a></td>
     </tr>
   {% endfor %}
     </tbody>
