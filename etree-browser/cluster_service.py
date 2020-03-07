@@ -2,181 +2,172 @@
 # aggregate the results
 import pandas as pd
 from models import TrackModel
+import random
 import pandas as pd
 import pandas as pd
 import numpy as np
 import statistics
 from matplotlib import pyplot as plt
+from pyclustering.utils import distance_metric, type_metric, calculate_distance_matrix
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import scale
 from sklearn_extra.cluster import KMedoids
 from sklearn.metrics import silhouette_samples, silhouette_score
+
+from sklearn.cluster import DBSCAN
+from sklearn import metrics
+from sklearn.datasets import make_blobs
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import NearestNeighbors
+
+from pyclustering.cluster.kmedoids import kmedoids
+
 class ClusterService:
     def __init__(self):
         self.model = TrackModel()
 
-    def get_analysis_for_track(self, artist_name, track_name):
+    #can use custom distance matrix with this one
+    #furthermore it should automatically find outliers
+    def get_dbscan_for_track(self, artist_name, track_name):
+
+        # ############################### Data prep #################################
+
 
         track_analysis = self.model.get_analysis_for_track(artist_name,track_name)
-        #resetting the seed makes the same "random" numbers appear each time
+
         features =  track_analysis[['Track duration','Tempo','Max Key']]
-        #print(features.to_string())
 
-        data = scale(features)
-        #print(data)
-        #print("Mean:" + str(data.mean(axis=0)))
-        #print("STD:"+str(data.std(axis=0)))
+        #scale and standardize
+        X = StandardScaler().fit_transform(features)
+        #reduce to two dimensions
+        X = PCA(n_components=2).fit_transform(X)
 
-        k = 3
+        # ############################# EPSILON value ###############################
+        # Epsilon and min samples
+        # DMDBSCAN technique to find suitable epsilon for each density level
+        # in set
 
-        #reduces number of features to two dimensions
-        #only useful for 2d figure
-        reduced_data = PCA(n_components=2).fit_transform(data)
-        # Step size of the mesh. Decrease to increase the quality of the VQ.
-        h = 0.02  # point in the mesh [x_min, m_max]x[y_min, y_max].
+        #calculate the distance of each point to it's nearest neighbout
+        neigh = NearestNeighbors(n_neighbors = 2)
+        nbrs = neigh.fit(X)
+        #return those distances and their indices
+        distances, indices = nbrs.kneighbors(X)
 
-        # Plot the decision boundary. For that, we will assign a color to each
-        x_min, x_max = reduced_data[:, 0].min() - 1, reduced_data[:, 0].max() + 1
-        y_min, y_max = reduced_data[:, 1].min() - 1, reduced_data[:, 1].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+        #indices is a list of index pairs
+        #(an index, it's nearest neigbout)
 
-        plt.figure(0,figsize=(5.841, 9.195), dpi=100)
-        #clear figure
-        plt.clf()
+        #sort and plot results
+        distances = np.sort(distances, axis=0)
 
-        plt.suptitle(
-            "Comparing multiple K-Medoids metrics to K-Means and each other",
-            fontsize=14,
-        )
+        #isolate just the values, without axis id
+        distances = distances[:,1]
+        plt.figure(0)
+        plt.title("Graph for finding optimal epsilon value (DBSCAN)")
+        plt.xlabel("Number of performances")
+        plt.ylabel("Distance of each performance to it's closest neighbour (Sorted)")
+        #UNCOMMENTED TEMPORARILY
+        plt.plot(distances)
+        #point of max curvature will be optimal epsilon
+        plt.savefig('epsilon.png', dpi=192)
 
-        selected_models = [
-           # (
-           #     KMedoids(metric="manhattan", n_clusters=k),
-           #     "KMedoids (manhattan)",
-           # ),
-            #(
-             #   KMedoids(metric="euclidean", n_clusters=k),
-             #   "KMedoids (euclidean)",
-            #)#,
-           # (KMedoids(metric="cosine", n_clusters=k), "KMedoids (cosine)"),
-            (KMeans(n_clusters=k), "KMeans") #,
-        ]
 
-        plot_rows = int(np.ceil(len(selected_models) / 2.0))
-        plot_cols = 2
+        ################################## Execute ######################################
+        db = DBSCAN(eps=0.5,min_samples=4).fit(X)
+        core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+        core_samples_mask[db.core_sample_indices_] = True
+        clusters = db.labels_
 
-        for i, (model, description) in enumerate(selected_models):
-            # Obtain labels for each point in mesh. Use last trained model.
-            model.fit(reduced_data)
-            Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+        # Number of clusters in labels, ignoring noise if present.
+        n_clusters_ = len(set(clusters)) - (1 if -1 in clusters else 0)
+        n_noise_ = list(clusters).count(-1)
 
-            # Put the result into a color plot
-            Z = Z.reshape(xx.shape)
-            plt.subplot(plot_cols, plot_rows, i + 1)
-            plt.imshow(
-                Z,
-                interpolation="nearest",
-                extent=(xx.min(), xx.max(), yy.min(), yy.max()),
-                cmap=plt.cm.Paired,
-                aspect="equal",
-                origin="lower",
-            )
+        #print('Estimated number of clusters: %d' % n_clusters_)
+        #print('Estimated number of noise points: %d' % n_noise_)
 
-            plt.plot(
-                reduced_data[:, 0], reduced_data[:, 1], "k.", markersize=1, alpha=0.3
-            )
-            # Plot the centroids as a white X
-            centroids = model.cluster_centers_
-            plt.scatter(
-                centroids[:, 0],
-                centroids[:, 1],
-                marker="x",
-                s=169,
-                linewidths=3,
-                color="w",
-                zorder=10,
-            )
-            plt.title(description)
-            plt.xlim(x_min, x_max)
-            plt.ylim(y_min, y_max)
-            plt.xticks(())
-            plt.yticks(())
+        ######################### Silhouette (min_samples) ###############################
+        #mean silhoette over all samples
+        print("Silhouette Coefficient: %0.3f"
+              % metrics.silhouette_score(X, clusters))
 
-        #isolatve track tempos
-        plt.savefig('clusters.png', dpi= 192)
-
-        Sum_of_squared_distances = []
-
-        mean_silhouette_scores = []
-        #finding ideal k using elbow method
-        K = range(3, 15)
-        for k in K:
-            km = KMedoids(n_clusters=k)
-            km = km.fit(data)
-            if k == 3:
-                indeces = []
-                print("CLUSTER CENTRES:"+str(km.cluster_centers_))
-                for centre in km.cluster_centers_.tolist():
-                    indeces.append((data.tolist()).index(centre)+1)
-                for index in indeces:
-                    print(index)
-            Sum_of_squared_distances.append(km.inertia_)
-
-            km = KMeans(n_clusters=k, random_state=0).fit_predict(data)
-
-            # Compute the silhouette scores for each sample FOR THIS k_medoids
-            sample_silhouette_values = silhouette_samples(data, km)
-            if k == 3:
-                print(sample_silhouette_values)
-                min = +2
-                for index,sample in enumerate(sample_silhouette_values):
-                     if sample < min:
-                         min_id = index
-                         min = sample
-                     print("index:"+str(index) +" sample "+str(sample))
-                print(min_id)
-            mean_silhouette_scores.append(statistics.mean(sample_silhouette_values))
+        # ############################ Plot clustering ################################
 
         plt.figure(1)
-        plt.plot(K, Sum_of_squared_distances, 'bx-')
-        plt.xlabel('k')
-        plt.ylabel('Sum_of_squared_distances')
-        plt.title('Elbow Method For Optimal k')
-        plt.savefig('elbow.png')
-        plt.figure(2)
-        plt.plot(K,mean_silhouette_scores, 'bx-')
-        plt.xlabel('k')
-        plt.ylabel('silhouette')
-        plt.title('Average Silhouette for k = 1,14')
-        plt.savefig('silhouette.png')
 
-        #lof = LocalOutlierFactor(novelty=True)
-        #lof.fit(data)
-        #plt.figure(2)
-        #plt.plot(K, Sum_of_squared_distances, 'bx-')
-        #plt.xlabel('k')
-        #plt.ylabel('Sum_of_squared_distances')
-        #plt.title('Elbow Method For Optimal k')
-        #plt.savefig('elbow.png')
+        colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
+                  'lightcyan', 'navy']
+        vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
+        plt.scatter(X[:, 0], X[:, 1], c=vectorizer(clusters))
+        plt.savefig('dbscan.png', dpi=192)
 
+        #display the cluster labels and their size
+        unique_elements, counts = np.unique(clusters, return_counts=True)
+        print(np.asarray((unique_elements, counts)))
 
-        #get labels of kmeans
-        k_medoids = KMeans(n_clusters=3, random_state=0).fit_predict(data)
-
-        # The silhouette_score gives the average value for all the samples.
-        # This gives a perspective into the density and separation of the formed
-        # clusters
-        silhouette_avg = silhouette_score(data, k_medoids)
-        print("For k =", k,
-              "The average silhouette_score is of KMedoids:", silhouette_avg)
-
-        print(k_medoids)
-        k_meds = np.asarray(k_medoids)
-        unique_elements, counts = np.unique(k_meds,return_counts= True)
-        print(np.asarray((unique_elements,counts)))
-        track_analysis['Labels'] = pd.Series(k_medoids, index=track_analysis.index)
+        #append labels to output dataset
+        track_analysis['Labels'] = pd.Series(clusters, index=track_analysis.index)
         return track_analysis
 
+    def get_kmedoids_for_track(self, artist_name, track_name):
+        ############################ Data prep #####################################
 
+        track_analysis = self.model.get_analysis_for_track(artist_name,track_name)
+
+        features = track_analysis[['Track duration', 'Tempo','Max Key']]
+        # scale and standardize
+        X = StandardScaler().fit_transform(features)
+        # reduce to two dimensions
+        X = PCA(n_components=2).fit_transform(X)
+
+        #Cluster number will be 3
+        initial_medoids = [50,175,300]
+
+        ############################ Execute kmedoids #####################################
+        metric = distance_metric(type_metric.EUCLIDEAN)
+        kmedoids_instance = kmedoids(X.tolist(), initial_medoids,metric = metric)
+        kmedoids_instance.process()
+        clusters = kmedoids_instance.get_clusters()
+        medoids = kmedoids_instance.get_medoids()
+
+        #distances = 0.5*np.array(time_tempo_dist) + 0.5*np.array(feature_keys)
+        # create K-Medoids algorithm for processing distance matrix instead of points
+        #kmedoids_instance = kmedoids(distances, initial_medoids, data_type='distance_matrix')
+
+
+        #fix the output representation (clusters matrix) into the one required by my
+        #app (labels array)
+        #store the label of the cluster at the 0th index
+        for index,list in enumerate(clusters):
+            list[0] = index
+
+        print(medoids)
+        labels = np.zeros(len(track_analysis),dtype=int)
+        for list in enumerate(clusters):
+            for index_item in list:
+                labels[index_item] = list[0]
+        ######################### Silhouette (min_samples) ###############################
+
+        # mean silhoette over all samples
+        print("Silhouette Coefficient: %0.3f"
+        % metrics.silhouette_score(X, labels))
+
+        ############################# Plot clustering ################################
+
+        plt.figure(2)
+
+        colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
+                  'lightcyan', 'navy']
+
+        vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
+        plt.scatter(X[:, 0], X[:, 1], c=vectorizer(labels))
+
+        plt.savefig('kmedoids.png', dpi=192)
+
+        # display the cluster labels and their size
+        unique_elements, counts = np.unique(clusters, return_counts=True)
+        print(np.asarray((unique_elements, counts)))
+
+        #add labels to output features
+        track_analysis['Labels'] = pd.Series(labels, index=track_analysis.index)
+        return track_analysis

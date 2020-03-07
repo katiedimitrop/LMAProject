@@ -142,7 +142,7 @@ class PerformanceModel:
             """+sum_str+"""
         } ORDER BY asc(UCASE(str(?perf)))
         """)
-        print(sum_str)
+        #print(sum_str)
         self.sparql.setReturnFormat(JSON)
         perf_names = self.sparql.query().convert()["results"]["bindings"]
         # isolate values from list of dictionaries
@@ -533,9 +533,8 @@ class TrackModel:
         return df
     def get_actual_tempo_and_key(self):
 
-
         # api-endpoint
-        URL = "http://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=4xYno0"
+        URL = "http://api.getsongbpm.com/song/?api_key=437f09edee1237d0fc3661edeb854888&id=763Dj"
 
 
         # sending get request and saving the response as response object
@@ -546,8 +545,8 @@ class TrackModel:
 
         # extracting latitude, longitude and formatted address
         # of the first matching location
-        tempo = 114# data['song']['tempo']
-        key = "C" #data['song']['key_of']
+        tempo =  data['song']['tempo']
+        key =  data['song']['key_of']
 
 
         # printing the output

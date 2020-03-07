@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/etree-browser/dbscan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/epsilon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/kmedoids.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etree-browser/sci_kit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/cluster_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/cluster_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/clusters.png" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/clusters.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/model_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/silhouette.png" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/silhouette.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analyses.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analyses.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analysis_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/tracks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/venues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/performances.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/test_model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +30,8 @@
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Python Unit Test" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -96,28 +97,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.run">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="lma-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/etree-browser" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/etree-browser/templates/etree/views.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="calma_parser" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="lma-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -203,13 +182,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="lma-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/etree-browser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/etree-browser/test_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
+        <item itemvalue="Python.test_model" />
         <item itemvalue="Python.calma_parser" />
         <item itemvalue="Python.k_med" />
         <item itemvalue="Python.cluster_service" />
-        <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
   </component>

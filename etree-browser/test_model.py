@@ -37,5 +37,6 @@ class ModelTests(BaseTestCase):
     #def test_get_tempo(self):
         #self.model = TrackModel()
         #self.assertEqual(self.model.get_actual_tempo(), False)
+
 if __name__ == '__main__':
     unittest.main()

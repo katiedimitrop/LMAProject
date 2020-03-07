@@ -81,7 +81,11 @@ def analysis():
     artist_name = urllib.parse.unquote(artist)
     track_name = urllib.parse.unquote(track)
 
-    track_analysis = ClusterService().get_analysis_for_track(artist_name,track_name)
+    track_analysis = ClusterService().get_kmedoids_for_track(artist_name,track_name)
+   #The key for this one on getsongbpm is Wrong
+    #studio_metadata = TrackService().get_actual_tempo_and_key()
+    #print("KEY " + str(studio_metadata["key"]))
+    #print("TEMPO " + str(studio_metadata["tempo"]))
 
     #this is needed for tempo ploting range
     max_tempo = track_analysis['Tempo'].values.max()
@@ -100,7 +104,6 @@ def analysis():
 @etree_blueprint.route('/')
 @etree_blueprint.route('/artists')
 def art_home():
-
     artist_names = ArtistService().get_all()
     count = ArtistService().get_count()
 
@@ -130,6 +133,14 @@ def get_all_artists_performances():
 
 
     performance_titles = ArtistService().get_performances(artist_name)
+    #Just checking if perfs are null in which case don't show page
+    perfdicts=  performance_titles["results"]["bindings"]
+    perftitles = []
+    for perftitle in perfdicts:
+        perftitles.append(perftitle["perftitle"]["value"])
+    print("HERE:"+str(perftitles))
+    if len(perftitles) == 0:
+        return render_template('404.html'), 404
     mb_tags = ArtistService().get_mb_tags(artist_name)
 
     # need encoded versions of titles wherever there are links
@@ -270,6 +281,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@etree_blueprint.errorhandler(505)
+@etree_blueprint.errorhandler(500)
 def internal_error(e):
     return render_template('500.html'), 500
