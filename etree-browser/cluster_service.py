@@ -37,12 +37,16 @@ class ClusterService:
 
         track_analysis = self.model.get_analysis_for_track(artist_name,track_name)
 
-        features =  track_analysis[['Track duration','Tempo','Max Key']]
-
+        X =  track_analysis[['Track duration','Tempo','Max Key']]
+        dissimilarities = metrics.pairwise_distances(X,metric = 'euclidean')
         #scale and standardize
-        X = StandardScaler().fit_transform(features)
+        #X = StandardScaler().fit_transform(features)
         #reduce to two dimensions
-        X = PCA(n_components=2).fit_transform(X)
+        #X = PCA(n_components=2).fit_transform(X)
+
+        #Key preprocessing
+
+
 
         # ############################# EPSILON value ###############################
         # Epsilon and min samples
@@ -74,7 +78,7 @@ class ClusterService:
 
 
         ################################## Execute ######################################
-        db = DBSCAN(eps=0.5,min_samples=4).fit(X)
+        db = DBSCAN(eps=100,min_samples=50,metric = 'precomputed').fit(dissimilarities)
         core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
         core_samples_mask[db.core_sample_indices_] = True
         clusters = db.labels_
@@ -93,13 +97,13 @@ class ClusterService:
 
         # ############################ Plot clustering ################################
 
-        plt.figure(1)
+        #plt.figure(1)
 
-        colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
-                  'lightcyan', 'navy']
-        vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
-        plt.scatter(X[:, 0], X[:, 1], c=vectorizer(clusters))
-        plt.savefig('dbscan.png', dpi=192)
+        #colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
+        #          'lightcyan', 'navy']
+        #vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
+        #plt.scatter(X[:, 0], X[:, 1], c=vectorizer(clusters))
+        #plt.savefig('dbscan.png', dpi=192)
 
         #display the cluster labels and their size
         unique_elements, counts = np.unique(clusters, return_counts=True)

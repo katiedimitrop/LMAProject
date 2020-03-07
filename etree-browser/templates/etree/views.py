@@ -81,7 +81,7 @@ def analysis():
     artist_name = urllib.parse.unquote(artist)
     track_name = urllib.parse.unquote(track)
 
-    track_analysis = ClusterService().get_kmedoids_for_track(artist_name,track_name)
+    track_analysis = ClusterService().get_dbscan_for_track(artist_name,track_name)
    #The key for this one on getsongbpm is Wrong
     #studio_metadata = TrackService().get_actual_tempo_and_key()
     #print("KEY " + str(studio_metadata["key"]))
