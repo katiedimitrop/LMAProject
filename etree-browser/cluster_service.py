@@ -1,3 +1,5 @@
+#LINK: global distance funcion http://www.ieee.ma/uaesb/pdf/distances-in-classification.pdf
+
 # part of logic tier: this will transform user queries into SPARQL queries and
 # aggregate the results
 import pandas as pd
@@ -37,27 +39,90 @@ class ClusterService:
 
         track_analysis = self.model.get_analysis_for_track(artist_name,track_name)
 
-        X =  track_analysis[['Track duration','Tempo','Max Key']]
-        dissimilarities = metrics.pairwise_distances(X,metric = 'euclidean')
+        features =  track_analysis[['Track duration','Tempo','Max Key']]
+
+        reducable_frame = features[['Track duration','Tempo']]
+        print(str(reducable_frame))
         #scale and standardize
-        #X = StandardScaler().fit_transform(features)
+        scaled_cols = StandardScaler().fit_transform(reducable_frame)
+        print(str(scaled_cols))
         #reduce to two dimensions
-        #X = PCA(n_components=2).fit_transform(X)
+        reduced_cols = PCA(n_components=1).fit_transform(scaled_cols)
+        print(str(reduced_cols))
+        reduced_floats = []
+        key_col = []
+
+        keys = track_analysis[['Max Key']].values
+
+        for row in keys:
+            #enumerate the minor keys with the same index as their relative major keys (same key signature)
+            if row[0] == 21:
+                key = 0
+            elif row[0] == 16:
+                key = 1
+            elif row[0] == 23:
+                key = 2
+            elif row[0] == 18:
+                key = 3
+            elif row[0] == 13:
+                key = 4
+            elif row[0] == 20:
+                key = 5
+            elif row[0] == 15:
+                key = 6
+            elif row[0] == 22:
+                key = 7
+            elif row[0] == 17:
+                key = 8
+            elif row[0] == 12:
+                key = 9
+            elif row[0] == 9:
+                key = 10
+            elif row[0] == 14:
+                key = 11
+            else: #major keys
+                key = row[0]
+            key_col.append(key)
+
+        #reorder the keys
+        keys_mapped = []
+        for row in key_col:
+            if row % 2 == 0:
+                keys_mapped.append(row)
+            else:
+                keys_mapped.append((row + 6) % 12)
+
+        print(str(keys_mapped))
+
+
+        scaled_lists  = StandardScaler().fit_transform((np.asarray(keys_mapped)).reshape(-1, 1))
+        scaled_keys = []
+        for row in scaled_lists:
+            scaled_keys.append(row[0])
+        print(str(scaled_keys))
+
+        for row in reduced_cols:
+            reduced_floats.append(row[0])
+
+        reduced_data = pd.DataFrame({'reduced': reduced_floats, 'key' : scaled_keys})
+
 
         #Key preprocessing
+        print(str(reduced_data))
 
 
+        dissimilarities = metrics.pairwise_distances(reduced_data, metric='euclidean')
 
         # ############################# EPSILON value ###############################
         # Epsilon and min samples
         # DMDBSCAN technique to find suitable epsilon for each density level
         # in set
 
-        #calculate the distance of each point to it's nearest neighbout
+        #calculate the distance of each point to it's nearest neighbour
         neigh = NearestNeighbors(n_neighbors = 2)
-        nbrs = neigh.fit(X)
+        nbrs = neigh.fit(reduced_data)
         #return those distances and their indices
-        distances, indices = nbrs.kneighbors(X)
+        distances, indices = nbrs.kneighbors(reduced_data)
 
         #indices is a list of index pairs
         #(an index, it's nearest neigbout)
@@ -78,7 +143,7 @@ class ClusterService:
 
 
         ################################## Execute ######################################
-        db = DBSCAN(eps=100,min_samples=50,metric = 'precomputed').fit(dissimilarities)
+        db = DBSCAN(eps=0.5,min_samples=10,metric = 'precomputed').fit(dissimilarities)
         core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
         core_samples_mask[db.core_sample_indices_] = True
         clusters = db.labels_
@@ -93,17 +158,17 @@ class ClusterService:
         ######################### Silhouette (min_samples) ###############################
         #mean silhoette over all samples
         print("Silhouette Coefficient: %0.3f"
-              % metrics.silhouette_score(X, clusters))
+              % metrics.silhouette_score(reduced_data, clusters))
 
         # ############################ Plot clustering ################################
 
-        #plt.figure(1)
+        plt.figure(1)
 
-        #colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
-        #          'lightcyan', 'navy']
-        #vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
-        #plt.scatter(X[:, 0], X[:, 1], c=vectorizer(clusters))
-        #plt.savefig('dbscan.png', dpi=192)
+        colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
+                 'lightcyan', 'navy']
+        vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
+        plt.scatter(reduced_data.values[:, 0], reduced_data.values[:, 1], c=vectorizer(clusters))
+        plt.savefig('dbscan.png', dpi=192)
 
         #display the cluster labels and their size
         unique_elements, counts = np.unique(clusters, return_counts=True)
@@ -129,6 +194,7 @@ class ClusterService:
 
         ############################ Execute kmedoids #####################################
         metric = distance_metric(type_metric.EUCLIDEAN)
+
         kmedoids_instance = kmedoids(X.tolist(), initial_medoids,metric = metric)
         kmedoids_instance.process()
         clusters = kmedoids_instance.get_clusters()
