@@ -570,8 +570,8 @@ class TrackModel:
                                                             ?track etree:audio ?audio_link.
                                                             ?track etree:isSubEventOf ?performance.
                                                             ?performance etree:date ?perf_date.
-FILTER (regex(?track_name, "Zero", "i")).
-                                                            FILTER (regex(?art_name, "Smashing Pumpkins", "i"))} ORDER BY(?perf_date)""")
+FILTER (regex(?track_name, '"""+track_name+"""', "i")).
+                                                                    FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} ORDER BY(?perf_date)""")
         self.sparql.setReturnFormat(JSON)
         calma_track = self.sparql.query().convert()["results"]["bindings"]
 

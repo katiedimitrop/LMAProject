@@ -7,8 +7,8 @@ import tarfile
 import re
 from model_service import TrackService
 from operator import itemgetter
-artist_name = "Smashing Pumpkins"
-track_name = "Zero"
+artist_name = "Grateful Dead"
+track_name = "Ripple"
 mean_tempos = []
 
 calma_links,audio_links, perf_dates,track_names = TrackService().get_calma_track(artist_name,track_name)
@@ -143,7 +143,7 @@ for perf_index in range(0,no_of_perfs):
         url = blob_link
         # print(url)
         regex = "(?:analysis_blob)(.*)"
-        target_path = 'analysis_blob' + re.findall(2, url)[0]
+        target_path = 'analysis_blob' + re.findall(regex, url)[0]
         # target_path = 'analysis_blob_73e77ba8-c990-41af-b912-802fbbbaf2a9.tar.bz2'
 
         response = requests.get(url, stream=True)

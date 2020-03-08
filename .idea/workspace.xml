@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88de32dd-7d21-4789-8d01-221866c0b055" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/etree-browser/calma_data/Grateful Dead/Ripple.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/calma_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/calma_parser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/cluster_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/cluster_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/dbscan.png" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/dbscan.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etree-browser/epsilon.png" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/epsilon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/kmedoids.png" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/kmedoids.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/etree/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/etree-browser/templates/static/analysis.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,8 +204,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
-        <item itemvalue="Python.test_model" />
         <item itemvalue="Python.calma_parser" />
+        <item itemvalue="Python.test_model" />
         <item itemvalue="Python.k_med" />
         <item itemvalue="Python.cluster_service" />
       </list>

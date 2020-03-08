@@ -30,7 +30,7 @@
             </audio></td>
       <td>{{ row['Track duration']}}</td>
       <td>{{ row['Tempo'] }} </td>
-      <td> {{ row['Max Key']}}: {{key_names[row['Max Key']-1 ]}}</td>
+      <td> {{key_names[row['Max Key']-1 ]}}</td>
 
       <td>{{row['Labels']}}</td>
     </tr>
@@ -46,7 +46,7 @@
       <td></td>
       <td>{{track_analysis['Track duration'].median() }}</td>
       <td>{{track_analysis['Tempo'].median() }}</td>
-      <td>{{ track_analysis['Max Key'].mode()[0]}}: {{key_names[track_analysis['Max Key'].mode()[0]-1] }}</td>
+      <td>: {{key_names[track_analysis['Max Key'].mode()[0]-1] }}</td>
       <td> </td>
     </tr>
   </tfoot>

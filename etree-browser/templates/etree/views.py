@@ -73,9 +73,9 @@ def analysis_one():
 def analysis():
 
     #these can be used to display actual key instead of key numbers
-    key_names = ["C", "Db / C#", "D", "Eb / D#", "E", "F", "Gb / F#", "G", "Ab / G#", "A", "Bb", "B/Cb",
-                 "Cm", "Dbm / C#m", "Dm", "Ebm / D#m", "Em", "Fm", "Gbm / F#m", "Gm", "Abm / G#m", "Am", "Bbm",
-                 "Bm/Cbm", "unknown"]
+    key_names = ["0: C", "7: Db / C#", "2: D", "9: Eb / D#", "4: E", "11: F", "6: Gb / F#", "1: G", "8: Ab / G#", "3: A", "10: Bb", "5: B/Cb",
+                 "21: Cm", "16: Dbm / C#m", "23: Dm", "18: Ebm / D#m", "13: Em", "20: Fm", "15: Gbm / F#m", "22: Gm", "17: Abm / G#m", "12: Am", "19: Bbm",
+                 "14: Bm/Cbm", "unknown"]
     artist = request.args.get('artist')
     track = request.args.get('track')
     artist_name = urllib.parse.unquote(artist)
