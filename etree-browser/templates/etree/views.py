@@ -81,6 +81,9 @@ def analysis():
     artist_name = urllib.parse.unquote(artist)
     track_name = urllib.parse.unquote(track)
 
+    #check if analysis for this artist actually exists first
+    if not os.path.exists('./calma_data/' + artist_name + "/" + track_name + '.csv'):
+        return render_template('404.html'), 404
     track_analysis = ClusterService().get_dbscan_for_track(artist_name,track_name)
    #The key for this one on getsongbpm is Wrong
     #studio_metadata = TrackService().get_actual_tempo_and_key()
@@ -139,8 +142,10 @@ def get_all_artists_performances():
     for perftitle in perfdicts:
         perftitles.append(perftitle["perftitle"]["value"])
     print("HERE:"+str(perftitles))
+
     if len(perftitles) == 0:
         return render_template('404.html'), 404
+
     mb_tags = ArtistService().get_mb_tags(artist_name)
 
     # need encoded versions of titles wherever there are links
@@ -164,8 +169,8 @@ def get_performances():
     perf_name = urllib.parse.unquote(perf_name)
     performances = PerformanceService().get_performance(perf_name)
 
-    # need encoded versions of titles wherever there a
-
+    if performances == None:
+        return render_template('404.html'), 404
     encoded_perfs = []
     encoded_ars = []
     for perf in performances:
@@ -181,6 +186,9 @@ def get_performance():
     # requests to Perf service and template rendering require unencoded version
     perf_name = urllib.parse.unquote(perf_name)
 
+    perf  = PerformanceService().get_performance(perf_name)
+    if perf == None:
+        return render_template('404.html'), 404
     track_titles,audio = PerformanceService().get_tracks(perf_name)
     venue_name = PerformanceService().get_venue(perf_name)
     artist_name = PerformanceService().get_artist(perf_name)
@@ -231,7 +239,8 @@ def get_track():
     for perf in performances["results"]["bindings"]:
         encoded_perfs.append(urllib.parse.quote(perf["perfname"]["value"].strip('\n')))
         encoded_ars.append(urllib.parse.quote(perf["artname"]["value"].strip('\n')))
-
+    if len(encoded_perfs) == 0:
+        return render_template('404.html'), 404
     return render_template('all-tracks.html', track_name=track_name, performances=performances, encoded_perfs=encoded_perfs,
                            encoded_ars=encoded_ars)
 
@@ -250,7 +259,8 @@ def get_venues():
     venues = VenueService().get_venue(venue_name)
 
     # need encoded versions of titles wherever there a
-
+    if len(venues) == 0:
+        return render_template('404.html'), 404
     encoded_vens = []
 
     for venue in venues:
@@ -271,6 +281,10 @@ def get_venue():
     for perf in perf_names:
         encoded_perfs.append(urllib.parse.quote(perf.strip('\n')))
     print(perf_names)
+
+    if len(perf_names) == 0:
+        return render_template('404.html'), 404
+
     return render_template('venue.html', venue_name=venue_name, location=location,perf_names=perf_names,
                             encoded_perfs = encoded_perfs)
 

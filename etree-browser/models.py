@@ -116,7 +116,6 @@ class PerformanceModel:
 
             # isolate values from list of dictionaries
             perf_names = [perf_dict["name"]["value"] for perf_dict in perf_names]
-
             all_perf_names.append(perf_names)
 
             #the last batch will be less than 80.000
@@ -147,6 +146,9 @@ class PerformanceModel:
         perf_names = self.sparql.query().convert()["results"]["bindings"]
         # isolate values from list of dictionaries
         perf_names = [perf_dict["label"]["value"] for perf_dict in perf_names]
+
+        if len(perf_names)==0:
+            return None
         #print(perf_names)
         return perf_names
 
@@ -490,7 +492,7 @@ class TrackModel:
     #Get the audio links for the calma csvs
     def get_analysis_for_track(self,artist_name,track_name):
         self.sparql.setQuery(TrackModel.prefixes + """
-                SELECT DISTINCT ?calma_link ?art_name ?perf_date ?track_name (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
+                SELECT DISTINCT ?perf_date (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
                                                                     WHERE 
                                                                     {
                                                                     ?track rdf:type etree:Track.
@@ -502,7 +504,7 @@ class TrackModel:
                                                                     ?track etree:isSubEventOf ?performance.
                                                                     ?performance etree:date ?perf_date.
         FILTER (regex(?track_name, '"""+track_name+"""', "i")).
-                                                                    FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} ORDER BY(?perf_date)""")
+                                                                    FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} GROUP BY(?perf_date) ORDER BY(?perf_date)""")
         self.sparql.setReturnFormat(JSON)
         calma_track = self.sparql.query().convert()["results"]["bindings"]
 
@@ -531,6 +533,7 @@ class TrackModel:
         #add the audio links to the csv outputted by calma parser
         df['Audio Links'] = pd.Series(audio, index=df.index)
         return df
+
     def get_actual_tempo_and_key(self):
 
         # api-endpoint
@@ -559,37 +562,83 @@ class TrackModel:
     #parser runs this
     def get_calma_track(self,artist_name,track_name):
         self.sparql.setQuery(TrackModel.prefixes + """
-        SELECT DISTINCT ?calma_link ?art_name ?perf_date ?track_name (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
-                                                            WHERE 
-                                                            {
-                                                            ?track rdf:type etree:Track.
-                                                            ?track skos:prefLabel ?track_name.
-                                                            ?track calma:data ?calma_link.
-                                                            ?track mo:performer ?artist.
-                                                            ?artist skos:prefLabel ?art_name.
-                                                            ?track etree:audio ?audio_link.
-                                                            ?track etree:isSubEventOf ?performance.
-                                                            ?performance etree:date ?perf_date.
-FILTER (regex(?track_name, '"""+track_name+"""', "i")).
-                                                                    FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} ORDER BY(?perf_date)""")
+        SELECT DISTINCT ?perf_date (GROUP_CONCAT(?calma_link, ' , ') as ?calma_links) 
+                                                                    WHERE 
+                                                                    {
+                                                                    ?track rdf:type etree:Track.
+                                                                    ?track skos:prefLabel ?track_name.
+                                                                    ?track calma:data ?calma_link.
+                                                                    ?track mo:performer ?artist.
+                                                                    ?artist skos:prefLabel ?art_name.
+                                                                    ?track etree:audio ?audio_link.
+                                                                    ?track etree:isSubEventOf ?performance.
+                                                                    ?performance etree:date ?perf_date.
+        FILTER (regex(?track_name, '"""+track_name+"""', "i")).
+        FILTER (regex(?art_name, '"""+artist_name+"""', "i"))} GROUP BY(?perf_date) ORDER BY(?perf_date)
+         
+         """)
         self.sparql.setReturnFormat(JSON)
         calma_track = self.sparql.query().convert()["results"]["bindings"]
 
         # isolate values from list of dictionaries
-        calma_links = [calma_dict["calma_link"]["value"] for calma_dict in calma_track]
-        audio_links = [calma_dict["audio_links"]["value"] for calma_dict in calma_track]
+        calma_links = [calma_dict["calma_links"]["value"] for calma_dict in calma_track]
         perf_dates = [calma_dict["perf_date"]["value"] for calma_dict in calma_track]
-        track_names = [calma_dict["track_name"]["value"] for calma_dict in calma_track]
-        #NOTE: COUNT OF TRACKS SHOULD BE USED TO SIZE MATRIX
-        audio = np.zeros(400, dtype=np.ndarray)
+        track_names = [track_name for calma_dict in calma_track]
+
+        self.sparql.setQuery(TrackModel.prefixes + """
+                SELECT DISTINCT ?perf_date (GROUP_CONCAT(?audio_link, ' , ') as ?audio_links) 
+                                                                            WHERE 
+                                                                            {
+                                                                            ?track rdf:type etree:Track.
+                                                                            ?track skos:prefLabel ?track_name.
+                                                                            ?track calma:data ?calma_link.
+                                                                            ?track mo:performer ?artist.
+                                                                            ?artist skos:prefLabel ?art_name.
+                                                                            ?track etree:audio ?audio_link.
+                                                                            ?track etree:isSubEventOf ?performance.
+                                                                            ?performance etree:date ?perf_date.
+                FILTER (regex(?track_name, '""" + track_name + """', "i")).
+                FILTER (regex(?art_name, '""" + artist_name + """', "i"))} GROUP BY(?perf_date) ORDER BY(?perf_date)
+
+                 """)
+        self.sparql.setReturnFormat(JSON)
+        calma_track = self.sparql.query().convert()["results"]["bindings"]
+
+        # isolate values from list of dictionaries
+        audio_links = np.asarray([calma_dict["audio_links"]["value"] for calma_dict in calma_track])
+
+        single_calma_links = np.zeros(len(calma_links), dtype=np.ndarray)
+        audio = np.zeros(len(audio_links), dtype=np.ndarray)
         track_index = 0
         for track in audio_links:
             string = track
             audio[track_index] = string.split(",")
-            #print("TRACK" + str(audio[track_index][1]))
+            # print("TRACK" + str(audio[track_index][1]))
             track_index += 1
 
-        return calma_links,audio,perf_dates,track_names
+        track_index = 0
+        for links in calma_links:
+            string = links
+            single_calma_links[track_index] = string.split(",")
+            # print("TRACK" + str(audio[track_index][1]))
+            track_index += 1
+
+        print(len(calma_links))
+        for audio_id in range(0, len(audio)):
+            audio_list = audio[audio_id]
+            calma_links_list = single_calma_links[audio_id]
+            # isolate and pass only mp3 file links that are playable in browser
+            for index,link in enumerate(audio_list):
+                if ".mp3" in link:
+                    audio[audio_id] = link
+                    single_calma_links[audio_id] = calma_links_list[index].replace(" ", "")
+                else:
+                    audio[audio_id] = audio_list[0]
+                    single_calma_links[audio_id] = calma_links_list[0].replace(" ", "")
+
+        print(single_calma_links)
+
+        return single_calma_links,perf_dates,track_names
 
 class VenueModel:
     prefixes = """

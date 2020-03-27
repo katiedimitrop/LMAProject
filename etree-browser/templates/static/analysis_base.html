@@ -101,8 +101,12 @@
 
 <!--Main layout-->
 <main>
-<body>
+<body><p>Performances that are likely to be mislabelled will be labelled by DBScan with -1 </p>
+<p>The rest of the performances will be grouped into clusters depending on how similar they are
+in key, tempo and duration.</p>
+<p>Similarity between keys is found using the circle of fifths</p>
 <div class="container">
+
 
   {%block body%}
 
@@ -161,11 +165,27 @@ svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
 
+// text label for the x axis
+  svg.append("text")
+      .attr("transform",
+            "translate(" + (width/2) + " ," +
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Performances");
+
 // 4. Call the y axis in a group tag
 svg.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
 
+// text label for the y axis
+svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Tempo");
 
 // 9. Append the path, bind the data, and call the line generator
 svg.append("path")
@@ -247,11 +267,22 @@ svg2.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
 
+
+
+
 // 4. Call the y axis in a group tag
 svg2.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
 
+// text label for the y axis
+svg2.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Key");
 
 // 9. Append the path, bind the data, and call the line generator
 svg2.append("path")
@@ -308,7 +339,14 @@ svg3.append("g")
 svg3.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale).ticks(n/5, "f")); // Create an axis component with d3.axisLeft
-
+// text label for the y axis
+svg3.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Length");
 
 // 9. Append the path, bind the data, and call the line generator
 svg3.append("path")
@@ -362,11 +400,20 @@ svg4.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(xScale).ticks(n/10, "f")); // Create an axis component with d3.axisBottom
 
+
 // 4. Call the y axis in a group tag
 svg4.append("g")
     .attr("class", "y axis")
     .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
 
+// text label for the y axis
+svg4.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Cluster Label");
 
 // 9. Append the path, bind the data, and call the line generator
 svg4.append("path")

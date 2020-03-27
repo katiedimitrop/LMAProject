@@ -7,11 +7,11 @@ import tarfile
 import re
 from model_service import TrackService
 from operator import itemgetter
-artist_name = "Grateful Dead"
-track_name = "Ripple"
+artist_name = "Smashing Pumpkins"
+track_name = "Zero"
 mean_tempos = []
 
-calma_links,audio_links, perf_dates,track_names = TrackService().get_calma_track(artist_name,track_name)
+calma_links, perf_dates,track_names = TrackService().get_calma_track(artist_name,track_name)
 
 no_of_perfs = len(calma_links)
 prefixes = """
@@ -133,6 +133,7 @@ for perf_index in range(0,no_of_perfs):
     for feature_index in range(0, 2):
         # parse analysis page as graph to get blob FOR TEMPO
         analysis = Graph()
+        print(feature_links[feature_index])
         analysis.parse(feature_links[feature_index])
 
         qres = analysis.query(getFeatureBlob)

@@ -1,5 +1,6 @@
 #LINK: global distance funcion http://www.ieee.ma/uaesb/pdf/distances-in-classification.pdf
-
+#separate by speed/time 0.7,10, DISS 2 0.8 0.2
+#separate by key:0,7,5,3 diss; 0.1 0.2
 # part of logic tier: this will transform user queries into SPARQL queries and
 # aggregate the results
 import pandas as pd
@@ -10,6 +11,7 @@ import pandas as pd
 import pandas as pd
 import numpy as np
 import statistics
+import copy
 from matplotlib import pyplot as plt
 from pyclustering.utils import distance_metric, type_metric, calculate_distance_matrix
 from sklearn.cluster import KMeans
@@ -146,8 +148,10 @@ class ClusterService:
 
         # version of reduced data combined with keys
         unused_data = pd.DataFrame({'reduced': reduced_floats, 'key': scaled_keys})
-
-        dissimilarities = 0.8* metrics.pairwise_distances(reduced_data, metric='euclidean') + 0.2* feature_keys
+        if track_name == "Ripple":
+            dissimilarities = 0.4* metrics.pairwise_distances(reduced_data, metric='euclidean') + 0.6* feature_keys
+        else:
+            dissimilarities = 0.9 * metrics.pairwise_distances(reduced_data, metric='euclidean') + 0.1 * feature_keys
         #dissimilarities = metrics.pairwise_distances(reduced_data, metric='euclidean')
 
         # ############################# EPSILON value ###############################
@@ -180,7 +184,10 @@ class ClusterService:
 
 
         ################################## Execute ######################################
-        db = DBSCAN(eps=0.5,min_samples=10,metric = 'precomputed').fit(dissimilarities)
+        if track_name == "Ripple":
+            db = DBSCAN(eps=1.5,min_samples=3,metric = 'precomputed').fit(dissimilarities)
+        else:
+            db = DBSCAN(eps=0.8, min_samples=10, metric='precomputed').fit(dissimilarities)
         core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
         core_samples_mask[db.core_sample_indices_] = True
         clusters = db.labels_
@@ -198,13 +205,16 @@ class ClusterService:
               % metrics.silhouette_score(dissimilarities, clusters, metric='precomputed'))
         # ############################ Plot clustering ################################
 
-        plt.figure(1)
+        plt .figure(1)
 
         colors = ['royalblue', 'maroon', 'forestgreen', 'mediumorchid', 'tan', 'deeppink', 'olive', 'goldenrod',
                  'lightcyan', 'navy']
         vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
-        plt.scatter(reduced_data,scaled_keys, c=vectorizer(clusters))
-        plt.savefig('dbscan.png', dpi=192)
+        plt.scatter(reduced_data,keys_mapped, c=vectorizer(clusters))
+        if track_name == "Ripple":
+            plt.savefig('dbscanR.png', dpi=192)
+        else:
+            plt.savefig('dbcsanZ.png', dpi=192)
 
 
 
@@ -216,24 +226,35 @@ class ClusterService:
             if label == -1:
                 outlier_indices.append(index)
 
-
+        #isolate this similaritie,keys and ? for the non outliers
         dissimilarities = np.delete(dissimilarities, outlier_indices,axis = 0)
         dissimilarities = np.delete(dissimilarities, outlier_indices, axis = 1)
-        scaled_keys = np.delete(scaled_keys, outlier_indices)
+        keys_mapped = np.delete(keys_mapped, outlier_indices)
         reduced_floats = np.delete(reduced_floats, outlier_indices, axis=0)
-        non_outlier_labels= self.get_kmedoids_for_track( artist_name, track_name,dissimilarities,reduced_floats,scaled_keys)
+        #non_outlier_labels = self.get_kmedoids_for_track( artist_name, track_name,dissimilarities,reduced_floats,keys_mapped)
+
+        if track_name == "Ripple":
+            old_clusters = copy.deepcopy(clusters)
 
         #update "clusters" labels based on kmedoids output
         non_ouliers_index= 0
         for index,label in enumerate(clusters):
             if label != -1:
-                clusters[index] = non_outlier_labels[non_ouliers_index]
+                clusters[index] = 0
+                #clusters[index] = non_outlier_labels[non_ouliers_index]
                 non_ouliers_index+=1
+        if track_name == "Ripple":
+            print("Hello")
+            track_analysis['Labels'] = pd.Series(clusters, index=track_analysis.index)
+            # display the cluster labels and their size
+            unique_elements, counts = np.unique(clusters, return_counts=True)
+            print(np.asarray((unique_elements, counts)))
+        else:
+            track_analysis['Labels'] = pd.Series(clusters, index=track_analysis.index)
+            # display the cluster labels and their size
+            unique_elements, counts = np.unique(clusters, return_counts=True)
+            print(np.asarray((unique_elements, counts)))
 
-        track_analysis['Labels'] = pd.Series(clusters, index=track_analysis.index)
-        # display the cluster labels and their size
-        unique_elements, counts = np.unique(clusters, return_counts=True)
-        print(np.asarray((unique_elements, counts)))
 
         return track_analysis
 
@@ -249,9 +270,11 @@ class ClusterService:
         # reduce to two dimensions
         #X = PCA(n_components=2).fit_transform(X)
 
-        #Cluster number will be 3
-        initial_medoids = [50,175,200]
-
+        if track_name == "Ripple":
+            #Cluster number will be 3
+            initial_medoids = [50, 90,10]
+        else:
+            initial_medoids = [50, 90,100]
         ############################ Execute kmedoids #####################################
         metric = distance_metric(type_metric.EUCLIDEAN)
         kmedoids_instance = kmedoids(diss, initial_medoids, data_type='distance_matrix')
@@ -259,7 +282,7 @@ class ClusterService:
         kmedoids_instance.process()
         clusters = kmedoids_instance.get_clusters()
         medoids = kmedoids_instance.get_medoids()
-
+        print("MEDOIDS"+str(medoids))
         #distances = 0.5*np.array(time_tempo_dist) + 0.5*np.array(feature_keys)
         # create K-Medoids algorithm for processing distance matrix instead of points
 
@@ -271,7 +294,6 @@ class ClusterService:
         for index,list in enumerate(clusters):
             list[0] = index
 
-        print(medoids)
         labels = np.zeros(len(diss),dtype=int)
         for list in clusters:
             for index_item in list:
@@ -292,7 +314,10 @@ class ClusterService:
         vectorizer = np.vectorize(lambda x: colors[x % len(colors)])
         plt.scatter(reduced_data,scaled_keys, c=vectorizer(labels))
 
-        plt.savefig('kmedoids.png', dpi=192)
+        if track_name == "Ripple":
+            plt.savefig('kmedoidsR.png', dpi=192)
+        else:
+            plt.savefig('kmedoidsZ.png', dpi=192)
 
         # display the cluster labels and their size
         unique_elements, counts = np.unique(clusters, return_counts=True)
